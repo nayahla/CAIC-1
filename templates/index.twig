@@ -1,0 +1,331 @@
+{% set home = craft.entries.section('homepage').one() %}
+{% extends "layouts/main" %}
+
+{% set selectedNewsEntries = home and home.homepageNewsSpotlightItems ? home.homepageNewsSpotlightItems.all() : [] %}
+{% if selectedNewsEntries|length %}
+  {% set newsEntries = selectedNewsEntries|slice(0, 12) %}
+{% else %}
+  {% set rawNewsEntries = craft.entries()
+    .section(['resources', 'news'])
+    .orderBy('postDate desc')
+    .limit(40)
+    .all()
+  %}
+  {% set newsEntries = [] %}
+  {% for item in rawNewsEntries %}
+    {% set isNewsItem = item.section.handle == 'news' %}
+    {% if not isNewsItem and item.categoryLabel is defined and item.categoryLabel %}
+      {% set itemType = (item.categoryLabel.value ?: item.categoryLabel.label)|replace({' ': '-', '_': '-'})|lower %}
+      {% set isNewsItem = itemType in ['news', 'caic'] %}
+    {% endif %}
+    {% if isNewsItem and newsEntries|length < 12 %}
+      {% set newsEntries = newsEntries|merge([item]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set upcomingMeetings = craft.entries()
+  .section('meetings')
+  .meetingDate('>= ' ~ now|date('Y-m-d'))
+  .orderBy('meetingDate asc')
+  .limit(3)
+  .all()
+%}
+
+{% if not upcomingMeetings|length %}
+  {% set upcomingMeetings = craft.entries()
+    .section('meetings')
+    .orderBy('meetingDate asc')
+    .limit(3)
+    .all()
+  %}
+{% endif %}
+
+{% set eventsPage = craft.entries.section('eventsPage').one() ?? home %}
+{% set whoWeArePage = craft.entries.section('whoWeAre').one() ?? home %}
+{% set partnerCards = (whoWeArePage and whoWeArePage.trustedPartners) ? whoWeArePage.trustedPartners.all() : [] %}
+{% set partnerCards = partnerCards|slice(0, 8) %}
+
+{% block body %}
+<div class="caic">
+  <main id="main">
+    {% set heroImg = home.heroBackground.one() %}
+    <section class="caic-hero" style="background-image:url('{{ heroImg ? heroImg.url : '/assets/img/hero.jpg' }}')">
+      <div class="caic-hero__overlay" aria-hidden="true"></div>
+      <div class="caic-container caic-hero__inner">
+        <div class="caic-hero__content reveal">
+          <div class="caic-kickerPill">EVIDENCE-BASED | COMMUNITY-DRIVEN</div>
+          <h1 class="caic-heroTitle">
+            {% if home.heroHeading %}
+              {{ home.heroHeading }}
+            {% else %}
+              Colorado Alcohol<br><span class="caic-heroTitle__accent">Impacts Coalition</span>
+            {% endif %}
+          </h1>
+          <p class="caic-heroSub">
+            {{ home.heroDescription ?? 'Working together to reduce alcohol-related harm through evidence-based strategies, community engagement, and collaborative action across Colorado.' }}
+          </p>
+          <div class="caic-hero__ctaRow">
+            <a class="caic-btn caic-btn--primary caic-grow" href="/get-involved">GET INVOLVED <span aria-hidden="true">&rarr;</span></a>
+            <a class="caic-btn caic-btn--ghost caic-grow" href="/resources">EXPLORE RESOURCES</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-split reveal">
+      <div class="caic-container caic-split__row">
+        <figure class="caic-split__img">
+          {% set aboutImg = home.aboutImage.one() %}
+          <img src="{{ aboutImg ? aboutImg.url : '/assets/img/placeholder.jpg' }}" class="caic-photo" alt="About CAIC">
+        </figure>
+        <div class="caic-split__text">
+          <h2 class="caic-h2">About Us</h2>
+          <p class="caic-body">
+            {{ home.aboutText1 ?? 'The Colorado Alcohol Impacts Coalition (CAIC) brings together diverse people.' }}
+          </p>
+          <p class="caic-body">
+            {{ home.aboutText2 ?? 'We work collaboratively to address alcohol-related issues through evidence-based strategies, community engagement, and policy advocacy.' }}
+          </p>
+          <a class="caic-btn caic-btn--primary caic-grow" href="/about">LEARN MORE</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-split caic-section--tint reveal">
+      <div class="caic-container caic-split__row caic-split__row--flip">
+        <figure class="caic-split__img">
+          {% set visionImg = home.visionImage.one() %}
+          <img src="{{ visionImg ? visionImg.url : '/assets/img/placeholder.jpg' }}" class="caic-photo" alt="Our Vision">
+        </figure>
+        <div class="caic-split__text">
+          <h2 class="caic-h2">Our Vision</h2>
+          <p class="caic-body">
+            {{ home.visionText ?? 'We envision a community where alcohol-related harm is minimized through coordinated prevention efforts, informed decision-making, and strong community partnerships.' }}
+          </p>
+          <a class="caic-btn caic-btn--primary caic-grow" href="/about">LEARN MORE</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section" aria-label="Recent news spotlight">
+      <div class="caic-container">
+        <div class="caic-centerHead">
+          <h2 class="caic-h2">Recent News Spotlight</h2>
+          <p class="caic-centerSub">Stay informed with the latest updates, initiatives, and coalition activities</p>
+        </div>
+
+        <div class="caic-newsCarousel" data-carousel data-visible="2" data-interval="5000">
+          <div class="caic-carouselViewport">
+            <div class="caic-carouselTrack" data-carousel-track>
+              {% for item in newsEntries %}
+                {% set img = item.resourceImage is defined and item.resourceImage ? item.resourceImage.one() : ((item.newsImage is defined and item.newsImage) ? item.newsImage.one() : null) %}
+                {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+                <article class="caic-newsSlide" data-carousel-slide>
+                  <div class="caic-newsCard caic-grow">
+                    <div class="caic-newsCard__img" style="background-image:url('{{ img ? img.url : '/assets/img/news-placeholder.jpg' }}')"></div>
+                    <div class="caic-newsCard__body">
+                      <div class="caic-newsCard__meta">
+                        <span class="caic-tag">{{ item.categoryLabel.label ?? 'News' }}</span>
+                        <time datetime="{{ itemDate ? itemDate|date('Y-m-d') : now|date('Y-m-d') }}">{{ itemDate ? itemDate|date('F j, Y') : now|date('F j, Y') }}</time>
+                      </div>
+                      <h3 class="caic-newsCard__title">{{ item.title }}</h3>
+                      <p class="caic-newsCard__text">{{ item.summary }}</p>
+                      <a class="caic-newsCard__link" href="{{ item.externalLink ?: item.url }}">Read More <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="caic-carouselDots" data-carousel-dots aria-label="Recent news pages"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-section--tint reveal" aria-label="Resources">
+      <div class="caic-container">
+        <div class="caic-resourcesHeader">
+          <div class="caic-leftHead">
+            <h2 class="caic-h2">Resources</h2>
+            <p class="caic-body caic-resourcesSub">
+              Comprehensive tools, latest updates, and strategic insights for coalition members and community partners.
+            </p>
+          </div>
+        </div>
+
+        <div class="caic-resourceGridFour">
+              <article class="caic-resourceFeatureCard">
+                <div class="caic-resourceFeatureCard__iconWrap" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="caic-resourceFeatureCard__icon">
+                    <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+                  </svg>
+                </div>
+                <h3 class="caic-resourceFeatureCard__title">Resource Library</h3>
+                <p class="caic-resourceFeatureCard__text">Browse our comprehensive library of up-to-date resources created by CAIC experts.</p>
+                <a class="caic-resourceFeatureCard__link" href="/resources">Learn More <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+              </article>
+
+              <article class="caic-resourceFeatureCard">
+                <div class="caic-resourceFeatureCard__iconWrap" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="caic-resourceFeatureCard__icon">
+                    <path fill-rule="evenodd" d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 0 0 3 3h15a3 3 0 0 1-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125ZM12 9.75a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5H12Zm-.75-2.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H12a.75.75 0 0 1-.75-.75ZM6 12.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5H6Zm-.75 3.75a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5H6a.75.75 0 0 1-.75-.75ZM6 6.75a.75.75 0 0 0-.75.75v3c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-3A.75.75 0 0 0 9 6.75H6Z" clip-rule="evenodd" />
+                    <path d="M18.75 6.75h1.875c.621 0 1.125.504 1.125 1.125V18a1.5 1.5 0 0 1-3 0V6.75Z" />
+                  </svg>
+                </div>
+                <h3 class="caic-resourceFeatureCard__title">News &amp; Media</h3>
+                <p class="caic-resourceFeatureCard__text">See news CAIC has been featured in, important updates, and press releases.</p>
+                <a class="caic-resourceFeatureCard__link" href="/news-media">Learn More <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+              </article>
+
+              <article class="caic-resourceFeatureCard">
+                <div class="caic-resourceFeatureCard__iconWrap" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="caic-resourceFeatureCard__icon">
+                    <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+                    <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <h3 class="caic-resourceFeatureCard__title">Meetings &amp; Events</h3>
+                <p class="caic-resourceFeatureCard__text">Find upcoming coalition events, meeting details, and opportunities to participate.</p>
+                <a class="caic-resourceFeatureCard__link" href="{{ url('events') }}">Learn More <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+              </article>
+
+              <article class="caic-resourceFeatureCard">
+                <div class="caic-resourceFeatureCard__iconWrap" aria-hidden="true">
+                  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 870" preserveAspectRatio="xMidYMid meet" fill="currentColor" class="caic-resourceFeatureCard__icon caic-resourceFeatureCard__icon--getInvolved">
+                    <g transform="translate(0,870) scale(0.1,-0.1)" stroke="none">
+                      <path d="M2765 8694 c-16 -2 -66 -9 -110 -15 -590 -78 -1135 -462 -1418 -999 -317 -601 -293 -1314 63 -1895 252 -412 684 -729 1155 -849 256 -65 595 -73 842 -22 299 63 585 195 810 374 43 35 52 48 58 84 70 461 256 851 575 1207 102 114 104 122 90 334 -46 681 -444 1280 -1055 1585 -264 132 -505 190 -810 197 -93 2 -183 1 -200 -1z"/>
+                      <path d="M9715 8694 c-16 -2 -66 -9 -110 -15 -379 -50 -763 -237 -1054 -514 -274 -261 -478 -636 -551 -1010 -23 -124 -40 -343 -32 -425 5 -51 10 -60 86 -145 106 -118 171 -201 239 -305 165 -256 284 -557 331 -845 16 -94 19 -102 54 -134 65 -59 243 -171 367 -232 143 -69 292 -120 458 -155 167 -35 437 -43 617 -20 439 58 821 252 1130 572 678 704 716 1796 89 2549 -291 349 -703 583 -1159 660 -91 15 -402 28 -465 19z"/>
+                      <path d="M6140 6944 c-762 -104 -1397 -670 -1590 -1420 -290 -1124 491 -2246 1652 -2373 1024 -112 1966 636 2093 1662 47 383 -16 749 -192 1096 -286 568 -828 954 -1456 1036 -144 18 -365 18 -507 -1z"/>
+                      <path d="M11300 5039 c-230 -188 -512 -337 -792 -418 -445 -128 -902 -120 -1340 26 -129 42 -348 143 -464 212 l-51 31 -7 -67 c-26 -268 -109 -548 -233 -793 -96 -187 -196 -331 -365 -523 -39 -44 -41 -49 -24 -59 126 -70 451 -373 578 -538 247 -321 435 -707 578 -1187 l34 -113 1793 0 1793 0 0 75 c0 123 -19 407 -41 600 -88 791 -320 1565 -610 2030 -190 305 -447 577 -719 762 l-45 31 -85 -69z"/>
+                      <path d="M1354 5057 c-179 -123 -414 -346 -540 -512 -94 -124 -206 -298 -273 -425 -300 -572 -504 -1455 -537 -2323 l-7 -187 1794 2 1793 3 41 135 c228 745 560 1254 1060 1627 55 41 101 78 103 82 1 4 -25 37 -58 74 -311 339 -517 792 -572 1256 l-12 101 -50 -31 c-116 -69 -335 -170 -464 -212 -655 -218 -1363 -126 -1937 251 -66 43 -154 106 -195 140 -41 34 -77 62 -80 61 -3 0 -32 -19 -66 -42z"/>
+                      <path d="M7730 3229 c-156 -119 -405 -249 -609 -318 -388 -131 -832 -153 -1231 -60 -278 64 -565 194 -798 361 -51 37 -89 58 -98 54 -37 -14 -202 -135 -302 -221 -96 -83 -205 -199 -314 -336 -69 -86 -199 -294 -262 -419 -210 -414 -377 -1014 -461 -1662 -19 -151 -45 -469 -45 -559 l0 -69 2792 0 2791 0 -6 148 c-30 686 -198 1451 -439 2002 -202 462 -488 823 -849 1070 -48 33 -91 60 -96 59 -4 0 -37 -23 -73 -50z"/>
+                    </g>
+                  </svg>
+                </div>
+                <h3 class="caic-resourceFeatureCard__title">Get Involved</h3>
+                <p class="caic-resourceFeatureCard__text">Access recordings of past webinars and information on upcoming coalition meetings.</p>
+                <a class="caic-resourceFeatureCard__link" href="{{ url('events') }}">Learn More <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+              </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-section--tint reveal" aria-label="Upcoming meetings">
+      <div class="caic-container">
+        <div class="caic-upcomingSplit">
+          <figure class="caic-upcomingSplit__media">
+            {% set meetImg = home and home.meetingsImage ? home.meetingsImage.one() : (eventsPage and eventsPage.meetingsImage ? eventsPage.meetingsImage.one() : null) %}
+            <img src="{{ meetImg ? meetImg.url : '/assets/img/past-meetings.jpg' }}" alt="Upcoming meetings">
+          </figure>
+
+          <div class="caic-upcomingSplit__panel">
+            <div class="caic-upcomingSplit__head">
+              <h2 class="caic-h2">{{ eventsPage.upcomingMeetingsHeading ?? 'Upcoming Meetings' }}</h2>
+              <a class="caic-upcomingSplit__viewAll" href="{{ url('events') }}">
+                {{ eventsPage.upcomingMeetingsViewAllLabel ?? 'View all' }}
+              </a>
+            </div>
+
+            <p class="caic-upcoming__sub">{{ eventsPage.upcomingMeetingsText ?? 'Join us for our coalition meetings and events' }}</p>
+
+            <div class="caic-upcomingList">
+              {% if upcomingMeetings|length %}
+                {% for m in upcomingMeetings %}
+                  <article class="caic-upcomingListItem">
+                    <h3 class="caic-upcomingListItem__title">{{ m.title }}</h3>
+                    <div class="caic-upcomingListItem__metaRows">
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                        </svg>
+                        <span>{{ m.meetingDate ? m.meetingDate|date('F j, Y') : 'Date TBD' }}</span>
+                      </div>
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span>{{ m.meetingTime ? m.meetingTime|date("g:i A") : 'Time TBD' }}</span>
+                      </div>
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        <span>{{ m.location ?? 'Location TBD' }}</span>
+                      </div>
+                    </div>
+                  </article>
+                {% endfor %}
+              {% else %}
+                {% for i in 1..3 %}
+                  <article class="caic-upcomingListItem">
+                    <h3 class="caic-upcomingListItem__title">Upcoming Meeting {{ i }} Topics</h3>
+                    <div class="caic-upcomingListItem__metaRows">
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                        </svg>
+                        <span>January {{ 10 + i }}, 2026</span>
+                      </div>
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span>6:00 PM</span>
+                      </div>
+                      <div class="caic-upcomingListItem__meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        <span>Denver</span>
+                      </div>
+                    </div>
+                  </article>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-partners reveal" aria-label="Trusted partners and collaborators">
+      <div class="caic-container">
+        <h2 class="caic-partners__title">{{ whoWeArePage.trustedPartnersHeading ?? 'Trusted Partners & Collaborators' }}</h2>
+        <div class="caic-partnersGrid">
+          {% for card in partnerCards %}
+            {% set partnerLink = card.externalLink ? (card.externalLink.url ?? card.externalLink) : '' %}
+            {% set logo = card.partnerLogo ? card.partnerLogo.one() : null %}
+            {% if partnerLink %}
+              <a class="caic-partnerCard caic-partnerCard--link" href="{{ partnerLink }}" target="_blank" rel="noopener">
+                {% if logo %}
+                  <img class="caic-partnerCard__logo" src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                {% else %}
+                  {{ card.title }}
+                {% endif %}
+              </a>
+            {% else %}
+              <div class="caic-partnerCard">
+                {% if logo %}
+                  <img class="caic-partnerCard__logo" src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                {% else %}
+                  {{ card.title }}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          {% if partnerCards|length < 4 %}
+            {% for i in 1..(4 - partnerCards|length) %}
+              <div class="caic-partnerCard">Partner {{ i }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+{% endblock %}

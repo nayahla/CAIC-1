@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: aboutWhatWeDoCards
+instructions: "Add exactly 3 cards for the What We're Doing section."
+name: 'About What We Do Cards'
+searchable: false
+settings:
+  createButtonLabel: "Add What We're Doing Card"
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 8176d5be-7047-4696-a8bc-8fd5d2d4e619 # About What We Do Card
+        -
+          - group
+          - About
+  includeTableView: false
+  maxEntries: 3
+  minEntries: 3
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

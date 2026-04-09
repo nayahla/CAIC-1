@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: whoWeArePartnersIntro
+instructions: 'Paragraph text next to partner logos on Who We Are page.'
+name: 'Who We Are Partners Intro'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

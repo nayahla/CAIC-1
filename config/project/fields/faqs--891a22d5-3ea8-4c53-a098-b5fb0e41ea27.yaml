@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: faqs
+instructions: 'This is the FAQ section, you can change the questions and answers as needed!'
+name: FAQs
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - a19e3c8b-da9c-40ba-9f00-317dd6f380bd # FAQ Item
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

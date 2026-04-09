@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: c7b489cc-2c1c-47d7-a59e-c8f83d68e2be # Who We Are
+handle: whoWeAre
+maxAuthors: 1
+name: 'Who We Are'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
+    enabledByDefault: true
+    hasUrls: true
+    template: workgroups.twig
+    uriFormat: who-we-are
+type: single

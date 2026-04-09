@@ -1,0 +1,2428 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+/* ---- Tokens ---- */
+:root{
+  --navy: #10232F;            /* Primary background */
+  --navy-deep: #0B1A22;
+  --charcoal: #1A1A1A;        /* Primary text */
+  --slate: #4A4F52;           /* Secondary text */
+  --grey: #D9DCE0;            /* Dividers */
+  --offwhite: #F7F9FA;        /* Page bg */
+
+  --red: #E85B57;             /* Urgency */
+  --blue: #3BB8E2;            /* CTA */
+  --teal: #2CA88F;            /* Data highlight */
+  --amber: #F2A541;           /* Community pop */
+
+  --radius: 8px;
+  --shadow-sm: 0 6px 18px rgba(16,35,47,.12);
+  --shadow-md: 0 14px 30px rgba(16,35,47,.18);
+  --shadow-soft: 0 2px 8px rgba(16,35,47,.10), 0 1px 2px rgba(16,35,47,.06);
+  --max: 1200px;
+  --section-title-size: 34px;
+  --section-subtitle-size: 13px;
+
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* ========= CAIC Screenshot Match Styles ========= */
+
+/* Base reset */
+html, body { margin:0; padding:0; }
+.caic { font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif; color:#1A1A1A; background:#fff; }
+.caic-container {width:min(1600px, calc(100% - 30px)); margin: 0 auto; }
+@media (max-width: 720px){ .caic-container{ width: calc(100% - 28px);} }
+
+.caic-srOnly{
+  position:absolute!important; width:1px;height:1px; padding:0;margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
+
+/* Hover grow on buttons/cards (like screenshots) */
+.caic-grow{ transition: transform .18s ease; }
+.caic-grow:hover{ transform: scale(1.03); }
+
+.caic :is(
+  .caic-getInvolvedCard,
+  .caic-whoExecutiveCard,
+  .caic-whoCommitteeCard,
+  .caic-whoPartnerCard,
+  .caic-contactSocial__link
+){
+  transition:
+    transform .24s var(--ease),
+    box-shadow .24s var(--ease),
+    border-color .24s var(--ease),
+    background-color .24s var(--ease),
+    color .24s var(--ease);
+}
+
+.caic :is(
+  .caic-getInvolvedCard,
+  .caic-whoExecutiveCard,
+  .caic-whoCommitteeCard,
+  .caic-whoPartnerCard,
+  .caic-contactSocial__link
+):hover{
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(16,35,47,.14);
+}
+
+/* Consistent hover motion for links/actions that navigate */
+.caic :is(a[href], button){
+  transition:
+    transform .18s var(--ease),
+    box-shadow .18s var(--ease),
+    color .18s var(--ease),
+    background-color .18s var(--ease),
+    border-color .18s var(--ease);
+}
+.caic :is(a[href], button):hover{
+  transform: translateY(-1px) scale(1.01);
+}
+.caic :is(.caic-partnerCard, .caic-upcomingListItem){
+  transition:
+    transform .18s var(--ease),
+    box-shadow .18s var(--ease),
+    border-color .18s var(--ease),
+    background-color .18s var(--ease);
+}
+.caic :is(.caic-partnerCard, .caic-upcomingListItem):hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(16,35,47,.14);
+}
+.caic-dropdown__trigger:hover{
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce){
+  .caic :is(
+    a[href],
+    button,
+    .caic-partnerCard,
+    .caic-upcomingListItem,
+    .caic-getInvolvedCard,
+    .caic-whoExecutiveCard,
+    .caic-whoCommitteeCard,
+    .caic-whoPartnerCard,
+    .caic-contactSocial__link
+  ){
+    transition: none;
+  }
+  .caic :is(
+    a[href],
+    button,
+    .caic-partnerCard,
+    .caic-upcomingListItem,
+    .caic-getInvolvedCard,
+    .caic-whoExecutiveCard,
+    .caic-whoCommitteeCard,
+    .caic-whoPartnerCard,
+    .caic-contactSocial__link
+  ):hover{
+    transform: none;
+  }
+}
+
+/* Small, consistent elevation across the UI */
+.caic :is(
+  .caic-btn,
+  .caic-search,
+  .caic-dropdown__menu,
+  .caic-newsCard,
+  .caic-resourceFeatureCard,
+  .caic-resourceCard,
+  .caic-upcomingSplit__media img,
+  .caic-upcomingList,
+  .caic-upcomingListItem,
+  .caic-partnerCard,
+  .caic-stayConnected__form input,
+  .caic-stayConnected__btn,
+  .caic-footerTop,
+  .caic-split__img img
+){
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------- Header (Screenshot 1) ---------- */
+.caic-header{
+  background:#10232F;
+  position: sticky;
+  top: 0;
+  z-index: 11000;
+}
+.caic-header__inner{
+  width: min(1600px, calc(100% - 30px));
+  margin: 0 auto;
+  height: 90px;
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;
+  gap: 18px;
+}
+@media (max-width: 720px){ .caic-header__inner{ width: calc(100% - 28px);} }
+
+.caic-logo img{ height: 60px; width:auto; display:block;  margin-top: 7px;}
+
+.caic-nav{ margin-left:auto; }
+.caic-nav__list{ list-style:none; display:flex; gap:14px; margin-left:0; padding:0; align-items:center; }
+.caic-dropdown{ position: relative; }
+
+.caic-dropdown__trigger{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color .18s var(--ease);
+}
+.caic-dropdown__trigger:hover,
+.caic-dropdown:hover .caic-dropdown__trigger,
+.caic-dropdown:focus-within .caic-dropdown__trigger{
+  background: transparent;
+  color:#3BB8E2;
+  text-decoration: none;
+}
+
+.caic-dropdown__menu{
+  position:absolute;
+  top: 100%;
+  right: 0;
+  min-width: 220px;
+  background:#fff;
+  border-radius: 8px;
+  border:1px solid rgba(0,0,0,.08);
+  padding: 8px;
+  display:none;
+  z-index: 9999;
+}
+.caic-dropdown__link{
+  display:block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color:#10232F;
+  font-weight: 600;
+  font-size: 14px;
+}
+.caic-dropdown__link:hover{ background: rgba(59,184,226,.14); }
+
+.caic-header__tools{ display:flex; align-items:center; gap: 12px; margin-left: 8px; }
+.caic-search{
+  position: relative;
+  display:flex;
+  align-items:center;
+}
+.caic-search__toggle{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.09);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding: 0;
+}
+.caic-search__toggle:focus-visible{
+  outline: 2px solid #3BB8E2;
+  outline-offset: 2px;
+}
+.caic-search__panel{
+  position:absolute;
+  right:0;
+  top: calc(100% + 8px);
+  width: 236px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.24);
+  background: #10232F;
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  transform-origin: calc(100% - 20px) 12px;
+  transform: translateY(-8px) scale(.72);
+  clip-path: circle(10px at calc(100% - 20px) 12px);
+  pointer-events: none;
+  transition: opacity .26s var(--ease), transform .26s var(--ease), clip-path .28s var(--ease);
+  z-index: 9999;
+}
+.caic-search.is-open .caic-search__panel{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  clip-path: circle(150% at calc(100% - 20px) 12px);
+  pointer-events: auto;
+}
+.caic-search__panel input{
+  width:100%;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.07);
+  color:#fff;
+  outline:none;
+  padding: 0 10px;
+  font-size: 13px;
+}
+.caic-search__panel input::placeholder{ color: rgba(255,255,255,.72); }
+.caic-search__iconSvg{
+  width: 20px;
+  height: 20px;
+  color: rgba(255,255,255,.92);
+  display:block;
+}
+
+.caic-mobileToggle{ display:none; background:transparent; border:0; width:44px; height:44px; border-radius:10px; cursor:pointer; }
+.caic-mobileToggle span{ display:block; height:2px; margin:6px 10px; background:#fff; border-radius:2px; }
+@media (max-width: 980px){
+  .caic-search{ display:none; }
+  .caic-mobileToggle{ display:block; }
+  .caic-nav{ display:none; }
+}
+
+/* ---------- Announcement bar (Screenshot 1) ---------- */
+.caic-announcement{
+  background:#3BB8E2;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+.caic-announcement__inner{ display:flex; align-items:center; gap:10px; font-size: 13px; font-weight: 600; }
+.caic-announcement__dot{ width: 10px; height: 10px; border-radius: 999px; border:2px solid #fff; display:inline-block; }
+.caic-announcement__link{ color:#fff; text-decoration: underline; font-weight:700; }
+.caic-announcement__close{
+  background: transparent; border:none; color:#fff; font-size: 20px; cursor:pointer; line-height: 1;
+}
+
+/* ---------- Hero (Screenshot 1) ---------- */
+.caic-hero{
+  position: relative;
+  background: url('/images/heroback.jpg') center/cover no-repeat;
+  min-height: 520px;
+  display:flex;
+  align-items:center;
+  padding: 70px 0;
+}
+.caic-hero__overlay{
+  position:absolute; inset:0;
+  background: rgba(11,26,34,.72);
+}
+.caic-hero__inner{ position: relative; z-index: 2; 
+max-width: 1400px;}
+
+.caic-kickerPill{
+  display:inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(59,184,226,.55);
+  color: rgba(255,255,255,.9);
+  font-size: 11px;
+  letter-spacing: .08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.caic-heroTitle{
+  color:#fff;
+  font-size: 52px;
+  line-height: 1.05;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+@media (max-width: 720px){ .caic-heroTitle{ font-size: 40px; } }
+
+.caic-heroTitle__accent{ color:#3BB8E2; }
+.caic-heroSub{
+  color: rgba(255,255,255,.86);
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+.caic-hero__ctaRow{ display:flex; gap: 12px; flex-wrap: wrap; }
+
+.caic-pageBanner{
+  position:relative;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  padding:70px 0;
+}
+.caic-pageBanner__overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(11,26,34,.72);
+}
+.caic-pageBanner__inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+}
+.caic-pageBanner__content{
+  max-width:840px;
+}
+.caic-pageBanner__eyebrow{
+  margin:0 0 10px;
+  color:#48AECA;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.caic-pageBanner__title{
+  margin:0 0 14px;
+  color:#fff;
+  font-size:56px;
+  line-height:1.08;
+  font-weight:700;
+}
+.caic-pageBanner__body{
+  display:grid;
+  gap:14px;
+}
+.caic-pageBanner__text{
+  margin:0;
+  max-width:62ch;
+  color:rgba(255,255,255,.86);
+  font-size:17px;
+  line-height:1.72;
+}
+@media (max-width: 720px){
+  .caic-pageBanner{
+    min-height:440px;
+    padding:56px 0;
+  }
+  .caic-pageBanner__title{
+    font-size:40px;
+  }
+  .caic-pageBanner__text{
+    font-size:15px;
+  }
+}
+
+.caic-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:10px;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+}
+.caic-btn--primary{ background:#3BB8E2; color:#fff; }
+.caic-btn--ghost{ background: transparent; color:#fff; border-color: rgba(255,255,255,.55); }
+
+/* ---------- Split sections / split between sections---------- */
+.caic-split{ padding: 30px 0; background:#fff; }
+.caic-split__row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.caic-split__row--flip{ grid-template-columns: 1fr 1fr;}
+.caic-split__row--flip .caic-split__img{ order: 2; }
+.caic-split__img{
+  margin: 0 -10px;
+}
+@media (max-width: 980px){
+  .caic-split__row, .caic-split__row--flip{ grid-template-columns: 1fr; }
+  .caic-split__row--flip .caic-split__img{ order: 0; }
+  .caic-split__img{ margin: 0; }
+}
+
+.caic-split__img img{
+  width:100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.caic-split__text .caic-h2{ margin:0 0 12px; font-size: var(--section-title-size); }
+.caic-body{ color:#4A4F52; font-size: 14px; line-height: 1.75; margin: 0 0 12px; }
+
+/* ---------- Section wrappers ---------- */
+.caic-section{ padding: 90px 0; }
+.caic-section--tint{ background:#F2F5F7; }
+.caic-centerHead{ text-align:center; margin-bottom: 26px; }
+.caic-centerSub{ color:#4A4F52; font-size: var(--section-subtitle-size); margin: 0; line-height: 1.7; }
+.caic-leftHead{ margin-bottom: 26px; }
+.caic-h2{ font-size: var(--section-title-size); margin: 0 0 10px; font-weight: 700; color:#10232F; }
+
+/* ---------- News carousel (Screenshot 3) ---------- */
+.caic-newsCarousel{ position: relative; margin-top: 14px; }
+.caic-carouselViewport{
+  overflow:hidden;
+  padding: 8px 0 12px;
+}
+.caic-carouselTrack{ display:flex; transition: transform .55s ease; }
+
+.caic-newsSlide{
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 0 10px 4px;
+}
+@media (max-width: 980px){ .caic-newsSlide{ flex: 0 0 100%; } }
+
+.caic-newsCard{
+  background:#fff;
+  border-radius: 12px;
+  overflow:hidden;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.caic-newsCard:hover{
+  transform: scale(1.02);
+}
+.caic-newsCard__img{
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+}
+.caic-newsCard__body{ padding: 16px 16px 18px; }
+.caic-newsCard__meta{ display:flex; gap:10px; align-items:center; font-size: 12px; color:#4A4F52; margin-bottom: 8px; }
+.caic-tag{
+  background:#E85B57;
+  color:#fff;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 4px 8px;
+  letter-spacing: .06em;
+}
+.caic-newsCard__title{ margin: 0 0 8px; font-size: 16px; font-weight: 800; color:#10232F; }
+.caic-newsCard__title a{ color:inherit; text-decoration:none; }
+.caic-newsCard__text{ margin:0 0 10px; font-size: 13px; color:#4A4F52; line-height: 1.6; }
+.caic-newsCard__link{
+  color:#3BB8E2;
+  font-weight: 800;
+  font-size: 12px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+}
+.caic-carouselDots,
+.caic-resourceDots{
+  margin-top: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+}
+.caic-carouselDots{
+  margin-top: 26px;
+}
+.caic-dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  border: none;
+  background:#C7CDD2;
+  cursor:pointer;
+  padding: 0;
+  transition: background .2s ease, transform .2s ease;
+}
+.caic-dot.is-active{
+  background:#41484E;
+  transform: scale(1.1);
+}
+.caic-dot:focus-visible{
+  outline: 2px solid #3BB8E2;
+  outline-offset: 2px;
+}
+
+/* ---------- Resources (Screenshot 3) ---------- */
+.caic-resourceGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+@media (max-width: 980px){ .caic-resourceGrid{ grid-template-columns: 1fr; } }
+
+.caic-resourceCard{
+  background:#fff;
+  border-radius: 10px;
+  overflow:hidden;
+  border: 1px solid rgba(0,0,0,.10);
+  text-decoration:none;
+  color:#10232F;
+}
+.caic-resourceCard__top{
+  background:#F2F5F7;
+  height: 140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+}
+.caic-resourceLogoSlot{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8EC;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow: hidden;
+}
+.caic-resourceLogo{
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  display:block;
+}
+.caic-resourceIcon{
+  width: 54px;
+  height: 54px;
+  border: 2px solid #9DB8C5;
+  border-radius: 12px;
+  background: #F4FAFD;
+}
+.caic-resourceCard__body{ padding: 16px 16px 18px; }
+.caic-resourceCard__title{ margin:0 0 8px; font-size: 18px; font-weight: 800; }
+.caic-resourceCard__text{ margin:0; color:#4A4F52; font-size: 13px; line-height: 1.6; }
+
+.caic-resourcesHeader{
+  display:flex;
+  justify-content: space-between;
+  align-items:flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.caic-resourcesSub{
+  max-width: 640px;
+  color:#6B7E8B;
+  margin: 0;
+}
+
+.caic-resourcePager{
+  position: relative;
+}
+.caic-resourcePager__viewport{
+  overflow:hidden;
+}
+.caic-resourcePager__track{
+  display:flex;
+  width:max-content;
+  gap: 18px;
+  transition: transform .45s ease;
+}
+.caic-resourcePager__track > .caic-resourceFeatureCard{
+  flex: 0 0 calc((100% - 36px) / 3);
+}
+@media (max-width: 980px){
+  .caic-resourcesHeader{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .caic-resourcePager__track > .caic-resourceFeatureCard{
+    flex-basis: 100%;
+  }
+}
+
+.caic-resourceFeatureCard{
+  background:#FFFFFF;
+  border: 1px solid #E1E5E8;
+  border-radius: 12px;
+  padding: 20px 16px 16px;
+  min-height: 248px;
+  display:flex;
+  flex-direction: column;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.caic-resourceFeatureCard:hover{
+  transform: scale(1.02);
+}
+.caic-resourceFeatureCard__iconWrap{
+  width: 92px;
+  height: 92px;
+  border-radius: 12px;
+  background:#EFEFEF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom: 18px;
+}
+.caic-resourceFeatureCard__icon{
+  width: 54px;
+  height: 54px;
+  color:#0F8BAA;
+}
+.caic-resourceFeatureCard__icon--getInvolved{
+  width: 70px;
+  height: auto;
+}
+.caic-resourceFeatureCard__title{
+  margin:0 0 8px;
+  color:#1A1A1A;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+.caic-resourceFeatureCard__text{
+  margin:0 0 12px;
+  color:#617989;
+  font-size: 12px;
+  line-height: 1.5;
+  flex: 1;
+}
+.caic-resourceFeatureCard__link{
+  color:#1D9CC5;
+  text-decoration:none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: none;
+  display:inline-flex;
+  align-items:center;
+}
+.caic-resourceFeatureCard__link:hover{
+  text-decoration: none;
+}
+.caic-linkArrow{
+  display:inline-block;
+  margin-left: 4px;
+  transition: margin-left .18s var(--ease);
+}
+.caic a.caic-newsCard__link:hover,
+.caic a.caic-resourceFeatureCard__link:hover{
+  transform: none;
+}
+.caic a.caic-newsCard__link:hover .caic-linkArrow,
+.caic a.caic-resourceFeatureCard__link:hover .caic-linkArrow{
+  margin-left: 10px;
+}
+.caic-resourceGridFour{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 1100px){
+  .caic-resourceGridFour{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px){
+  .caic-resourceGridFour{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Past meetings (Screenshot 4) ---------- */
+.caic-meetingsSplit{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items:start;
+}
+@media (max-width: 980px){ .caic-meetingsSplit{ grid-template-columns: 1fr; } }
+
+.caic-meetingsSplit__img img{
+  width:100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.caic-meetingList{
+  margin-top: 16px;
+  max-height: 420px;
+  overflow:auto;
+  padding-right: 10px;
+}
+.caic-meetingCard{
+  background:#fff;
+  border-radius: 10px;
+  padding: 16px 16px 14px;
+  margin-bottom: 14px;
+  border-left: 4px solid #10232F;
+}
+.caic-meetingCard__title{ margin:0 0 10px; font-size: 16px; font-weight: 800; }
+.caic-meetingCard__title a{ color:#10232F; text-decoration:none; }
+.caic-meetingCard__meta{ display:flex; flex-direction:column; gap: 6px; color:#4A4F52; font-size: 12px; }
+.caic-metaRow{ display:flex; align-items:center; gap: 8px; }
+.caic-ic{ width: 14px; height: 14px; display:inline-block; opacity:.75; }
+.caic-ic--cal{ background: #4A4F52; mask: linear-gradient(#000,#000); border-radius: 2px; }
+.caic-ic--clock{ background: #4A4F52; mask: linear-gradient(#000,#000); border-radius: 999px; }
+.caic-ic--pin{ background: #4A4F52; mask: linear-gradient(#000,#000); border-radius: 6px; }
+
+.caic-meetingCard__divider{ height:1px; background: rgba(0,0,0,.10); margin: 12px 0; }
+.caic-meetingCard__foot{ display:flex; align-items:center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.caic-attendees{ color:#4A4F52; }
+.caic-meetingLink{ color:#2CA88F; font-weight: 800; text-decoration:none; }
+
+/* ---------- FAQ (Screenshot 5) ---------- */
+.caic-accordion{ max-width: 860px; margin: 28px auto 0; display:grid; gap: 12px; }
+.caic-accItem{
+  background:#fff;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  overflow:hidden;
+  transition: border-color .2s ease, background .2s ease;
+}
+.caic-accBtn{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 18px 18px;
+  background: transparent;
+  border: none;
+  cursor:pointer;
+  font-weight: 800;
+  color:#10232F;
+  font-size: 14px;
+  text-align:left;
+}
+.caic-accChevron{
+  width: 10px; height: 10px;
+  border-right:2px solid rgba(16,35,47,.65);
+  border-bottom:2px solid rgba(16,35,47,.65);
+  transform: rotate(45deg);
+  transition: transform .2s ease;
+}
+.caic-accItem.is-open{
+  border-color:#3BB8E2;
+}
+
+.caic-accItem.is-open .caic-accChevron{ transform: rotate(-135deg); }
+
+.caic-accPanel{ padding: 0 18px 18px; }
+.caic-faqCta{ text-align:center; margin-top: 26px; }
+
+/* ---------- Footer ---------- */
+.caic-footer{
+  background:#10232F;
+  color:#EAF0F4;
+  padding: 68px 0 32px;
+}
+.caic-footerMain{
+  display:grid;
+  grid-template-columns: minmax(420px, 1.45fr) minmax(220px, .9fr) minmax(220px, .9fr);
+  gap: 56px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  align-items:start;
+}
+.caic-footerBrand{
+  display:flex;
+  flex-direction: column;
+  align-items:flex-start;
+  gap: 16px;
+}
+.caic-footerLogo{
+  width: 400px;
+  height: auto;
+  display:block;
+}
+.caic-footerBrandText{
+  margin:0;
+  max-width: 340px;
+  color: rgba(234,240,244,.95);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+.caic-footerGroup{
+  display:flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.caic-footerHeading{
+  margin:0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  color:#FFFFFF;
+}
+.caic-footerLinks{
+  display:grid;
+  gap: 10px;
+}
+.caic-footerLinks a{
+  color: rgba(234,240,244,.94);
+  text-decoration:none;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+.caic-footerLinks a:hover{
+  color:#FFFFFF;
+  text-decoration: underline;
+}
+.caic-footerEmail{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  color: rgba(234,240,244,.94);
+  text-decoration:none;
+  font-size: 13px;
+  font-weight: 400;
+}
+.caic-footerEmail svg{
+  width: 18px;
+  height: 18px;
+  color: rgba(234,240,244,.88);
+}
+.caic-footerSubhead{
+  margin: 2px 0 0;
+  color: rgba(234,240,244,.94);
+  font-size: 13px;
+  font-weight: 400;
+}
+.caic-footerSocialRow{
+  display:flex;
+  gap: 12px;
+}
+.caic-footerSocial{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  color:#FFFFFF;
+  text-decoration:none;
+  font-size: 12px;
+  font-weight: 400;
+}
+.caic-footerSocial svg{
+  width: 16px;
+  height: 16px;
+  display:block;
+}
+.caic-footerBottom{
+  display:flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 22px;
+  color: rgba(234,240,244,.80);
+  font-size: 13px;
+  font-weight: 400;
+}
+.caic-footerBottom__links{
+  display:flex;
+  gap: 22px;
+}
+.caic-footerBottom__links a{
+  color: rgba(234,240,244,.92);
+  text-decoration:none;
+  font-weight: 400;
+}
+.caic-footerBottom__links a:hover{
+  text-decoration: underline;
+}
+@media (max-width: 820px){
+  .caic-footer{
+    padding: 56px 0 28px;
+  }
+  .caic-footerMain{
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .caic-footerBrandText{
+    max-width: none;
+  }
+  .caic-footerLogo{
+    width: 260px;
+  }
+  .caic-footerBottom{
+    flex-direction: column;
+  }
+  .caic-footerBottom__links{
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal{ opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; will-change: opacity, transform; }
+.reveal.visible{ opacity: 1; transform: translateY(0); }
+
+/* DROPDOWN HOVER FIX */
+
+
+.caic-dropdown__menu{
+display:none;
+position:absolute;
+top:100%;
+right:0;
+background:#fff;
+border:1px solid #D9DCE0;
+border-radius:6px;
+min-width:180px;
+padding:6px 0;
+z-index:999;
+}
+
+/* show menu on hover */
+.caic-dropdown:hover .caic-dropdown__menu{
+display:block;
+}
+
+.caic-dropdown:focus-within .caic-dropdown__menu{
+display:block;
+}
+
+/* links */
+.caic-dropdown__link{
+display:block;
+padding:8px 14px;
+font-weight:600;
+text-decoration:none;
+color:#10232F;
+}
+
+/* remove underline everywhere */
+.caic-dropdown__link,
+.caic-dropdown__link:visited,
+.caic-dropdown__link:hover{
+text-decoration:none;
+}
+
+/* hover highlight */
+.caic-dropdown__link:hover{
+background:#F0F6FA;
+}
+
+.caic-dropdown__trigger,
+.caic-dropdown__trigger:hover{
+text-decoration:none;
+}
+
+.caic-dropdown:hover .caic-dropdown__trigger{
+background: transparent;
+color:#3BB8E2;
+text-decoration:none;
+}
+
+.caic-icon {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caic-resourceCard__caption{
+  font-size:14px;
+  color:#4A4F52;
+  line-height:1.6;
+  margin-top:6px;
+}
+
+.caic-resourceLogoPlaceholder{
+  width: 92px;
+  height: 48px;
+  border: 1px dashed #9fb2be;
+  border-radius: 8px;
+  background: #f7fbfd;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.caic-pageHero{
+  background: #F2F5F7;
+  padding: 54px 0 36px;
+}
+.caic-h1{
+  margin: 0 0 10px;
+  color: #10232F;
+  font-size: 42px;
+  line-height: 1.1;
+}
+
+.caic-contactPage{
+  background: #F2F5F7;
+}
+.caic-contactHero{
+  background: transparent;
+  padding: 54px 0 44px;
+}
+.caic-contactHero__inner{
+  max-width: 720px;
+}
+.caic-contactHero__eyebrow{
+  margin: 0 0 8px;
+  color: #48AECA;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.caic-contactHero__title{
+  margin: 0;
+  color: #1A1A1A;
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+.caic-contactHero__divider{
+  width: min(100%, 670px);
+  height: 1px;
+  margin: 32px 0;
+  background: #E3E7EA;
+}
+.caic-contactSection{
+  padding: 64px 0 84px;
+  background: transparent;
+}
+.caic-contactLayout{
+  width:min(100%, 1120px);
+  margin:0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(380px, 500px);
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+}
+.caic-contactIntroColumn{
+  max-width:620px;
+  min-width: 0;
+  padding-top: 2px;
+}
+.caic-contactHero__inner--inline{
+  max-width: 620px;
+  margin-bottom: 18px;
+}
+.caic-contactCard{
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 34px 28px 28px;
+  box-shadow: 0 14px 30px rgba(16,35,47,.08);
+}
+.caic-contactCard__title{
+  margin: 0 0 28px;
+  color: #127FA0;
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+.caic-contactForm{
+  display: grid;
+  gap: 18px;
+}
+.caic-contactForm__field{
+  display: grid;
+  gap: 8px;
+}
+.caic-contactForm__field label{
+  color: #8A939B;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.caic-contactForm__field input,
+.caic-contactForm__field textarea{
+  width: 100%;
+  border: 1px solid #E7EAED;
+  background: #F3F3F3;
+  border-radius: 0;
+  padding: 14px 16px;
+  color: #10232F;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  outline: none;
+}
+.caic-contactForm__field textarea{
+  min-height: 138px;
+  resize: vertical;
+}
+.caic-contactForm__field input::placeholder,
+.caic-contactForm__field textarea::placeholder{
+  color: #9AA3AB;
+}
+.caic-contactForm__field input:focus,
+.caic-contactForm__field textarea:focus{
+  border-color: #3BB8E2;
+  background: #FFFFFF;
+}
+.caic-contactForm__submit{
+  margin-top: 8px;
+  justify-self: start;
+  min-width: 164px;
+  border: 0;
+  border-radius: 6px;
+  background: #3BB8E2;
+  color: #FFFFFF;
+  padding: 14px 22px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(59,184,226,.25);
+}
+.caic-contactAside{
+  padding-top: 6px;
+}
+.caic-contactAside__intro{
+  margin-bottom: 26px;
+}
+.caic-contactAside__title{
+  margin: 0 0 16px;
+  color: #1A1A1A;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+.caic-contactAside__text{
+  margin: 0;
+  max-width: 42ch;
+  color: #68727A;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+.caic-contactEmailCard{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+  color: #1A1A1A;
+  text-decoration: none;
+}
+.caic-contactEmailCard:hover{
+  transform: none;
+}
+.caic-contactEmailCard__icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(59,184,226,.18);
+  color: #1694B9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.caic-contactEmailCard__icon svg{
+  width: 17px;
+  height: 17px;
+}
+.caic-contactEmailCard__copy{
+  display: grid;
+  gap: 2px;
+}
+.caic-contactEmailCard__label{
+  color: #8A939B;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.caic-contactEmailCard__value{
+  color: #1A1A1A;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+.caic-contactQuote{
+  margin: 0 0 28px;
+  padding: 26px 24px 22px;
+  border-left: 4px solid #1694B9;
+  border-radius: 10px;
+  background: #EBE8E6;
+}
+.caic-contactQuote__text{
+  margin: 0 0 16px;
+  color: #5D6670;
+  font-size: 15px;
+  line-height: 1.9;
+  font-style: italic;
+  font-weight: 600;
+}
+.caic-contactQuote__cite{
+  color: #127FA0;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+.caic-contactSocial__label{
+  margin: 0 0 14px;
+  color: #8A939B;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.caic-contactSocial__row{
+  display: flex;
+  gap: 10px;
+}
+.caic-contactSocial__link{
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #65717B;
+  border: 1px solid #E2E6E9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 16px rgba(16,35,47,.04);
+}
+.caic-contactSocial__link svg{
+  width: 17px;
+  height: 17px;
+}
+.caic-contactSocial__link:hover{
+  background: #F8FBFD;
+  color: #1694B9;
+}
+@media (max-width: 980px){
+  .caic-contactLayout{
+    width:100%;
+    grid-template-columns: 1fr;
+    gap: 34px;
+    justify-content: initial;
+  }
+  .caic-contactIntroColumn{
+    max-width:none;
+    padding-top: 0;
+  }
+  .caic-contactAside{
+    padding-top: 0;
+  }
+  .caic-contactAside__text{
+    max-width: none;
+  }
+}
+@media (max-width: 720px){
+  .caic-contactSection{
+    padding: 48px 0 56px;
+  }
+  .caic-contactHero__title{
+    font-size: 36px;
+  }
+  .caic-contactCard{
+    padding: 26px 20px 22px;
+  }
+  .caic-contactEmailCard__value{
+    font-size: 17px;
+    word-break: break-word;
+  }
+  .caic-contactForm__submit{
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+.caic-pageEyebrow{
+  margin: 0 0 8px;
+  color: #48AECA;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.caic-getInvolvedPage{
+  background:#fff;
+}
+.caic-getInvolvedHero{
+  background:#fff;
+  padding:54px 0 72px;
+}
+.caic-getInvolvedHero__inner{
+  max-width: none;
+}
+.caic-getInvolvedHero__title{
+  margin:0 0 16px;
+  color:#1A1A1A;
+  font-size:56px;
+  line-height:1.08;
+  font-weight:700;
+}
+.caic-getInvolvedHero__text{
+  margin:0;
+  max-width: none;
+  color:#68727A;
+  font-size:15px;
+  line-height:1.72;
+  font-weight:600;
+}
+.caic-getInvolvedWays{
+  padding:78px 0;
+  background:#F2F5F7;
+}
+.caic-getInvolvedWays__head{
+  margin-bottom:28px;
+}
+.caic-getInvolvedCardGrid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:22px;
+}
+.caic-getInvolvedCard{
+  background:#fff;
+  border:1px solid #dce4e9;
+  border-radius:10px;
+  padding:24px 24px 22px;
+  box-shadow: var(--shadow-soft);
+  display:flex;
+  flex-direction:column;
+  min-height: 218px;
+}
+.caic-getInvolvedCard__title{
+  margin:0 0 12px;
+  color:#1A1A1A;
+  font-size:18px;
+  line-height:1.28;
+  font-weight:700;
+}
+.caic-getInvolvedCard__text{
+  margin:0 0 20px;
+  color:#68727A;
+  font-size:14px;
+  line-height:1.72;
+  flex:1;
+}
+.caic-getInvolvedCard__link{
+  display:inline-flex;
+  align-items:center;
+  color:#1D9CC5;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.caic-getInvolvedHelp{
+  padding:82px 0 88px;
+  background:#fff;
+}
+.caic-getInvolvedHelp__inner{
+  max-width: 620px;
+  margin: 0 auto;
+  text-align:center;
+}
+.caic-getInvolvedHelp__icon{
+  width:42px;
+  height:42px;
+  margin:0 auto 20px;
+  border-radius:999px;
+  background:#ffd9d7;
+  color:#9d3e3b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:800;
+  box-shadow:0 8px 18px rgba(232,91,87,.16);
+}
+.caic-getInvolvedHelp__inner .caic-h2{
+  margin-bottom:12px;
+}
+.caic-getInvolvedHelp__inner .caic-body{
+  max-width: 52ch;
+  margin:0 auto 22px;
+}
+.caic-getInvolvedHelp__cta{
+  min-width: 150px;
+  color:#10232F;
+  border-color:#d6dde1;
+}
+@media (max-width: 980px){
+  .caic-getInvolvedCardGrid{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width: 720px){
+  .caic-getInvolvedHero{
+    padding:48px 0 56px;
+  }
+  .caic-getInvolvedHero__title{
+    font-size:36px;
+  }
+  .caic-getInvolvedWays,
+  .caic-getInvolvedHelp{
+    padding:58px 0;
+  }
+  .caic-getInvolvedCard{
+    min-height:auto;
+    padding:22px 20px 20px;
+  }
+  .caic-getInvolvedCard__title{
+    font-size:18px;
+  }
+}
+
+.caic-upcomingSplit{
+  display:grid;
+  grid-template-columns: minmax(320px, 1.05fr) minmax(360px, 1.35fr);
+  gap: 60px;
+  align-items: stretch;
+}
+.caic-upcomingSplit__media{
+  margin:0;
+}
+.caic-upcomingSplit__media img{
+  width:100%;
+  height:100%;
+  min-height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #d4dce2;
+  display:block;
+}
+.caic-upcomingSplit__panel{
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.caic-upcomingSplit__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+.caic-upcomingSplit__head .caic-h2{
+  margin:0;
+}
+.caic-upcomingSplit__viewAll{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid #3BB8E2;
+  border-radius: 8px;
+  padding: 9px 16px;
+  text-decoration:none;
+  color:#3BB8E2;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.caic-upcomingSplit__viewAll:hover{
+  background: #ebf8fd;
+}
+.caic-upcoming__sub{
+  margin: 8px 0 14px;
+  color:#304857;
+  font-size: var(--section-subtitle-size);
+  line-height: 1.6;
+}
+.caic-upcomingList{
+  border:1px solid #dbe2e7;
+  border-radius: 10px;
+  background:#fff;
+  overflow: visible;
+  max-height: none;
+  padding: 8px 10px;
+}
+.caic-upcomingListItem{
+  display:block;
+  padding: 12px 10px 12px 12px;
+  border-bottom:1px solid #e5eaee;
+  border-left: 0;
+}
+.caic-upcomingListItem:last-child{
+  border-bottom:none;
+}
+.caic-upcomingListItem__title{
+  margin:0 0 6px;
+  color:#10232F;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.caic-upcomingListItem__metaRows{
+  display:grid;
+  gap: 6px;
+}
+.caic-upcomingListItem__meta{
+  display:flex;
+  align-items:center;
+  gap: 7px;
+  color:#7a8892;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.caic-upcomingListItem__meta .caic-icon{
+  width: 13px;
+  height: 13px;
+  margin:0;
+  color:#8b959d;
+}
+@media (max-width: 1100px){
+  .caic-upcomingSplit{
+    grid-template-columns: 1fr;
+  }
+  .caic-upcomingSplit__media img{
+    min-height: 280px;
+  }
+}
+@media (max-width: 680px){
+  .caic-upcomingSplit__viewAll{
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .caic-upcomingListItem{
+    padding: 10px 8px 10px 10px;
+  }
+  .caic-upcomingListItem__title{
+    font-size: 14px;
+  }
+}
+
+.caic-partners{
+  background:#fff;
+  padding: 36px 0 44px;
+}
+.caic-partners__title{
+  margin: 0 0 18px;
+  text-align:center;
+  font-size: var(--section-title-size);
+  text-transform: none;
+  letter-spacing: 0;
+  color:#10232F;
+}
+.caic-partnersGrid{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+.caic-partnerCard{
+  width: 142px;
+  min-height: 52px;
+  border: 1px solid #d1d8de;
+  border-radius: 7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 9px 10px;
+  background:#F4F7F9;
+  color:#10232F;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 600;
+  text-decoration:none;
+}
+.caic-partnerCard__logo{
+  max-width: 100%;
+  max-height: 36px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.caic-partnerCard--link:hover{
+  color:#2c96b8;
+}
+
+.caic-whoPage{
+  background:#fff;
+}
+.caic-whoHero{
+  background:#fff;
+  padding:54px 0 42px;
+}
+.caic-whoHero__inner{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 390px;
+  gap:56px;
+  align-items:center;
+}
+.caic-whoHero__copy{
+  max-width: 760px;
+}
+.caic-whoHero__title{
+  margin:0 0 10px;
+  color:#1A1A1A;
+  font-size:56px;
+  line-height:1.08;
+  font-weight:700;
+}
+.caic-whoHero__text{
+  margin:0;
+  max-width: 580px;
+  color:#5f6c75;
+  font-size:18px;
+  line-height:1.58;
+}
+.caic-whoHero__media{
+  margin:0;
+  justify-self:end;
+  width:100%;
+  max-width:390px;
+}
+.caic-whoHero__media img{
+  width:100%;
+  height:245px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  border-radius:8px;
+  transform:rotate(3deg);
+  box-shadow:0 18px 36px rgba(16,35,47,.16);
+}
+.caic-whoHead{
+  margin-bottom: 28px;
+  max-width: 760px;
+}
+.caic-whoHead--center{
+  margin:0 auto 38px;
+  text-align:center;
+}
+.caic-whoHead .caic-h2{
+  margin:0 0 8px;
+}
+.caic-whoCommittees .caic-h2::after{
+  content:"";
+  display:block;
+  width:98px;
+  height:4px;
+  margin:14px auto 0;
+  border-radius:999px;
+  background:#0c7a96;
+}
+.caic-whoCommittees{
+  background:#F2F5F7;
+}
+.caic-whoCommittees .caic-h2{
+  color:#10232F;
+}
+.caic-whoCommittees .caic-centerSub{
+  max-width:640px;
+  margin:0 auto;
+  color:#5f6c75;
+  font-size:18px;
+}
+.caic-whoStructure{
+  padding-top:34px;
+}
+.caic-whoStructure__tree{
+  width:min(100%, 1040px);
+  margin:0 auto;
+}
+.caic-whoStructure__connectors{
+  position:relative;
+  width:100%;
+  height:52px;
+  margin:0 auto 6px;
+  pointer-events:none;
+}
+.caic-whoStructure__line{
+  position:absolute;
+  display:block;
+  background:#dfe5ea;
+  border-radius:999px;
+}
+.caic-whoStructure__line--trunk{
+  top:0;
+  left:50%;
+  width:3px;
+  height:16px;
+  transform:translateX(-50%);
+}
+.caic-whoStructure__line--rail{
+  top:16px;
+  left:15.4%;
+  width:69.2%;
+  height:3px;
+}
+.caic-whoStructure__line--drop{
+  top:16px;
+  width:3px;
+  height:36px;
+  transform:translateX(-50%);
+}
+.caic-whoStructure__line--dropStart{
+  left:15.4%;
+}
+.caic-whoStructure__line--dropCenter{
+  left:50%;
+}
+.caic-whoStructure__line--dropEnd{
+  left:84.6%;
+}
+.caic-whoCommitteeGrid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:24px;
+}
+.caic-whoStructure__child{
+  position:relative;
+  padding:0 6px;
+}
+.caic-whoExecutiveCard{
+  width:min(100%, 456px);
+  margin:0 auto;
+  background:linear-gradient(180deg, #137993 0%, #126f88 100%);
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  padding:34px 30px 30px;
+  text-align:center;
+  box-shadow:none;
+}
+.caic-whoExecutiveCard__icon{
+  width:56px;
+  height:56px;
+  margin:0 auto 20px;
+  border-radius:14px;
+  background:transparent;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.caic-whoExecutiveCard__icon img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+}
+.caic-whoExecutiveCard__icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.caic-whoExecutiveCard__iconArt--building{
+  width:76%;
+  height:76%;
+}
+.caic-whoExecutiveCard__title{
+  margin:0 0 12px;
+  font-size:17px;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.caic-whoExecutiveCard__text{
+  margin:0;
+  max-width:320px;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:15px;
+  line-height:1.55;
+  color:rgba(255,255,255,.82);
+}
+.caic-whoCommitteeCard{
+  height:100%;
+  background:#fff;
+  border:1px solid #e1e8ed;
+  border-top:3px solid #83d8ef;
+  border-radius:16px;
+  padding:30px 26px 28px;
+  box-shadow:0 18px 38px rgba(16,35,47,.08);
+  text-align:center;
+}
+.caic-whoCommitteeCard__icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 20px;
+  border-radius:16px;
+  background:transparent;
+  color:#0c7a96;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.caic-whoCommitteeCard__icon img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+}
+.caic-whoCommitteeCard__icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.caic-whoCommitteeCard__title{
+  margin:0 0 12px;
+  color:#10232F;
+  font-size:16px;
+  line-height:1.45;
+}
+.caic-whoCommitteeCard__text{
+  margin:0;
+  color:#5d6b75;
+  font-size:15px;
+  line-height:1.65;
+}
+.caic-whoPartners{
+  background:#fff;
+}
+.caic-whoPartners__row{
+  display:grid;
+  grid-template-columns:minmax(280px, .95fr) minmax(0, 1.45fr);
+  gap:34px;
+  align-items:start;
+}
+.caic-whoPartners__copy{
+  margin:0;
+}
+.caic-whoPartnerGrid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:12px;
+}
+.caic-whoPartnerCard{
+  min-height:96px;
+  border:1px solid #d4dce2;
+  border-radius:8px;
+  background:#f4f7f9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  text-decoration:none;
+  color:#52626d;
+  font-size:12px;
+  font-weight:600;
+  text-align:center;
+  box-shadow: var(--shadow-soft);
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease), color .18s var(--ease);
+}
+.caic-whoPartnerCard:hover{
+  transform:translateY(-2px) scale(1.01);
+  box-shadow:0 10px 22px rgba(16,35,47,.14);
+  color:#2c96b8;
+}
+.caic-whoPartnerCard img{
+  max-width:100%;
+  max-height:58px;
+  object-fit:contain;
+  display:block;
+}
+@media (max-width: 1100px){
+  .caic-whoHero__inner{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .caic-whoHero__media{
+    justify-self:start;
+    max-width:420px;
+  }
+  .caic-whoPartners__row{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+}
+@media (max-width: 720px){
+  .caic-whoHero{
+    padding:48px 0 34px;
+  }
+  .caic-whoHero__title{
+    font-size:36px;
+  }
+  .caic-whoStructure{
+    padding-top:28px;
+  }
+  .caic-whoStructure__connectors{
+    display:none;
+  }
+  .caic-whoCommitteeGrid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .caic-whoStructure__child{
+    padding:0;
+  }
+  .caic-whoExecutiveCard,
+  .caic-whoCommitteeCard{
+    width:100%;
+    padding-left:18px;
+    padding-right:18px;
+  }
+  .caic-whoPartnerGrid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+  .caic-whoHero__text{
+    font-size:15px;
+  }
+  .caic-whoHero__media{
+    max-width:none;
+  }
+  .caic-whoHero__media img{
+    height:220px;
+    transform:rotate(2deg);
+  }
+}
+
+.caic-aboutHero{
+  position:relative;
+  min-height: 520px;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+}
+.caic-aboutPage{
+  background:#fff;
+}
+.caic-aboutPage .caic-hero__content{
+  max-width:100%;
+}
+.caic-aboutPage .caic-heroSub{
+  max-width:100%;
+}
+.caic-aboutIntro{
+  background:#fff;
+  padding:54px 0 0;
+}
+.caic-aboutIntro__inner{
+  max-width:none;
+}
+.caic-aboutIntro__title{
+  margin:0 0 10px;
+  color:#1A1A1A;
+  font-size:56px;
+  line-height:1.08;
+  font-weight:700;
+}
+.caic-aboutIntro__body{
+  width:100%;
+  max-width:none;
+}
+.caic-aboutIntro__body .caic-body{
+  margin:0 0 16px;
+}
+.caic-aboutIntro__body .caic-body:last-child{
+  margin-bottom:0;
+}
+.caic-aboutIntro__divider{
+  height:1px;
+  background:#d6dee4;
+  margin:40px 0 0;
+}
+.caic-aboutPriority{
+  background:#fff;
+  padding-top:40px;
+}
+.caic-aboutSectionHead{
+  margin-bottom:24px;
+}
+.caic-aboutCardGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+.caic-aboutActionCard{
+  background:#fff;
+  border:1px solid #dbe3e8;
+  border-radius:10px;
+  padding:24px 22px 20px;
+  min-height: 210px;
+  box-shadow: var(--shadow-soft);
+}
+.caic-aboutActionCard__icon{
+  width:46px;
+  height:46px;
+  border-radius:8px;
+  background:#dff2fb;
+  color:#1188ad;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+}
+.caic-aboutActionCard__icon img{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+  display:block;
+}
+.caic-aboutActionCard__icon svg{
+  width:22px;
+  height:22px;
+  display:block;
+}
+.caic-aboutActionCard__title{
+  margin:0 0 10px;
+  color:#10232F;
+  font-size:18px;
+  line-height:1.32;
+  font-weight:700;
+}
+.caic-aboutActionCard__text{
+  margin:0;
+  color:#5f6c75;
+  font-size:13px;
+  line-height:1.66;
+}
+.caic-aboutWhat{
+  background:#F2F5F7;
+}
+.caic-aboutWhat__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.caic-aboutWhat__copy{
+  max-width:none;
+  padding-top:0;
+}
+.caic-aboutWhat__copy .caic-h2{
+  margin:0 0 12px;
+}
+.caic-aboutWhat__copy .caic-body{
+  margin:0 0 16px;
+}
+.caic-aboutWhat__cta{
+  margin-top:8px;
+}
+.caic-aboutWhat__media{
+  margin:0 -10px 0 0;
+}
+.caic-aboutWhat__media img{
+  width:100%;
+  height:340px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  border-radius:12px;
+  box-shadow:0 18px 36px rgba(16,35,47,.16);
+}
+@media (max-width: 1100px){
+  .caic-aboutWhat__grid{
+    grid-template-columns:1fr;
+  }
+  .caic-aboutCardGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px){
+  .caic-aboutIntro{
+    padding:48px 0 34px;
+  }
+  .caic-aboutIntro__title{
+    font-size:36px;
+  }
+  .caic-aboutCardGrid{
+    grid-template-columns:1fr;
+  }
+  .caic-aboutActionCard{
+    min-height:auto;
+  }
+  .caic-aboutWhat__media img{
+    height:260px;
+  }
+}
+
+.caic-focusHero{
+  position:relative;
+  min-height: 520px;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+}
+.caic-focusHero__overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(11,26,34,.72);
+}
+.caic-focusHero__inner{
+  position:relative;
+  z-index:1;
+  padding: 70px 0;
+}
+.caic-focusHero__copy{
+  max-width: 660px;
+}
+.caic-focusHero__title{
+  margin:0;
+  color:#fff;
+  font-size:58px;
+  line-height:1.05;
+}
+.caic-focusHero__title span{
+  color:#3BB8E2;
+}
+
+/* About / Focus / Who page hover behavior on clickable cards/items */
+.caic :is(.caic-aboutActionCard.caic-grow, .caic-focusCard.caic-grow, .caic-focusPolicyItem.caic-grow){
+  transition:
+    transform .18s var(--ease),
+    box-shadow .18s var(--ease),
+    border-color .18s var(--ease),
+    background-color .18s var(--ease);
+}
+.caic :is(.caic-aboutActionCard.caic-grow, .caic-focusCard.caic-grow, .caic-focusPolicyItem.caic-grow):hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(16,35,47,.14);
+}
+.caic-focusHero__rule{
+  display:block;
+  width:42px;
+  height:2px;
+  margin:14px 0;
+  background:#3BB8E2;
+}
+.caic-focusHero__text{
+  margin:0;
+  color:rgba(255,255,255,.9);
+  font-size:16px;
+  line-height:1.72;
+  max-width: 620px;
+}
+.caic-focusCardGrid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+.caic-focusCard{
+  background:#fff;
+  border:1px solid #dbe3e8;
+  border-radius:8px;
+  padding:22px 18px 18px;
+  min-height: 232px;
+  box-shadow: var(--shadow-soft);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.caic-focusCard__icon{
+  width:20px;
+  height:20px;
+  color:#10232F;
+  margin-bottom:12px;
+}
+.caic-focusCard__icon img,
+.caic-focusCard__icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+}
+.caic-focusCard__title{
+  margin:0 0 10px;
+  color:#10232F;
+  font-size:20px;
+  line-height:1.25;
+}
+.caic-focusCard__text{
+  margin:0;
+  color:#5b6973;
+  font-size:13px;
+  line-height:1.7;
+}
+.caic-focusPoliciesHead{
+  margin-bottom: 18px;
+}
+.caic-focusPoliciesList{
+  max-height: 336px;
+  overflow-y:auto;
+  display:grid;
+  gap:10px;
+  padding-right:6px;
+}
+.caic-focusPoliciesList::-webkit-scrollbar{
+  width:8px;
+}
+.caic-focusPoliciesList::-webkit-scrollbar-thumb{
+  background:#b3c5d0;
+  border-radius:999px;
+}
+.caic-focusPolicyItem{
+  background:#fff;
+  border:1px solid #dbe3e8;
+  border-left:3px solid #3BB8E2;
+  border-radius:6px;
+  padding:14px 14px 12px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  box-shadow: var(--shadow-soft);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.caic-focusPolicyItem__top{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:6px;
+}
+.caic-focusPolicyItem__code{
+  color:#10232F;
+  font-size:13px;
+  line-height:1.3;
+}
+.caic-focusPolicyItem__status{
+  display:inline-flex;
+  align-items:center;
+  height:18px;
+  border-radius:999px;
+  padding:0 8px;
+  background:#dff2fb;
+  color:#176b87;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.caic-focusPolicyItem__summary{
+  margin:0;
+  color:#5b6973;
+  font-size:12px;
+  line-height:1.55;
+}
+.caic-focusPolicyItem__link{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  color:#2c96b8;
+  text-decoration:none;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  margin-top:2px;
+}
+.caic-focusPolicyItem__link span{
+  margin-left:2px;
+  transition: margin-left .2s ease;
+}
+.caic-focusPolicyItem__link:hover span{
+  margin-left:8px;
+}
+@media (max-width: 980px){
+  .caic-focusCardGrid{
+    grid-template-columns:1fr 1fr;
+  }
+  .caic-focusPolicyItem{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+@media (max-width: 720px){
+  .caic-focusHero{
+    min-height: 520px;
+  }
+  .caic-focusHero__title{
+    font-size:46px;
+  }
+  .caic-focusCardGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+.caic-stayConnected{
+  background:#EDEFF1;
+  border-top: 1px solid #cfd7dd;
+  padding: 48px 0 60px;
+}
+.caic-stayConnected__inner{
+  text-align:center;
+}
+.caic-stayConnected__title{
+  margin:0 0 12px;
+  color:#10232F;
+  font-size: var(--section-title-size);
+}
+.caic-stayConnected__text{
+  margin:0 auto 24px;
+  color:#4c5a65;
+  max-width: 840px;
+  font-size: var(--section-subtitle-size);
+  line-height: 1.7;
+}
+.caic-stayConnected__form{
+  max-width: 760px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+.caic-stayConnected__form input{
+  height: 56px;
+  border-radius: 9px;
+  border:1px solid #c6cfd6;
+  padding: 0 18px;
+  font-size: 16px;
+  color:#10232F;
+  background:#fff;
+}
+.caic-stayConnected__btn{
+  height: 56px;
+  border:none;
+  border-radius: 9px;
+  padding: 0 28px;
+  background:#3BB8E2;
+  color:#fff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  cursor:pointer;
+}
+.caic-stayConnected__questions{
+  margin: 18px 0 6px;
+  color:#4c5a65;
+  font-size: var(--section-subtitle-size);
+}
+.caic-stayConnected__contact{
+  display:inline-block;
+  color:#10232F;
+  font-weight: 700;
+  text-decoration:none;
+  letter-spacing: .02em;
+}
+.caic-stayConnected__contact:hover{
+  text-decoration: underline;
+}
+@media (max-width: 720px){
+  .caic-stayConnected__form{ grid-template-columns: 1fr; }
+}
+
+.caic-searchResults{
+  display:grid;
+  gap: 12px;
+}
+.caic-searchResult{
+  background:#fff;
+  border:1px solid #d7dfe5;
+  border-radius: 10px;
+  padding: 16px;
+}
+.caic-searchResult__meta{
+  margin:0 0 8px;
+  color:#5c6972;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.caic-searchResult__title{
+  margin:0;
+  font-size: 24px;
+}
+.caic-searchResult__title a{
+  color:#10232F;
+  text-decoration:none;
+}
+.caic-searchResult__title a:hover{
+  text-decoration: underline;
+}

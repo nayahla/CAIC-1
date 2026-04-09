@@ -1,0 +1,90 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  b64caef4-0cfc-40b9-9f50-55c83152f4a8:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1383031f-f3d1-4c24-a05c-fce97537af02 # Focus Areas Policy Code
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1b5a419c-ef1f-482a-a6c9-d884ea6166df
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ed8727d8-ac47-4dc2-8535-02b31ef9977c # Focus Areas Policy Status
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0a5d0d82-495b-41a0-89a2-ecd71198cdc0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 35c8acba-bab3-4081-8b4c-09eec1669a1c # Focus Areas Policy Summary
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 624573a1-fd7b-47fe-8d53-520d1346355e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cb5c9fe5-a2b6-487a-8db8-4d9f59113d60 # External Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cbab9528-2ac6-464e-9b29-5e29c7a3a998
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ce454e83-5d5d-4e36-99c2-94df8345f6d5
+        userCondition: null
+    thumbFieldKey: null
+handle: focusPolicyItem
+hasTitleField: false
+icon: null
+name: 'Focus Policy Item'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{focusAreasPolicyCode}'

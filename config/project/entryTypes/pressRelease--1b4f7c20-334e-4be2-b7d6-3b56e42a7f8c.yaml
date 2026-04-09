@@ -1,0 +1,86 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  2de7f653-5ec8-4e7d-8f4f-0bb6f4f07655:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-26T21:10:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 3f9c3b98-4c2f-44c2-a7ee-4f6ef7c0ec75
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T21:10:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9f2a84b2-1f36-4f2f-9df1-3e3b0da4a1c4 # Download File
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c91cbd2d-62bc-4066-bcf7-5e39be22c003
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T21:10:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cb5c9fe5-a2b6-487a-8db8-4d9f59113d60 # External Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1f5c8f87-2b2e-43ad-8a38-9ec3f373655f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 451ab9dd-7f1f-4f0d-aa3f-2d06a94f7398
+        userCondition: null
+    thumbFieldKey: null
+handle: pressRelease
+hasTitleField: true
+icon: null
+name: 'Press Release'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

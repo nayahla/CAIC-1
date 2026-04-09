@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: trustedPartners
+instructions: 'Add between 4 and 8 cards.'
+name: 'Trusted Partners'
+searchable: false
+settings:
+  createButtonLabel: 'Add Partner Card'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - ee7938e4-1136-4498-bba5-a9f0abbce1c1 # Partner Card
+        -
+          - group
+          - Partners
+  includeTableView: false
+  maxEntries: 8
+  minEntries: 4
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

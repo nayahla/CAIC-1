@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: a6a8609a-fc7e-404e-941f-8bffc26397eb # Resource Image
+handle: resources
+maxAuthors: 1
+name: Resources
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
+    enabledByDefault: true
+    hasUrls: true
+    template: resources/_entry.twig
+    uriFormat: 'resources/{slug}'
+type: channel

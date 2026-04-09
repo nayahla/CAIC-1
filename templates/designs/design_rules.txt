@@ -1,0 +1,79 @@
+# Design System Specification: High-End Editorial
+
+## 1. Overview & Creative North Star: "The Evidence Architect"
+The design system moves beyond standard public health aesthetics to embrace a "High-End Editorial" experience. The Creative North Star is **The Evidence Architect**: a visual language that balances the gravity of data with the warmth of community grounding. 
+
+Instead of a generic grid of boxes, this system utilizes **intentional asymmetry** and **tonal layering** to guide the eye. We break the "template" look by treating the screen as a high-end broadsheet or a digital dossier—utilizing generous whitespace (`spacing.20`), overlapping surface elements, and a high-contrast typographic scale that demands attention. This is not just a website; it is an authoritative, living document of Colorado’s health landscape.
+
+---
+
+## 2. Colors & Surface Philosophy
+The palette is rooted in a deep, "Impact Navy" and a pristine "Light Off-White," creating a high-contrast environment that feels both urgent and hopeful.
+
+### The "No-Line" Rule
+To achieve a premium, custom feel, **1px solid borders for sectioning are strictly prohibited.** Boundaries between content blocks must be defined through background color shifts. Use `surface-container-low` (#f6f3f2) sections sitting against a `surface` (#fcf9f8) background to create structural definition without visual clutter.
+
+### Surface Hierarchy & Nesting
+Treat the UI as a series of physical layers, like stacked sheets of fine archival paper.
+- **Surface (Base):** `#fcf9f8` – The primary canvas.
+- **Surface-Container-Low:** `#f6f3f2` – For large secondary content blocks.
+- **Surface-Container-Highest:** `#e5e2e1` – For high-priority interactive components or "pinned" data.
+- **Surface-Container-Lowest:** `#ffffff` – Use exclusively for floating cards to provide maximum "pop."
+
+### The "Glass & Gradient" Rule
+Standard flat colors can feel sterile. For Hero sections and primary CTAs, use a subtle **Signature Texture**: a linear gradient transitioning from `primary` (#006782) to `primary-container` (#3bb8e2). For floating navigation or data overlays, use **Glassmorphism**: semi-transparent surface colors with a `backdrop-filter: blur(12px)`.
+
+---
+
+## 3. Typography: Authoritative Clarity
+We utilize a pairing of **Public Sans** (Display/Headlines) and **Inter** (Body/UI) to establish a voice that is both modern and grounded.
+
+*   **Display Scale (`display-lg` 3.5rem):** Set in Public Sans. Use for high-impact data points or urgent headlines. Tighten letter-spacing (-0.02em) to create an "Editorial Header" feel.
+*   **Headline Scale (`headline-lg` 2rem):** Used for section starts. These should be framed by significant whitespace (`spacing.12`) to allow the evidence to breathe.
+*   **Body Scale (`body-lg` 1rem / 18-20px equivalent):** Set in Inter. Designed for long-form readability. The line height is generous to prevent cognitive fatigue during data-heavy reading.
+*   **Label Scale (`label-md` 0.75rem):** All-caps, semibold. Used for "Energy/Engagement" categories or "Urgent" tags.
+
+---
+
+## 4. Elevation & Depth: Tonal Layering
+Traditional drop shadows are often a crutch for poor layout. In this system, we achieve depth through the **Layering Principle**.
+
+*   **Tonal Lift:** Place a `surface-container-lowest` card on top of a `surface-container-low` section. The subtle shift in hex code creates a natural, "soft" lift that feels high-end.
+*   **Ambient Shadows:** If a floating element is required (e.g., a critical alert or primary navigation), use an extra-diffused shadow: `box-shadow: 0 12px 40px rgba(28, 27, 27, 0.06);`. The shadow color must be a tinted version of `on-surface` (#1c1b1b), never pure black.
+*   **The "Ghost Border" Fallback:** If a border is required for accessibility, use the `outline-variant` (#bdc8cf) at **20% opacity**. Never use a 100% opaque border.
+*   **Glassmorphism:** For mobile menus or data tooltips, use `surface_container_lowest` at 80% opacity with a `backdrop-blur`. This allows the Colorado-themed background colors to bleed through, softening the interface.
+
+---
+
+## 5. Components
+
+### Buttons
+*   **Primary:** Uses the "Signature Texture" gradient (Bright Sky Blue) with `on-primary` text. **Capitalization:** All-caps semibold. **Corner Radius:** `md` (0.75rem) to feel more sophisticated than a standard pill or square.
+*   **Secondary:** No background. An `outline` (#6e797f) ghost border at 40% opacity.
+*   **Tertiary:** Text-only, using `tertiary` (#ad3030) for urgent actions, or `primary` for standard links.
+
+### Data Cards
+*   **Style:** `surface-container-lowest` background, no border.
+*   **Spacing:** Use `spacing.6` (2rem) for internal padding.
+*   **Interaction:** On hover, do not change the border. Instead, increase the background to `surface-bright` and apply a "subtle lift" via an **Ambient Shadow**.
+
+### Input Fields
+*   **Style:** Minimalist. Use a `surface-container-low` background with a `spacing-px` bottom border of `outline`.
+*   **Focus:** The bottom border transitions to `primary` (#006782) and increases to 2px.
+
+### Specialized Component: "The Data Ribbon"
+*   A horizontal, full-bleed element using `primary-fixed` (#bbe9ff) to highlight key evidence-based statistics. It uses `display-sm` for numbers and `label-md` for descriptions.
+
+---
+
+## 6. Do’s and Don’ts
+
+### Do:
+*   **Do** use asymmetrical layouts. A text block on the left (column 2-6) and a data visualization on the right (column 8-12) creates professional tension.
+*   **Do** use `spacing.20` (7rem) between major sections. Space is a premium design element.
+*   **Do** use `tertiary` (#ad3030) sparingly for "Urgent" or "Public Health" alerts only.
+
+### Don’t:
+*   **Don’t** use divider lines to separate list items. Use vertical white space (`spacing.3`) or alternating subtle background tints.
+*   **Don’t** use pure black (#000000). Use `on-surface` (#1c1b1b) for all text to maintain the "Ink on Paper" editorial feel.
+*   **Don’t** crowd the 1200px max-width layout. If content feels cramped, move a secondary element into a "nested surface" below the main section.

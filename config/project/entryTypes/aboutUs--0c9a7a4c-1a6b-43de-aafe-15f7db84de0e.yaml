@@ -1,0 +1,294 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  7c17e2d6-c984-47c3-a4df-4e1ba2371f87:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 6af2a2f1-1b64-4dae-a6d1-81de3de88cbe
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8cbc7fd1-265a-4501-8c04-45096df35f37 # About Hero Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d3ccf6cd-a0d6-4da2-b42c-c6d6255f9666
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 42210503-615f-4dd1-acd0-dd137f0424af # About Hero Accent
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b31a2bfe-7255-4f7e-ac70-51070a5234a8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7de6f2a3-75fe-444a-918a-cfffe60ed4d7 # About Hero Description
+            handle: null
+            instructions: 'Supporting text below the about heading. first paragraph.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 85b84626-19ad-481f-a910-95339d15109c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a1bcc225-1554-41a0-8145-f735d7b22a21 # About Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4f756974-8096-4c27-9f59-f901363f2325
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5f783415-4151-4bc7-bcd8-ca6fd28ca7f8 # About Mission Text
+            handle: null
+            instructions: 'second paragraph in the about section'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b7541bb7-73f3-42a4-9527-f8e9cdf9757b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 020a78ae-c466-437c-82d8-f1f633af9ded # About Priority Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0d233988-9b39-460a-9108-c425a1b47196
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b4ca38a3-68d3-48e5-b16a-d6ec1345d7b4 # About Priority Card One Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4d807367-a6da-4c2a-9c86-2b34de81e26d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6cd4e58a-5b26-4597-b6a7-610b7e3e66a5 # About Priority Card One Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44f67cad-2620-4253-a212-153d1e6bb4d5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a653733f-41a4-4bb8-9512-21d2a8911f03 # About Priority Card Two Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ec2becf8-ca92-4bcd-bb84-ccf7d0587445
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1b245cb6-8c39-4d2e-b78d-b6e0e13d1f89 # About Priority Card Two Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: aa554dd5-0e5b-4486-b360-e894ecfb67e1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f5e858ee-5781-4d91-8fcc-c1fc0d4ec619 # About Priority Card Three Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 75d5d43d-9c8a-4563-9b56-334ea4fef01a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 803ebd06-7a85-4b37-b58b-2f7ff3ce5ca9 # About Priority Card Three Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 94c3c2c5-e367-4b43-a8f0-f759020cb31c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a9b1efae-f7ce-4368-b9f6-c5cc6eabfe2d # About What Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2d84636c-5508-4f6d-9c1d-bd53b8093055
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2018af25-6c22-4531-aaa4-539cc10f5f47 # About What Intro
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4be8a2c4-32f5-4af2-8640-8683c739cab4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f0fd8fc7-6cc6-4fbe-b3f5-304dc7542a88 # About What Image
+            handle: null
+            instructions: 'Image shown in the "What We''re Doing" section.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0e9bf3f6-7b85-4f5d-8d38-5cf8f65eddf5
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 4ca60c4f-e16c-4e35-bdf1-81ea1fa5cc30
+        userCondition: null
+    thumbFieldKey: null
+handle: aboutUs
+hasTitleField: true
+icon: null
+name: 'About Us'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

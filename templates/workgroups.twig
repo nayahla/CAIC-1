@@ -1,0 +1,176 @@
+{% extends "layouts/main" %}
+
+{% set homePage = craft.entries.section('homepage').one() %}
+{% set whoWeArePage = craft.entries.section('whoWeAre').one() ?? homePage %}
+{% set committees = (whoWeArePage and whoWeArePage.whoWeAreCommittees) ? whoWeArePage.whoWeAreCommittees.all()|slice(0, 3) : [] %}
+{% set partnerCards = (whoWeArePage and whoWeArePage.trustedPartners) ? whoWeArePage.trustedPartners.all() : [] %}
+{% set whoHero = whoWeArePage and whoWeArePage.heroBackground ? whoWeArePage.heroBackground.one() : (homePage and homePage.heroBackground ? homePage.heroBackground.one() : null) %}
+{% set whoHeroImageUrl = whoHero ? whoHero.url : '/images/heroback.jpg' %}
+{% set whoHeading = whoWeArePage.whoWeAreHeading ?? 'Who We Are' %}
+{% set structureHeading = whoWeArePage.whoWeAreCommitteesHeading ?? '' %}
+{% if not structureHeading or structureHeading|lower == 'our committees' %}
+  {% set structureHeading = 'Coalition Structure' %}
+{% endif %}
+{% set structureIntro = whoWeArePage.whoWeAreCommitteesIntro ?? '' %}
+{% if not structureIntro or structureIntro == 'Three specialized working groups guide strategic priorities through focused expertise.' %}
+  {% set structureIntro = 'Our organizational framework ensures strategic leadership and grassroots impact through focused workgroups.' %}
+{% endif %}
+
+{% set fallbackCommittees = [
+  {
+    title: 'Policy Committee',
+    text: 'Focuses on legislative tracking and evidence-based alcohol regulations across Colorado.'
+  },
+  {
+    title: 'Community Engagement Committee',
+    text: 'Builds partnerships and leads public awareness campaigns across Colorado communities.'
+  },
+  {
+    title: 'Data & Research Committee',
+    text: 'Turns data into practical insights for coalition partners and the broader public.'
+  }
+] %}
+
+{% set committeeCards = committees|length ? committees : fallbackCommittees %}
+
+{% block body %}
+<div class="caic">
+  <main id="main" class="caic-whoPage">
+    <section class="caic-hero" style="background-image:url('{{ whoHeroImageUrl }}')">
+      <div class="caic-hero__overlay" aria-hidden="true"></div>
+      <div class="caic-container caic-hero__inner">
+        <div class="caic-hero__content reveal">
+          <div class="caic-kickerPill">{{ whoWeArePage.whoWeAreEyebrow ?? 'Our Identity' }}</div>
+          <h1 class="caic-heroTitle">{{ whoHeading }}</h1>
+          <p class="caic-heroSub">
+            {{ whoWeArePage.whoWeAreIntro ?? 'The Colorado Alcohol Impacts Coalition (CAIC) is a statewide collective of public health experts, community leaders, and advocates committed to evidence-based prevention strategies.' }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-section--tint caic-whoCommittees">
+      <div class="caic-container">
+        <div class="caic-whoHead caic-whoHead--center">
+          <h2 class="caic-h2">{{ structureHeading }}</h2>
+          <p class="caic-centerSub">
+            {{ structureIntro }}
+          </p>
+        </div>
+
+        <div class="caic-whoStructure">
+          <div class="caic-whoStructure__tree">
+            <article class="caic-whoExecutiveCard">
+              <div class="caic-whoExecutiveCard__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1225" fill="currentColor" class="caic-whoExecutiveCard__iconArt caic-whoExecutiveCard__iconArt--building">
+                  <g transform="translate(0,1225) scale(0.1,-0.1)">
+                    <path d="M3540 10900 l-2855 -1349 -3 -220 -2 -221 5720 0 5720 0 -2 221 -3 220 -2858 1350 c-1571 742 -2858 1349 -2860 1348 -1 0 -1287 -607 -2857 -1349z"/>
+                    <path d="M1785 8897 c-3 -6 -4 -170 -3 -362 l3 -350 4615 0 4615 0 0 360 0 360 -4613 3 c-3696 2 -4614 0 -4617 -11z"/>
+                    <path d="M2206 7948 c-3 -18 -10 -258 -16 -533 -6 -275 -15 -666 -20 -870 -5 -203 -14 -554 -20 -780 -6 -225 -15 -588 -20 -805 -5 -217 -14 -579 -20 -805 -6 -225 -15 -576 -20 -780 -5 -203 -13 -513 -16 -687 l-7 -318 673 0 672 0 -6 168 c-6 132 -156 5380 -156 5429 0 10 -100 13 -520 13 l-519 0 -5 -32z"/>
+                    <path d="M4646 7878 c-3 -57 -10 -308 -16 -558 -6 -250 -15 -626 -20 -835 -5 -209 -14 -563 -20 -787 -5 -225 -15 -589 -20 -810 -50 -1969 -60 -2382 -60 -2445 l0 -73 670 0 670 0 0 33 c0 27 -38 1373 -80 2817 -6 195 -15 508 -20 695 -6 187 -19 660 -30 1050 -10 391 -22 779 -26 863 l-6 152 -518 0 -518 0 -6 -102z"/>
+                    <path d="M7086 7818 c-6 -141 -136 -5346 -136 -5420 l0 -28 670 0 670 0 0 38 c1 86 -151 5395 -156 5480 l-6 92 -518 0 -518 0 -6 -162z"/>
+                    <path d="M9526 7768 c-4 -117 -11 -391 -16 -608 -6 -217 -14 -576 -20 -797 -5 -222 -14 -583 -20 -803 -5 -220 -14 -580 -20 -800 -5 -220 -14 -580 -20 -800 -5 -220 -14 -581 -20 -802 -5 -222 -12 -490 -16 -595 l-6 -193 671 0 671 0 0 53 c1 105 -151 5493 -156 5525 l-5 32 -518 0 -518 0 -7 -212z"/>
+                    <path d="M1220 1805 l0 -366 -307 1 -308 1 -3 -360 -2 -361 -300 0 -300 0 0 -360 0 -360 6400 0 6400 0 0 360 0 360 -300 0 -300 0 0 360 0 360 -310 0 -310 0 0 365 0 365 -5180 0 -5180 0 0 -365z"/>
+                  </g>
+                </svg>
+              </div>
+              <h3 class="caic-whoExecutiveCard__title">Executive Committee</h3>
+              <p class="caic-whoExecutiveCard__text">
+                Strategic vision, fiscal oversight, and coalition governance.
+              </p>
+            </article>
+
+            <div class="caic-whoStructure__connectors" aria-hidden="true">
+              <span class="caic-whoStructure__line caic-whoStructure__line--trunk"></span>
+              <span class="caic-whoStructure__line caic-whoStructure__line--rail"></span>
+              <span class="caic-whoStructure__line caic-whoStructure__line--drop caic-whoStructure__line--dropStart"></span>
+              <span class="caic-whoStructure__line caic-whoStructure__line--drop caic-whoStructure__line--dropCenter"></span>
+              <span class="caic-whoStructure__line caic-whoStructure__line--drop caic-whoStructure__line--dropEnd"></span>
+            </div>
+
+            <div class="caic-whoCommitteeGrid">
+            {% for card in committeeCards|slice(0, 3) %}
+              {% set committeeTitle = card.committeeTitle ?? card.title %}
+              {% set committeeText = card.committeeDescription ?? card.text %}
+              {% set committeeHandle = committeeTitle|lower %}
+              <div class="caic-whoStructure__child">
+                <article class="caic-whoCommitteeCard">
+                  <div class="caic-whoCommitteeCard__icon" aria-hidden="true">
+                    {% if 'policy' in committeeHandle or 'advocacy' in committeeHandle or 'legislative' in committeeHandle %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M19 11H9V9h10v2Zm4 8.414V27H5V5h18v3.586L28.414 14 23 19.414ZM23.086 16.5 20.5 13.914 16 18.414V21h2.586l4.5-4.5ZM23 11.414 21.914 12.5l2.586 2.586L25.586 14 23 11.414ZM21 21.414 19.414 23H9v-2h5v-2H9v-2h5.586l2-2H9v-2h9.586L21 10.586V7H7v18h14v-3.586Z"/>
+                      </svg>
+                    {% elseif 'community' in committeeHandle or 'engagement' in committeeHandle %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="currentColor">
+                        <path fill-rule="nonzero" d="M17.75 18C18.7165 18 19.5 18.7835 19.5 19.75v2.0019766l-.0078844.1084637c-.310755 2.1262038-2.2205931 3.1485966-5.4253251 3.1485966-3.1931782 0-5.13348909-1.0106961-5.55232772-3.1124593L8.5 21.75v-2c0-.9665.78350169-1.75 1.75-1.75h7.5ZM18.2439108 11.9999135 24.25 12c.9664983 0 1.75.7835017 1.75 1.75v2.0019766l-.0078844.1084637c-.310755 2.1262038-2.2205931 3.1485966-5.4253251 3.1485966l-.1682146-.0015999c-.308573-1.1029093-1.2875256-1.9258435-2.4697725-2.0017173L17.75 17l-.9222296.0007255C17.8477843 16.1757619 18.5 14.9140475 18.5 13.5c0-.5259855-.0902424-1.0308937-.2560892-1.5000865ZM3.75 12l6.00608915-.0000865C9.59024243 12.4691063 9.5 12.9740145 9.5 13.5c0 1.3308682.5777413 2.5267978 1.496103 3.3506678l.1761266.1500577L10.25 17c-1.2622049 0-2.32579758.85036-2.64913438 2.0094363l-.03407512-.0003994c-3.19317822 0-5.13348909-1.0106961-5.55232772-3.1124593L2 15.75v-2C2 12.7835017 2.78350169 12 3.75 12ZM14 10c1.9329966 0 3.5 1.5670034 3.5 3.5S15.9329966 17 14 17s-3.5-1.5670034-3.5-3.5S12.0670034 10 14 10Zm6.5-6C22.4329966 4 24 5.56700338 24 7.5S22.4329966 11 20.5 11 17 9.43299662 17 7.5 18.5670034 4 20.5 4ZM7.5 4C9.43299662 4 11 5.56700338 11 7.5S9.43299662 11 7.5 11 4 9.43299662 4 7.5 5.56700338 4 7.5 4Z"/>
+                      </svg>
+                    {% elseif 'data' in committeeHandle or 'research' in committeeHandle %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                        <rect x="0" y="161.669" width="104.756" height="314.266"/>
+                        <path d="M313.498 245.524c-5.555 7.438-8.593 16.45-8.593 25.872 0 11.632 4.502 22.425 12.676 30.588 8.173 8.174 19.068 12.675 30.588 12.675 11.529 0 22.424-4.501 30.588-12.562 15.406-15.406 16.767-39.601 3.98-56.572h-69.239Z"/>
+                        <path d="M293.274 408.836v67.15H398.03v-65.268c-15.816 5.658-32.675 8.593-49.861 8.593-19.059.001-37.709-3.661-54.895-10.475Z"/>
+                        <path d="M200.365 271.396c0-39.488 15.284-76.571 43.252-104.541 2.517-2.516 5.034-4.931 7.755-7.13V36.014H146.617v439.973h104.755v-92.818c-2.721-2.199-5.238-4.603-7.755-7.119-27.969-27.97-43.252-65.053-43.252-104.654Z"/>
+                        <path d="m502.509 389.604-56.521-55.058c12.051-18.638 18.577-40.346 18.577-63.109 0-31.14-12.102-60.377-34.066-82.341-21.964-21.964-51.201-34.066-82.342-34.066-31.14 0-60.388 12.102-82.341 34.066-21.974 21.964-34.066 51.201-34.066 82.341 0 31.141 12.092 60.388 34.056 82.352 21.964 21.963 51.212 34.066 82.352 34.066 22.762 0 44.48-6.537 63.119-18.588l55.038 56.501c10.26 12.368 25.401 13.104 37.104 1.401 11.714-11.693 11.458-27.335-.909-37.565ZM348.158 333.912c-16.686 0-32.378-6.506-44.184-18.302-11.794-11.794-18.291-27.488-18.291-44.173 0-16.684 6.497-32.367 18.291-44.163 11.806-11.796 27.489-18.302 44.184-18.302 16.675 0 32.368 6.506 44.163 18.302 24.358 24.358 24.358 63.989 0 88.346-11.795 11.796-27.478 18.292-44.163 18.292Z"/>
+                      </svg>
+                    {% else %}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.75 3A2.25 2.25 0 0 0 4.5 5.25v2.1A3.75 3.75 0 0 0 7.5 10.5v3h-3A2.25 2.25 0 0 0 2.25 15.75v3A2.25 2.25 0 0 0 4.5 21h3a2.25 2.25 0 0 0 2.25-2.25v-3A2.25 2.25 0 0 0 7.5 13.5v-3h9v3a2.25 2.25 0 0 0-2.25 2.25v3A2.25 2.25 0 0 0 16.5 21h3a2.25 2.25 0 0 0 2.25-2.25v-3A2.25 2.25 0 0 0 19.5 13.5h-3v-3a3.75 3.75 0 0 0 3-3.15v-2.1A2.25 2.25 0 0 0 17.25 3h-10.5Zm0 1.5h10.5a.75.75 0 0 1 .75.75v2.1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 6 7.35v-2.1a.75.75 0 0 1 .75-.75Zm-2.25 10.5h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 .75-.75Zm12 0h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 .75-.75Z"/>
+                      </svg>
+                    {% endif %}
+                  </div>
+                  <h3 class="caic-whoCommitteeCard__title">{{ committeeTitle }}</h3>
+                  <p class="caic-whoCommitteeCard__text">{{ committeeText }}</p>
+                </article>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-whoPartners">
+      <div class="caic-container">
+        <div class="caic-whoPartners__row">
+          <div>
+            <h2 class="caic-h2">{{ whoWeArePage.whoWeArePartnersHeading ?? 'Current Member Organizations' }}</h2>
+            <p class="caic-body caic-whoPartners__copy">
+              {{ whoWeArePage.whoWeArePartnersIntro ?? 'CAIC is proud to collaborate with organizations dedicated to public health and prevention across Colorado.' }}
+            </p>
+          </div>
+
+          <div class="caic-whoPartnerGrid">
+            {% for card in partnerCards %}
+              {% set partnerLink = card.externalLink ? (card.externalLink.url ?? card.externalLink) : '' %}
+              {% set logo = card.partnerLogo ? card.partnerLogo.one() : null %}
+              {% if partnerLink %}
+                <a class="caic-whoPartnerCard" href="{{ partnerLink }}" target="_blank" rel="noopener">
+                  {% if logo %}
+                    <img src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                  {% else %}
+                    <span>{{ card.title }}</span>
+                  {% endif %}
+                </a>
+              {% else %}
+                <div class="caic-whoPartnerCard">
+                  {% if logo %}
+                    <img src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                  {% else %}
+                    <span>{{ card.title }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% if partnerCards|length < 6 %}
+              {% for i in 1..(6 - partnerCards|length) %}
+                <div class="caic-whoPartnerCard"><span>Partner {{ i }}</span></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

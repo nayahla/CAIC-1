@@ -1,0 +1,335 @@
+CAIC CRAFT RULES / EDIT WALKTHROUGH
+===================================
+
+Use this format to find things quickly:
+craft-->entries-->section-->entry-->field
+
+
+1) HOMEPAGE (main landing page + shared site text)
+--------------------------------------------------
+craft-->entries-->homepage-->[single homepage entry]-->hero heading
+controls: home hero title on landing page
+
+craft-->entries-->homepage-->[single homepage entry]-->hero description
+controls: home hero paragraph on landing page
+
+craft-->entries-->homepage-->[single homepage entry]-->hero background
+controls: home hero background image + events page top hero image
+
+craft-->entries-->homepage-->[single homepage entry]-->about text paragraph 1
+controls: home "About Us" first paragraph
+
+craft-->entries-->homepage-->[single homepage entry]-->about text paragraph 2
+controls: home "About Us" second paragraph
+
+craft-->entries-->homepage-->[single homepage entry]-->about image
+controls: home "About Us" image
+
+craft-->entries-->homepage-->[single homepage entry]-->vision text
+controls: home "Our Vision" text
+
+craft-->entries-->homepage-->[single homepage entry]-->vision image
+controls: home "Our Vision" image
+
+craft-->entries-->homepage-->[single homepage entry]-->showalert
+controls: top alert bar on all pages (on/off)
+
+craft-->entries-->homepage-->[single homepage entry]-->alerttext
+controls: top alert bar text
+
+craft-->entries-->homepage-->[single homepage entry]-->alertlink
+controls: top alert bar link
+
+craft-->entries-->homepage-->[single homepage entry]-->upcoming meetings heading
+controls: home upcoming meetings title + events hero title
+
+craft-->entries-->homepage-->[single homepage entry]-->upcoming meetings text
+controls: home upcoming meetings subtitle + events hero subtitle
+
+craft-->entries-->homepage-->[single homepage entry]-->upcoming meetings view all label
+controls: home "View all" button text in upcoming meetings
+
+craft-->entries-->homepage-->[single homepage entry]-->upcoming meetings tag label
+controls: label pill in events upcoming cards
+
+craft-->entries-->homepage-->[single homepage entry]-->meetings image
+controls: home upcoming-meetings photo + events upcoming-meetings left photo
+
+craft-->entries-->homepage-->[single homepage entry]-->trusted partners heading
+controls: home trusted partners section title
+
+craft-->entries-->homepage-->[single homepage entry]-->trusted partners
+controls: home trusted partner cards
+
+craft-->entries-->homepage-->[single homepage entry]-->trusted partners-->[partner card block]-->external link (optional)
+controls: makes each trusted partner card clickable to partner website
+
+craft-->entries-->homepage-->[single homepage entry]-->trusted partners-->[partner card block]-->partner logo
+controls: partner logo image on home trusted-partners cards + who-we-are logo grid
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are eyebrow
+controls: who we are page small label above page title
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are heading
+controls: who we are page main title
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are intro
+controls: who we are page intro paragraph
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are committees heading
+controls: who we are committees section title
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are committees intro
+controls: who we are committees section subtitle
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are committees-->[committee card]-->committee title
+controls: committee card title on who we are page
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are committees-->[committee card]-->committee description
+controls: committee card description on who we are page
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are committees-->[committee card]-->committee icon
+controls: optional icon at top of each committee card
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are partners heading
+controls: who we are partner-logos section title
+
+craft-->entries-->homepage-->[single homepage entry]-->who we are partners intro
+controls: who we are partner-logos section paragraph
+
+craft-->entries-->homepage-->[single homepage entry]-->about hero eyebrow
+controls: small uppercase label on about page hero
+
+craft-->entries-->homepage-->[single homepage entry]-->about hero heading
+controls: first line in about page hero title
+
+craft-->entries-->homepage-->[single homepage entry]-->about hero accent
+controls: blue accent line in about page hero title
+
+craft-->entries-->homepage-->[single homepage entry]-->about hero description
+controls: paragraph under about page hero title
+
+craft-->entries-->homepage-->[single homepage entry]-->about hero image
+controls: top background photo on about page
+
+craft-->entries-->homepage-->[single homepage entry]-->about vision heading
+controls: left card title in about vision/mission section
+
+craft-->entries-->homepage-->[single homepage entry]-->about vision text
+controls: left card paragraph in about vision/mission section
+
+craft-->entries-->homepage-->[single homepage entry]-->about mission heading
+controls: right card title in about vision/mission section
+
+craft-->entries-->homepage-->[single homepage entry]-->about mission text
+controls: right card paragraph in about vision/mission section
+
+craft-->entries-->homepage-->[single homepage entry]-->about priority eyebrow
+controls: small label above "Priority Areas"
+
+craft-->entries-->homepage-->[single homepage entry]-->about priority heading
+controls: heading for about page priority cards
+
+craft-->entries-->homepage-->[single homepage entry]-->about priority cards-->[about priority card]-->about card title
+controls: title for each priority area card
+
+craft-->entries-->homepage-->[single homepage entry]-->about priority cards-->[about priority card]-->about card description
+controls: description for each priority area card
+
+craft-->entries-->homepage-->[single homepage entry]-->about priority cards-->[about priority card]-->about card icon
+controls: optional icon for each priority area card
+
+craft-->entries-->homepage-->[single homepage entry]-->about what heading
+controls: heading for "What We're Doing" section
+
+craft-->entries-->homepage-->[single homepage entry]-->about what intro
+controls: intro text under "What We're Doing"
+
+craft-->entries-->homepage-->[single homepage entry]-->about what cta label
+controls: top-right "Learn more..." label in "What We're Doing" section
+
+craft-->entries-->homepage-->[single homepage entry]-->about what cta link
+controls: top-right "Learn more..." destination in "What We're Doing" section
+
+craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->about card title
+controls: title for each "What We're Doing" card
+
+craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->about card description
+controls: description for each "What We're Doing" card
+
+craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->about card icon
+controls: optional icon for each "What We're Doing" card
+
+craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->about card link label
+controls: link text shown at the bottom of each "What We're Doing" card
+
+craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->external link
+controls: optional destination URL for each "What We're Doing" card link
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas hero heading
+controls: focus areas page main title
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas hero description
+controls: focus areas page hero paragraph
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas hero image
+controls: focus areas page top background image
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas cards-->[focus area card]-->focus areas card title
+controls: top 3 focus card headings on focus areas page
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas cards-->[focus area card]-->focus areas card description
+controls: top 3 focus card body text on focus areas page
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas cards-->[focus area card]-->focus areas card icon
+controls: optional icon for each top focus card
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies heading
+controls: "Current Policies & Bills" heading
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies intro
+controls: intro text under "Current Policies & Bills"
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policy cta label
+controls: link text shown on each policy row (example: "View Full Text")
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies-->[focus policy item]-->focus areas policy code
+controls: bill/policy code in each policy row
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies-->[focus policy item]-->focus areas policy status
+controls: status pill text in each policy row
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies-->[focus policy item]-->focus areas policy summary
+controls: description text in each policy row
+
+craft-->entries-->homepage-->[single homepage entry]-->focus areas policies-->[focus policy item]-->external link
+controls: optional row link destination for each policy item
+
+craft-->entries-->homepage-->[single homepage entry]-->stay connected heading
+controls: "Stay Connected" title above footer on all pages
+
+craft-->entries-->homepage-->[single homepage entry]-->stay connected text
+controls: "Stay Connected" subtitle above footer on all pages
+
+craft-->entries-->homepage-->[single homepage entry]-->stay connected email placeholder
+controls: email input placeholder in Stay Connected
+
+craft-->entries-->homepage-->[single homepage entry]-->stay connected button label
+controls: subscribe button text in Stay Connected
+
+craft-->entries-->homepage-->[single homepage entry]-->events calendar id
+controls: embedded Google Calendar on events page
+
+
+2) NEWS (used in home news spotlight + news/media page + reports page)
+----------------------------------------------------------------------
+craft-->entries-->news-->[news entry]-->title
+controls: card/list/report titles
+
+craft-->entries-->news-->[news entry]-->summary
+controls: teaser text on cards/lists
+
+craft-->entries-->news-->[news entry]-->news image
+controls: featured/side images in news/media + report visuals
+
+craft-->entries-->news-->[news entry]-->external link
+controls: article destination link
+
+craft-->entries-->news-->[news entry]-->category label
+controls: small metadata label where shown
+
+
+3) PRESS RELEASES (separate from news)
+--------------------------------------
+craft-->entries-->press releases-->[press release entry]-->title
+controls: press release card title on news/media page
+
+craft-->entries-->press releases-->[press release entry]-->press release file
+controls: PDF download target for press release card
+
+craft-->entries-->press releases-->[press release entry]-->external link
+controls: fallback download/view link if no PDF file is uploaded
+
+note: press releases are now independent entries and no longer pulled from news entries.
+
+
+4) MEETINGS (home + events pages)
+---------------------------------
+craft-->entries-->meetings-->[meeting entry]-->title
+controls: meeting card/list title
+
+craft-->entries-->meetings-->[meeting entry]-->meeting date
+controls: meeting date displays and sorting
+
+craft-->entries-->meetings-->[meeting entry]-->meeting time
+controls: meeting time displays
+
+craft-->entries-->meetings-->[meeting entry]-->location
+controls: meeting location displays
+
+craft-->entries-->meetings-->[meeting entry]-->external link
+controls: add-to-calendar/fallback link targets
+
+
+5) RESOURCES (resources page content source)
+--------------------------------------------
+craft-->entries-->resources-->[resource entry]-->title
+controls: resource card titles
+
+craft-->entries-->resources-->[resource entry]-->summary
+controls: resource card body text
+
+craft-->entries-->resources-->[resource entry]-->resource image
+controls: resource images
+
+craft-->entries-->resources-->[resource entry]-->category label
+controls: tag text (news, policy brief, data report, etc.)
+
+craft-->entries-->resources-->[resource entry]-->external link
+controls: "View Resource" link target
+
+
+6) EVENTS PAGE SPECIAL NOTES
+----------------------------
+craft-->entries-->homepage-->[single homepage entry]-->events calendar id
+controls: calendar embed source id
+
+server-->.env-->GOOGLE_CALENDAR_API_KEY
+controls: live API pull for upcoming events on events page
+
+server-->.env-->GOOGLE_CALENDAR_ID
+fallback if homepage field is blank
+
+server-->.env-->GOOGLE_CALENDAR_TZ
+timezone used for display and API formatting
+
+
+7) CURRENTLY HARDCODED (NOT IN CRAFT)
+-------------------------------------
+templates-->layouts-->main.twig-->header nav links/dropdowns
+controls: top nav labels/links
+
+templates-->layouts-->main.twig-->footer quick links/social/email labels
+controls: footer link text and structure
+
+web-->images-->logo.jpg
+controls: header/footer logo asset
+
+
+8) ABOUT/THEME EXTRA NOTE
+-------------------------
+templates-->about.twig
+about page now reads from craft-->entries-->homepage-->[single homepage entry].
+all about page content is editable there, with template fallback defaults when fields are blank.
+
+
+9) QUICK EDIT CHECKLIST
+-----------------------
+craft-->entries-->homepage-->[single entry]-->save
+craft-->entries-->news-->update/add entries-->save
+craft-->entries-->press releases-->update/add entries-->save
+craft-->entries-->meetings-->update/add entries-->save
+craft-->entries-->resources-->update/add entries-->save
+
+if changes do not show:
+admin-->utilities-->clear caches-->run all

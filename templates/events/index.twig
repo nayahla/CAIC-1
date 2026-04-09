@@ -1,0 +1,472 @@
+{% extends "layouts/main" %}
+
+{% block head %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ alias('@web') }}/css/templates.css">
+{% endblock %}
+
+{% set homePage = craft.entries.section('homepage').one() %}
+{% set eventsPage = craft.entries.section('eventsPage').one() ?? homePage %}
+{% set heroTitle = eventsPage and eventsPage.upcomingMeetingsHeading ? eventsPage.upcomingMeetingsHeading : 'Shaping the Future through Collective Action.' %}
+{% set heroCaption = eventsPage and eventsPage.upcomingMeetingsText ? eventsPage.upcomingMeetingsText : 'Join us and get involved as we address alcohol-related impacts across Colorado.' %}
+{% set heroImage = eventsPage and eventsPage.heroBackground ? eventsPage.heroBackground.one() : null %}
+{% set upcomingImage = eventsPage and eventsPage.meetingsImage ? eventsPage.meetingsImage.one() : (homePage and homePage.meetingsImage ? homePage.meetingsImage.one() : null) %}
+{% set tagLabel = eventsPage and eventsPage.upcomingMeetingsTagLabel ? eventsPage.upcomingMeetingsTagLabel : 'Upcoming' %}
+{% set blankPhoto = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22%3E%3Crect width=%221200%22 height=%22800%22 fill=%22%23d8dde2%22/%3E%3Cpath d=%22M120 620l250-240 170 160 170-170 350 250H120z%22 fill=%22%23bcc6cf%22/%3E%3Ccircle cx=%22270%22 cy=%22270%22 r=%2256%22 fill=%22%23bcc6cf%22/%3E%3C/svg%3E' %}
+
+{% set craftCalendarId = eventsPage ? attribute(eventsPage, 'eventsCalendarId') : '' %}
+{% set googleCalendarId = craftCalendarId ?: (getenv('GOOGLE_CALENDAR_ID') ?: '') %}
+{% set googleCalendarApiKey = getenv('GOOGLE_CALENDAR_API_KEY') ?: '' %}
+{% set googleCalendarTimezone = getenv('GOOGLE_CALENDAR_TZ') ?: 'America/Denver' %}
+{% set googleCalendarEmbedUrl = googleCalendarId ? ('https://calendar.google.com/calendar/embed?mode=MONTH&showTitle=0&showPrint=0&showTabs=1&showCalendars=0&showTz=0&src=' ~ googleCalendarId|url_encode ~ '&ctz=' ~ googleCalendarTimezone|url_encode) : '' %}
+
+{% set upcomingMeetings = craft.entries()
+  .section('meetings')
+  .meetingDate('>= ' ~ now|date('Y-m-d'))
+  .orderBy('meetingDate asc')
+  .limit(6)
+  .all()
+%}
+{% if not upcomingMeetings|length %}
+  {% set upcomingMeetings = craft.entries()
+    .section('meetings')
+    .orderBy('postDate desc')
+    .limit(6)
+    .all()
+  %}
+{% endif %}
+
+{% block body %}
+<main
+  class="dg-page dg-events"
+  data-events-google
+  data-calendar-id="{{ googleCalendarId|e('html_attr') }}"
+  data-calendar-key="{{ googleCalendarApiKey|e('html_attr') }}"
+  data-calendar-tz="{{ googleCalendarTimezone|e('html_attr') }}"
+  data-upcoming-tag-label="{{ tagLabel|e('html_attr') }}"
+>
+  <section class="dg-shell dg-eventsHero">
+    <div class="dg-eventsHero__copy">
+      <p class="dg-eyebrow">Coalition Calendar</p>
+      <h1>{{ heroTitle }}</h1>
+      <p>{{ heroCaption }}</p>
+    </div>
+    <div class="dg-eventsHero__media">
+      <img src="{{ heroImage ? heroImage.url : blankPhoto }}" alt="Events page hero image">
+    </div>
+  </section>
+
+  <section class="dg-shell dg-eventsCalendar" aria-label="Main calendar">
+    <div class="dg-eventsCalendar__head">
+      <h2>Events Calendar</h2>
+      <p>{{ now|date('F Y') }}</p>
+    </div>
+
+    {% if googleCalendarEmbedUrl %}
+      <div class="dg-eventsCalendar__frameWrap">
+        <iframe
+          src="{{ googleCalendarEmbedUrl }}"
+          title="Coalition Google Calendar"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    {% else %}
+      <div class="dg-eventsCalendar__missing">
+        Add Events Calendar ID in the Events entry in Craft, or set `GOOGLE_CALENDAR_ID` in `.env`.
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="dg-shell caic-eventsUpcomingSection" aria-label="Upcoming meetings">
+    <div class="caic-upcomingSplit">
+      <figure class="caic-upcomingSplit__media">
+        <img src="{{ upcomingImage ? upcomingImage.url : blankPhoto }}" alt="Upcoming meetings">
+      </figure>
+
+      <div class="caic-upcomingSplit__panel">
+        <div class="caic-upcomingSplit__head caic-upcomingSplit__head--events">
+          <h2 class="caic-h2">Upcoming Meetings</h2>
+        </div>
+
+        <p class="caic-upcoming__sub">{{ heroCaption }}</p>
+
+        <div class="caic-eventsUpcomingCarousel" data-events-upcoming-carousel>
+          <div class="caic-eventsUpcomingViewport">
+            <div class="caic-eventsUpcomingTrack" data-events-upcoming-track>
+              {% if upcomingMeetings|length %}
+                {% for m in upcomingMeetings %}
+                  {% set meetingLink = m.externalLink ? (m.externalLink.url ?? m.externalLink) : '#' %}
+                  {% set addToCalendarLink = meetingLink %}
+                  {% if m.meetingDate %}
+                    {% set startDateStamp = m.meetingDate|date('Ymd') %}
+                    {% set startTimeStamp = m.meetingTime ? m.meetingTime|date('His') : '120000' %}
+                    {% set endTimeStamp = m.meetingTime ? m.meetingTime|date_modify('+1 hour')|date('His') : '130000' %}
+                    {% set datesParam = startDateStamp ~ 'T' ~ startTimeStamp ~ '/' ~ startDateStamp ~ 'T' ~ endTimeStamp %}
+                    {% set addToCalendarLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' ~ m.title|url_encode ~ '&dates=' ~ datesParam ~ '&location=' ~ (m.location ?? '')|url_encode %}
+                  {% endif %}
+
+                  <article class="caic-eventsMeetSlide" data-event-slide>
+                    <article class="caic-upcomingListItem caic-eventsMeetCard">
+                      <div class="caic-eventsMeetTop">
+                        <span class="caic-eventsMeetTag">{{ tagLabel }}</span>
+                      </div>
+                      <h3 class="caic-upcomingListItem__title">{{ m.title }}</h3>
+                      <div class="caic-upcomingListItem__metaRows">
+                        <div class="caic-upcomingListItem__meta">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                          </svg>
+                          <span>{{ m.meetingDate ? m.meetingDate|date('F j, Y') : 'Date TBD' }}</span>
+                        </div>
+                        <div class="caic-upcomingListItem__meta">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          </svg>
+                          <span>{{ m.meetingTime ? m.meetingTime|date('g:i A') : 'Time TBD' }}</span>
+                        </div>
+                        <div class="caic-upcomingListItem__meta">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="caic-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                          </svg>
+                          <span>{{ m.location ?? 'Location TBD' }}</span>
+                        </div>
+                      </div>
+                      <a class="caic-eventsMeetLink" href="{{ addToCalendarLink }}" target="_blank" rel="noopener">Add to Calendar <span aria-hidden="true">&rarr;</span></a>
+                    </article>
+                  </article>
+                {% endfor %}
+                {% if upcomingMeetings|length < 6 %}
+                  {% for i in 1..(6 - upcomingMeetings|length) %}
+                    <article class="caic-eventsMeetSlide" data-event-slide>
+                      <article class="caic-upcomingListItem caic-eventsMeetCard">
+                        <div class="caic-eventsMeetTop">
+                          <span class="caic-eventsMeetTag">{{ tagLabel }}</span>
+                        </div>
+                        <h3 class="caic-upcomingListItem__title">Workgroup Meeting {{ i + upcomingMeetings|length }}</h3>
+                        <div class="caic-upcomingListItem__metaRows">
+                          <div class="caic-upcomingListItem__meta">Date TBD</div>
+                          <div class="caic-upcomingListItem__meta">Time TBD</div>
+                          <div class="caic-upcomingListItem__meta">Location TBD</div>
+                        </div>
+                        <a class="caic-eventsMeetLink" href="#">Add to Calendar <span aria-hidden="true">&rarr;</span></a>
+                      </article>
+                    </article>
+                  {% endfor %}
+                {% endif %}
+              {% else %}
+                {% for i in 1..6 %}
+                  <article class="caic-eventsMeetSlide" data-event-slide>
+                    <article class="caic-upcomingListItem caic-eventsMeetCard">
+                      <div class="caic-eventsMeetTop">
+                        <span class="caic-eventsMeetTag">{{ tagLabel }}</span>
+                      </div>
+                      <h3 class="caic-upcomingListItem__title">Workgroup Meeting {{ i }}</h3>
+                      <div class="caic-upcomingListItem__metaRows">
+                        <div class="caic-upcomingListItem__meta">Date TBD</div>
+                        <div class="caic-upcomingListItem__meta">Time TBD</div>
+                        <div class="caic-upcomingListItem__meta">Location TBD</div>
+                      </div>
+                      <a class="caic-eventsMeetLink" href="#">Add to Calendar <span aria-hidden="true">&rarr;</span></a>
+                    </article>
+                  </article>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="caic-carouselDots" data-events-upcoming-dots aria-label="Upcoming meetings pages"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block foot %}
+{{ parent() }}
+<script>
+(() => {
+  const root = document.querySelector('[data-events-google]');
+  if (!root) return;
+
+  const calendarId = root.dataset.calendarId || '';
+  const apiKey = root.dataset.calendarKey || '';
+  const timezone = root.dataset.calendarTz || 'America/Denver';
+  const tagLabel = root.dataset.upcomingTagLabel || 'Upcoming';
+
+  const carousel = root.querySelector('[data-events-upcoming-carousel]');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('[data-events-upcoming-track]');
+  const dotsWrap = carousel.querySelector('[data-events-upcoming-dots]');
+  if (!track || !dotsWrap) return;
+
+  const esc = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  const createDots = (count, onSelect) => {
+    const total = Math.max(1, count);
+    dotsWrap.innerHTML = '';
+    const dots = [];
+
+    for (let i = 0; i < total; i += 1) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'caic-dot';
+      dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+      dot.addEventListener('click', () => onSelect(i));
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    }
+
+    return (activeIndex) => {
+      dots.forEach((dot, i) => {
+        const active = i === activeIndex;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+    };
+  };
+
+  let baseSlides = [];
+  let pageIndex = 0;
+  let pageCount = 1;
+  let perPage = 1;
+  let setActiveDot = () => {};
+  let timer = null;
+
+  function getPerPage() {
+    return window.matchMedia('(max-width: 980px)').matches ? 1 : 3;
+  }
+
+  function purgeClones() {
+    track.querySelectorAll('[data-event-clone]').forEach((clone) => clone.remove());
+  }
+
+  function syncCarousel(options = {}) {
+    purgeClones();
+    baseSlides = Array.from(track.querySelectorAll('[data-event-slide]:not([data-event-clone])'));
+    perPage = getPerPage();
+    pageCount = Math.max(1, Math.ceil(baseSlides.length / perPage));
+
+    if (options.resetIndex) {
+      pageIndex = 0;
+    }
+    pageIndex = Math.min(pageIndex, pageCount - 1);
+
+    if (pageCount > 1 && baseSlides.length > perPage) {
+      const cloneCount = Math.min(perPage, baseSlides.length);
+      baseSlides.slice(0, cloneCount).forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.setAttribute('data-event-clone', 'true');
+        track.appendChild(clone);
+      });
+    }
+
+    setActiveDot = createDots(pageCount, goToPage);
+  }
+
+  function getPageOffset(page) {
+    const children = Array.from(track.children);
+    const firstIndex = Math.min(children.length - 1, page * perPage);
+    const firstSlide = children[firstIndex];
+    return firstSlide ? firstSlide.offsetLeft : 0;
+  }
+
+  function renderCarousel(animate = true) {
+    const normalizedIndex = pageCount ? pageIndex % pageCount : 0;
+    const offset = getPageOffset(pageIndex);
+    track.style.transition = animate ? 'transform 0.65s cubic-bezier(.22,.61,.36,1)' : 'none';
+    track.style.transform = `translateX(-${offset}px)`;
+    setActiveDot(normalizedIndex);
+  }
+
+  function goToPage(nextPage, animate = true) {
+    if (pageCount <= 1) return;
+    pageIndex = ((nextPage % pageCount) + pageCount) % pageCount;
+    renderCarousel(animate);
+  }
+
+  function advanceCarousel() {
+    if (pageCount <= 1) return;
+    if (pageIndex === pageCount - 1) {
+      pageIndex = pageCount;
+    } else {
+      pageIndex += 1;
+    }
+    renderCarousel(true);
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    if (pageCount <= 1) return;
+    timer = setInterval(advanceCarousel, 5200);
+  }
+
+  function formatDateLabel(start) {
+    if (!start) return 'Date TBD';
+
+    if (start.date) {
+      const [y, m, d] = start.date.split('-').map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    }
+
+    if (start.dateTime) {
+      return new Date(start.dateTime).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        timeZone: timezone,
+      });
+    }
+
+    return 'Date TBD';
+  }
+
+  function formatTimeLabel(start, end) {
+    if (!start || start.date) return 'All Day';
+
+    const startDate = new Date(start.dateTime);
+    const endDate = end && end.dateTime ? new Date(end.dateTime) : null;
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: timezone,
+    });
+
+    if (!endDate) {
+      return formatter.format(startDate);
+    }
+
+    return `${formatter.format(startDate)} - ${formatter.format(endDate)}`;
+  }
+
+  function toGoogleStamp(isoString) {
+    const date = new Date(isoString);
+    const y = date.getUTCFullYear();
+    const m = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(date.getUTCDate()).padStart(2, '0');
+    const hh = String(date.getUTCHours()).padStart(2, '0');
+    const mm = String(date.getUTCMinutes()).padStart(2, '0');
+    const ss = String(date.getUTCSeconds()).padStart(2, '0');
+    return `${y}${m}${d}T${hh}${mm}${ss}Z`;
+  }
+
+  function buildAddToCalendarLink(event) {
+    const start = event.start?.dateTime || event.start?.date;
+    const end = event.end?.dateTime || event.end?.date;
+
+    if (!start || !end) {
+      return event.htmlLink || '#';
+    }
+
+    const allDay = Boolean(event.start?.date && !event.start?.dateTime);
+    const dates = allDay
+      ? `${String(event.start.date).replaceAll('-', '')}/${String(event.end.date).replaceAll('-', '')}`
+      : `${toGoogleStamp(event.start.dateTime)}/${toGoogleStamp(event.end.dateTime)}`;
+
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: event.summary || 'Upcoming Meeting',
+      dates,
+      location: event.location || '',
+      details: event.description || '',
+    });
+
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  }
+
+  function renderGoogleEvents(items) {
+    const html = items.slice(0, 6).map((item) => {
+      const title = esc(item.summary || 'Upcoming Meeting');
+      const dateLabel = esc(formatDateLabel(item.start));
+      const timeLabel = esc(formatTimeLabel(item.start, item.end));
+      const location = esc(item.location || 'Location TBD');
+      const addLink = esc(buildAddToCalendarLink(item));
+
+      return `
+        <article class="caic-eventsMeetSlide" data-event-slide>
+          <article class="caic-upcomingListItem caic-eventsMeetCard">
+            <div class="caic-eventsMeetTop">
+              <span class="caic-eventsMeetTag">${esc(tagLabel)}</span>
+            </div>
+            <h3 class="caic-upcomingListItem__title">${title}</h3>
+            <div class="caic-upcomingListItem__metaRows">
+              <div class="caic-upcomingListItem__meta">${dateLabel}</div>
+              <div class="caic-upcomingListItem__meta">${timeLabel}</div>
+              <div class="caic-upcomingListItem__meta">${location}</div>
+            </div>
+            <a class="caic-eventsMeetLink" href="${addLink}" target="_blank" rel="noopener">Add to Calendar <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        </article>
+      `;
+    }).join('');
+
+    if (!html) return;
+
+    track.innerHTML = html;
+    syncCarousel({ resetIndex: true });
+    renderCarousel(false);
+    startAuto();
+  }
+
+  async function loadGoogleEvents() {
+    if (!calendarId || !apiKey) return;
+
+    const endpoint = new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`);
+    endpoint.searchParams.set('singleEvents', 'true');
+    endpoint.searchParams.set('orderBy', 'startTime');
+    endpoint.searchParams.set('timeMin', new Date().toISOString());
+    endpoint.searchParams.set('maxResults', '6');
+    endpoint.searchParams.set('key', apiKey);
+
+    try {
+      const response = await fetch(endpoint.toString(), { credentials: 'omit' });
+      if (!response.ok) return;
+
+      const payload = await response.json();
+      const items = Array.isArray(payload.items) ? payload.items : [];
+      if (!items.length) return;
+
+      renderGoogleEvents(items);
+    } catch (_) {
+      // keep Craft fallback cards when Google fetch fails
+    }
+  }
+
+  syncCarousel({ resetIndex: true });
+  renderCarousel(false);
+  startAuto();
+
+  track.addEventListener('transitionend', () => {
+    if (pageCount <= 1) return;
+    if (pageIndex === pageCount) {
+      pageIndex = 0;
+      renderCarousel(false);
+    }
+  });
+
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', startAuto);
+
+  window.addEventListener('resize', () => {
+    const normalizedIndex = pageCount ? pageIndex % pageCount : 0;
+    syncCarousel();
+    pageIndex = Math.min(normalizedIndex, pageCount - 1);
+    renderCarousel(false);
+    startAuto();
+  });
+
+  loadGoogleEvents();
+})();
+</script>
+{% endblock %}

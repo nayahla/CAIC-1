@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: aboutHeroEyebrow
+instructions: 'Small uppercase label above the About hero heading.'
+name: 'About Hero Eyebrow'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

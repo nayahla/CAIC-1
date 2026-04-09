@@ -1,0 +1,131 @@
+{% extends "layouts/main" %}
+
+{% set homePage = craft.entries.section('homepage').one() %}
+{% set aboutPage = craft.entries.section('aboutUs').one() ?? homePage %}
+{% set aboutHeroImage = aboutPage and aboutPage.aboutHeroImage ? aboutPage.aboutHeroImage.one() : null %}
+{% set aboutSectionImage = aboutPage and aboutPage.aboutWhatImage ? aboutPage.aboutWhatImage.one() : null %}
+{% set fallbackHero = homePage and homePage.heroBackground ? homePage.heroBackground.one() : null %}
+{% set aboutHeroImageUrl = aboutHeroImage ? aboutHeroImage.url : (fallbackHero ? fallbackHero.url : '/images/heroback.jpg') %}
+{% set aboutSectionImageUrl = aboutSectionImage ? aboutSectionImage.url : aboutHeroImageUrl %}
+
+{% set priorityEntries = (aboutPage and aboutPage.aboutPriorityCards) ? aboutPage.aboutPriorityCards.all()|slice(0, 3) : [] %}
+
+{% set fallbackPriority = [
+  {
+    aboutCardTitle: 'Policy',
+    aboutCardDescription: 'Framing and advocating for legislative frameworks that support sustainable interagency integration and long-term health outcomes.'
+  },
+  {
+    aboutCardTitle: 'Awareness',
+    aboutCardDescription: 'Driving public discourse through transparent reporting and high-impact communication strategies designed to inform every citizen.'
+  },
+  {
+    aboutCardTitle: 'Funding',
+    aboutCardDescription: 'Identifying and optimizing diverse revenue streams to ensure persistent financial stability for vital community health programs.'
+  }
+] %}
+
+{% set aboutIntroPrimary = aboutPage.aboutVisionText ?? aboutPage.aboutHeroDescription ?? 'The Colorado Alcohol Impacts Coalition (CAIC) serves as the state\'s central nervous system for collaborative health and policy initiatives. We bridge the gap between data-driven research and actionable community impact.' %}
+{% set aboutIntroSecondary = aboutPage.aboutMissionText ?? 'By integrating multidisciplinary perspectives across state agencies, private sectors, and local communities, we ensure that every decision made is grounded in rigorous evidence and aimed at sustainable equity for all Coloradans.' %}
+{% set prioritySourceCards = priorityEntries|length ? priorityEntries : fallbackPriority %}
+{% set inlinePriorityCards = [
+  {
+    aboutCardTitle: aboutPage.aboutPriorityCardOneTitle ?? '',
+    aboutCardDescription: aboutPage.aboutPriorityCardOneText ?? ''
+  },
+  {
+    aboutCardTitle: aboutPage.aboutPriorityCardTwoTitle ?? '',
+    aboutCardDescription: aboutPage.aboutPriorityCardTwoText ?? ''
+  },
+  {
+    aboutCardTitle: aboutPage.aboutPriorityCardThreeTitle ?? '',
+    aboutCardDescription: aboutPage.aboutPriorityCardThreeText ?? ''
+  }
+] %}
+{% set hasInlinePriorityContent = false %}
+{% for card in inlinePriorityCards %}
+  {% if card.aboutCardTitle or card.aboutCardDescription %}
+    {% set hasInlinePriorityContent = true %}
+  {% endif %}
+{% endfor %}
+{% if hasInlinePriorityContent %}
+  {% set priorityCards = [] %}
+  {% for i in 0..2 %}
+    {% set baseCard = prioritySourceCards[i] is defined ? prioritySourceCards[i] : fallbackPriority[i] %}
+    {% set inlineCard = inlinePriorityCards[i] %}
+    {% set priorityCards = priorityCards|merge([{
+      aboutCardTitle: inlineCard.aboutCardTitle ?: (baseCard.aboutCardTitle ?? ''),
+      aboutCardDescription: inlineCard.aboutCardDescription ?: (baseCard.aboutCardDescription ?? ''),
+      aboutCardIcon: baseCard.aboutCardIcon is defined ? baseCard.aboutCardIcon : null
+    }]) %}
+  {% endfor %}
+{% else %}
+  {% set priorityCards = prioritySourceCards %}
+{% endif %}
+{% set aboutWhatCtaLabel = aboutPage.aboutWhatCtaLabel ?? 'Learn More About Workgroups' %}
+{% set aboutWhatCtaHref = aboutPage and aboutPage.aboutWhatCtaLink ? (aboutPage.aboutWhatCtaLink.url ?? aboutPage.aboutWhatCtaLink) : url('workgroups') %}
+
+{% block body %}
+<div class="caic">
+  <main id="main" class="caic-aboutPage">
+    <section class="caic-hero" style="background-image:url('{{ aboutHeroImageUrl }}')">
+      <div class="caic-hero__overlay" aria-hidden="true"></div>
+      <div class="caic-container caic-hero__inner">
+        <div class="caic-hero__content reveal">
+          <div class="caic-kickerPill">{{ aboutPage.aboutHeroEyebrow ?? 'Our Identity' }}</div>
+          <h1 class="caic-heroTitle">{{ aboutPage.aboutHeroHeading ?? 'About CAIC' }}</h1>
+          <p class="caic-heroSub">{{ aboutIntroPrimary }}</p>
+          <p class="caic-heroSub">{{ aboutIntroSecondary }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-aboutPriority">
+      <div class="caic-container">
+        <div class="caic-aboutSectionHead">
+          <h2 class="caic-h2">{{ aboutPage.aboutPriorityHeading ?? 'Priority Areas' }}</h2>
+        </div>
+
+        <div class="caic-aboutCardGrid">
+          {% for card in priorityCards|slice(0, 3) %}
+            {% set iconAsset = card.aboutCardIcon is defined and card.aboutCardIcon ? card.aboutCardIcon.one() : null %}
+            <article class="caic-aboutActionCard caic-grow">
+              <div class="caic-aboutActionCard__icon" aria-hidden="true">
+                {% if iconAsset %}
+                  <img src="{{ iconAsset.url }}" alt="">
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.25a.75.75 0 0 1 .75.75v1.29a8.25 8.25 0 1 1-1.5 0V3a.75.75 0 0 1 .75-.75Zm0 4.5a.75.75 0 0 0-.75.75v4.19l-2.22 2.22a.75.75 0 1 0 1.06 1.06l2.44-2.44a.75.75 0 0 0 .22-.53V7.5a.75.75 0 0 0-.75-.75Z"/>
+                  </svg>
+                {% endif %}
+              </div>
+              <h3 class="caic-aboutActionCard__title">{{ card.aboutCardTitle }}</h3>
+              <p class="caic-aboutActionCard__text">{{ card.aboutCardDescription }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-section--tint caic-aboutWhat">
+      <div class="caic-container">
+        <div class="caic-aboutWhat__grid">
+          <div class="caic-aboutWhat__copy">
+            <h2 class="caic-h2">{{ aboutPage.aboutWhatHeading ?? "What We're Doing" }}</h2>
+            <p class="caic-body">
+              {{ aboutPage.aboutWhatIntro ?? 'Our ongoing initiatives translate raw data into real-world impact. The coalition operates through focused workgroups that turn research into public health action across Colorado.' }}
+            </p>
+            <a class="caic-btn caic-btn--primary caic-grow caic-aboutWhat__cta" href="{{ aboutWhatCtaHref }}">
+              {{ aboutWhatCtaLabel }} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+          <figure class="caic-aboutWhat__media">
+            <img src="{{ aboutSectionImageUrl }}" alt="{{ aboutPage.aboutWhatHeading ?? "What We're Doing" }}">
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

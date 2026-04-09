@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: newsPressReleaseItems
+instructions: 'Select the press releases that should appear on the News & Media page.'
+name: 'News Press Release Items'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add press releases'
+  showSearchInput: true
+  showSiteMenu: true
+  source: null
+  sources:
+    - 'section:e3f2c7d1-6c2a-4f34-bf5d-5d2ec8bc6a11' # Press Releases
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

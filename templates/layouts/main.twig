@@ -1,0 +1,171 @@
+{# templates/layouts/main.twig #}
+{% set home = home ?? craft.entries.section('homepage').one() %}
+{% set contactPage = contactPage ?? craft.entries.section('contactUs').one() %}
+{% set contactEmail = contactPage and contactPage.contactEmail ? contactPage.contactEmail|trim : 'info@caic-colorado.org' %}
+{% set contactLinkedinHref = contactPage and contactPage.contactLinkedinLink ? (contactPage.contactLinkedinLink.url ?? contactPage.contactLinkedinLink) : '#' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% if title is defined %}
+            {{ title }} | {{ siteName }}
+        {% else %}
+            {{ siteName }}
+        {% endif %}
+    </title>
+
+    <meta name="description" content="{{ entry.metaDescription ?? 'Colorado Alcohol Impacts Coalition' }}">
+    <link rel="stylesheet" href="{{ alias('@web') }}/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <header class="caic-header" role="banner">
+      <div class="caic-header__inner">
+        <a class="caic-logo" href="{{ siteUrl }}" aria-label="Colorado Alcohol Impacts Coalition home">
+          <img src="{{ alias('@web') }}/images/logo.jpg" alt="Colorado Alcohol Impacts Coalition logo">
+        </a>
+
+        <nav class="caic-nav" aria-label="Primary">
+          <ul class="caic-nav__list">
+            <li class="caic-nav__item caic-dropdown">
+              <button class="caic-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="true">
+                About
+              </button>
+              <div class="caic-dropdown__menu" role="menu">
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('about') }}">About CAIC</a>
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('who-we-are') }}">Who We Are</a>
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('contact-us') }}">Contact Us</a>
+              </div>
+            </li>
+
+            <li class="caic-nav__item caic-dropdown">
+              <button class="caic-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="true">
+                Resources
+              </button>
+              <div class="caic-dropdown__menu" role="menu">
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('resources') }}">Resource Library</a>
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('news-media') }}">News &amp; Media</a>
+              </div>
+            </li>
+
+            <li class="caic-nav__item caic-dropdown">
+              <button class="caic-dropdown__trigger" type="button" aria-expanded="false" aria-haspopup="true">
+                Join Us
+              </button>
+              <div class="caic-dropdown__menu" role="menu">
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('get-involved') }}">Get Involved</a>
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('events') }}">Events</a>
+                <a role="menuitem" class="caic-dropdown__link" href="{{ url('workgroups') }}">Workgroups</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="caic-header__tools">
+          <button class="caic-mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    {% if home and home.showalert and home.alerttext %}
+    <div class="caic-announcement" data-announcement>
+      <div class="caic-announcement__inner">
+        <span class="caic-announcement__dot" aria-hidden="true"></span>
+        <span class="caic-announcement__text">
+          {{ home.alerttext }}
+          {% if home.alertlink %}
+            <a href="{{ home.alertlink }}"> Learn More</a>
+          {% endif %}
+        </span>
+      </div>
+      <button class="caic-announcement__close" type="button" aria-label="Close announcement" data-announcement-close>&times;</button>
+    </div>
+    {% endif %}
+
+    {% block body %}
+    {% endblock %}
+
+    {% block foot %}
+    {% endblock %}
+
+    <script src="{{ alias('@web') }}/js/caic-landing.js" defer></script>
+
+    <section class="caic-stayConnected" aria-label="Stay Connected">
+      <div class="caic-container caic-stayConnected__inner">
+        <h2 class="caic-stayConnected__title">{{ home.stayConnectedHeading ?? 'Stay Connected' }}</h2>
+        <p class="caic-stayConnected__text">
+          {{ home.stayConnectedText ?? 'Receive our monthly Resource Brief featuring the latest Colorado-specific research and advocacy tools.' }}
+        </p>
+        <form class="caic-stayConnected__form" action="/newsletter/subscribe" method="post">
+          {{ csrfInput() }}
+          <label class="caic-srOnly" for="stayConnectedEmail">Email Address</label>
+          <input id="stayConnectedEmail" name="email" type="email" placeholder="{{ home.stayConnectedPlaceholder ?? 'Email address' }}" required>
+          <button class="caic-stayConnected__btn caic-grow" type="submit">{{ home.stayConnectedButtonLabel ?? 'subscribe' }}</button>
+        </form>
+        <p class="caic-stayConnected__questions">Have more questions?</p>
+        <a class="caic-stayConnected__contact" href="{{ url('contact-us') }}">CONTACT US</a>
+      </div>
+    </section>
+
+    <footer class="caic-footer" role="contentinfo">
+      <div class="caic-container">
+        <div class="caic-footerMain">
+          <div class="caic-footerBrand">
+            <img class="caic-footerLogo" src="{{ alias('@web') }}/images/logo.jpg" alt="CAIC logo">
+            <p class="caic-footerBrandText">
+              Reducing alcohol-related harm through evidence-based prevention and community collaboration.
+            </p>
+          </div>
+
+          <div class="caic-footerGroup">
+            <h4 class="caic-footerHeading">Quick Links</h4>
+            <nav class="caic-footerLinks" aria-label="Quick links">
+              <a href="{{ url('contact-us') }}">Contact Us</a>
+              <a href="{{ url('about') }}">About Us</a>
+              <a href="{{ url('resources') }}">Resources</a>
+              <a href="{{ url('get-involved') }}">Coalition Membership</a>
+            </nav>
+          </div>
+
+          <div class="caic-footerGroup">
+            <h4 class="caic-footerHeading">Contact Us</h4>
+            <a class="caic-footerEmail" href="mailto:{{ contactEmail }}">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25H4.5a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5H4.5A2.25 2.25 0 0 0 2.25 6.75m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+              </svg>
+              <span>{{ contactEmail }}</span>
+            </a>
+            <p class="caic-footerSubhead">Follow Us</p>
+            <div class="caic-footerSocialRow">
+              <a class="caic-footerSocial" href="{{ contactLinkedinHref }}" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="caic-footerBottom">
+          <span>&copy; {{ now|date('Y') }} Colorado Alcohol Impacts Coalition. All rights reserved.</span>
+          <div class="caic-footerBottom__links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/accessibility">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

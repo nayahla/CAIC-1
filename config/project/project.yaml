@@ -1,0 +1,157 @@
+dateModified: 1775081958
+email:
+  fromEmail: nayahlaurent@gmail.com
+  fromName: 'CAIC Website'
+  transportType: craft\mail\transportadapters\Sendmail
+fs:
+  uploads:
+    hasUrls: true
+    name: Uploads
+    settings:
+      path: '@webroot/uploads'
+    type: craft\fs\Local
+    url: '@web/uploads'
+meta:
+  __names__:
+    0a4f1f17-e246-4906-aab1-ef159a26cbce: 'About Card Link Label' # About Card Link Label
+    0c9a7a4c-1a6b-43de-aafe-15f7db84de0e: 'About Us' # About Us
+    0f40a94a-2275-4f88-856f-8dbf5c3e5e3d: 'About What CTA Label' # About What CTA Label
+    0fd4c282-9223-448e-8a7a-614f1d8b1eff: 'Focus Areas Policy CTA Label' # Focus Areas Policy CTA Label
+    1ab4482c-304b-4be9-b506-2cbf130199b8: 'Focus Areas Hero Image' # Focus Areas Hero Image
+    1b0308eb-0c06-40cb-bbe0-ebbdf7f8d28e: 'Focus Areas Card Icon' # Focus Areas Card Icon
+    1b4f7c20-334e-4be2-b7d6-3b56e42a7f8c: 'Press Release' # Press Release
+    1b245cb6-8c39-4d2e-b78d-b6e0e13d1f89: 'About Priority Card Two Text' # About Priority Card Two Text
+    1c4f0a18-9461-49db-b4e5-2016a2f95f2a: 'Events Calendar ID' # Events Calendar ID
+    1fddded4-65ce-49be-b35f-0fac2120f859: 'Stay Connected Button Label' # Stay Connected Button Label
+    1f9bd7c5-7333-4e35-b614-b08ccf45a001: 'Contact Us' # Contact Us
+    2a6cf23e-4395-4620-aaa9-28ee87478cf5: 'Focus Areas Hero Heading' # Focus Areas Hero Heading
+    2aa20ac7-bf6f-4f74-b623-6b2c9fb0d1a2: Question # Question
+    2af0e146-488e-45be-a5d6-4e7853d1e6c5: 'About Card Description' # About Card Description
+    2c7e21e9-4d7c-4a9d-960d-4b40f1aa0002: 'Contact Website Link' # Contact Website Link
+    3f7a209f-d406-4185-a535-08514ff869dd: 'News Image' # News Image
+    3d8b6191-5cb6-4f91-8a6a-55e77e1d0003: 'Contact LinkedIn Link' # Contact LinkedIn Link
+    4a9a4043-3823-4ea1-96d1-7c44855fee9b: 'Stay Connected Heading' # Stay Connected Heading
+    4bda00d6-7952-4d2b-8a94-2496d9143e8f: 'About Mission Heading' # About Mission Heading
+    4f965541-fbde-4fee-a1a3-b6483c411fdd: 'CAIC Website' # CAIC Website
+    5d54e0e5-bf06-45e5-8dca-8d166a4630d1: 'About Us' # About Us
+    5e729fab-931b-4874-8463-a7c9852790d2: 'Vision Text' # Vision Text
+    5f783415-4151-4bc7-bcd8-ca6fd28ca7f8: 'About Mission Text' # About Mission Text
+    6aa3aee3-514d-432c-8214-d9958accd0a5: 'Who We Are Committees Heading' # Who We Are Committees Heading
+    6cd4e58a-5b26-4597-b6a7-610b7e3e66a5: 'About Priority Card One Text' # About Priority Card One Text
+    6d9b8253-2511-45c1-b4bf-3a6b120283c8: Location # Location
+    6d23a6ae-03ad-4771-a378-11585d1f46e0: 'About Priority Cards' # About Priority Cards
+    6f9baa2d-de04-4adb-8ce0-61989c220b0e: News # News
+    7b8d5237-6d67-4377-9caa-617e33ec086a: Events # Events
+    7d084f52-8825-4264-a372-39d606b078f3: 'About Image' # About Image
+    7d14d954-43c5-4287-b537-8ba0b73d3283: 'About Vision Heading' # About Vision Heading
+    7de6f2a3-75fe-444a-918a-cfffe60ed4d7: 'About Hero Description' # About Hero Description
+    8cba8d2b-8cbb-4517-a64e-3d5f87756b7e: 'Focus Areas Cards' # Focus Areas Cards
+    8cbc7fd1-265a-4501-8c04-45096df35f37: 'About Hero Heading' # About Hero Heading
+    8f74cbac-bbc8-43dc-8bb7-606a5ec972ff: 'Upcoming Meetings View All Label' # Upcoming Meetings View All Label
+    9d8f2545-ded0-4774-9890-4a2e9437a8a6: 'Who We Are' # Who We Are
+    9da399af-6236-46aa-92d5-b58060fd81de: 'Focus Areas Policies' # Focus Areas Policies
+    9f2a84b2-1f36-4f2f-9df1-3e3b0da4a1c4: 'Download File' # Download File
+    9f41102c-7ddf-47be-85ec-1edd38b06247: 'News & Media' # News & Media
+    020a78ae-c466-437c-82d8-f1f633af9ded: 'About Priority Heading' # About Priority Heading
+    25be305f-fd2f-4101-a9d7-d0100cea1a05: 'Upcoming Meetings Heading' # Upcoming Meetings Heading
+    30b2538b-a737-44ac-865c-42b4333a5f2c: 'About Vision Text' # About Vision Text
+    032afbc9-4919-424a-905b-7c16399ca8d0: 'Partner Logo' # Partner Logo
+    35c8acba-bab3-4081-8b4c-09eec1669a1c: 'Focus Areas Policy Summary' # Focus Areas Policy Summary
+    36d7707f-3acd-4495-be25-57a30505ddfc: Homepage # Homepage
+    41bfd232-738d-4745-aba7-36bff70c1ce4: Resources # Resources
+    5c3a17fc-1760-4e8c-9b5a-c5f9f7a60001: 'Contact Us' # Contact Us
+    58b82448-37f6-44b5-8ac1-e15ca0b8f1c2: 'About Priority Card' # About Priority Card
+    61d4f581-a780-4048-a153-ea36be8e04c7: 'Upcoming Meetings Button Label' # Upcoming Meetings Button Label
+    61d367f2-4fa2-49f6-89c0-9836f81bdc7f: 'Focus Areas Hero Description' # Focus Areas Hero Description
+    67b41bd5-959a-4bf7-ac1e-7857381b5a54: 'About Hero Eyebrow' # About Hero Eyebrow
+    83af97c8-07f6-46aa-ba1f-a2cf681f2899: 'Meeting Date' # Meeting Date
+    418becb4-be3e-4c3c-a0d0-202b315fe38d: Uploads # Uploads
+    476f39fe-3e55-4e89-8a06-75b2a417c479: 'Hero Description' # Hero Description
+    0720fbf3-9bd1-42f1-958d-75ddf1042945: 'General News Items' # General News Items
+    748b4dde-23a2-4f0f-a9f5-2de9767a29d2: 'Meetings Image' # Meetings Image
+    803ebd06-7a85-4b37-b58b-2f7ff3ce5ca9: 'About Priority Card Three Text' # About Priority Card Three Text
+    850a2bf8-e81f-4fea-add0-b7c90599e11c: 'Committee Title' # Committee Title
+    855d631a-ba0a-4158-b029-1edc719b238e: 'Focus Areas Card Title' # Focus Areas Card Title
+    882ad6af-2307-4c28-a660-077b69027636: 'About Card Icon' # About Card Icon
+    891a22d5-3ea8-4c53-a098-b5fb0e41ea27: FAQs # FAQs
+    1154d294-f0cc-49ac-b8e7-145f9ffd938a: 'Public Schema' # Public Schema
+    2018af25-6c22-4531-aaa4-539cc10f5f47: 'About What Intro' # About What Intro
+    4057db87-a425-4ca3-a16d-9b03a6988b87: 'News Press Release Items' # News Press Release Items
+    4125db8e-8f5d-4f51-abc0-c6af3141410a: 'Who We Are Heading' # Who We Are Heading
+    4153aad9-f638-4984-b700-ea76ed2eeb60: 'About What CTA Link' # About What CTA Link
+    4254c1c5-371e-4cec-b7b8-d930bc9bfd69: 'Who We Are Partners Heading' # Who We Are Partners Heading
+    f0fd8fc7-6cc6-4fbe-b3f5-304dc7542a88: 'About What Image' # About What Image
+    7399d932-8324-426b-878d-b631eaff80b7: 'Stay Connected Text' # Stay Connected Text
+    8176d5be-7047-4696-a8bc-8fd5d2d4e619: 'About What We Do Card' # About What We Do Card
+    8426bccd-8b8b-4dc4-93e7-f725ce1022b3: 'CAIC Website' # CAIC Website
+    8722e457-b532-42a5-9fd6-510f40f3b95b: 'Hero Heading' # Hero Heading
+    9690bed6-7ca6-48ea-8de5-9d0940b79fa5: 'Focus Area Card' # Focus Area Card
+    23961a3e-5b05-4cb3-9221-fb1553e8265e: 'CAIC News Items' # CAIC News Items
+    41247a14-4074-46ad-9d0e-703f8813aa41: 'Meeting Time' # Meeting Time
+    406449f5-34e5-474f-bf28-fc5beb3c642b: 'Trusted Partners' # Trusted Partners
+    612476a6-04de-4760-902d-8210de0dfa59: 'Who We Are Committees Intro' # Who We Are Committees Intro
+    1383031f-f3d1-4c24-a05c-fce97537af02: 'Focus Areas Policy Code' # Focus Areas Policy Code
+    6834680f-dbd0-44d2-a401-f389eee6021d: 'Focus Areas Policies Heading' # Focus Areas Policies Heading
+    16143481-3d11-45a7-a21d-1b3acc5635c1: showAlert # showAlert
+    32487337-b8b8-46c5-9050-e4ee37f10f1e: 'Vision Image' # Vision Image
+    42210503-615f-4dd1-acd0-dd137f0424af: 'About Hero Accent' # About Hero Accent
+    43337439-acbd-4f1b-8bff-7e84b9f4731c: Answer # Answer
+    56441053-2dad-4a60-92f0-b2e8c5dbf3b8: 'About What We Do Cards' # About What We Do Cards
+    67857512-74a3-426d-9ea9-2972e3488637: 'Who We Are Partners Intro' # Who We Are Partners Intro
+    a1bcc225-1554-41a0-8145-f735d7b22a21: 'About Hero Image' # About Hero Image
+    a1c1e81a-3c9d-4700-842f-7456063566e2: 'Focus Areas Policies Intro' # Focus Areas Policies Intro
+    a6a8609a-fc7e-404e-941f-8bffc26397eb: 'Resource Image' # Resource Image
+    a9b1efae-f7ce-4368-b9f6-c5cc6eabfe2d: 'About What Heading' # About What Heading
+    a9b3a504-dc19-42cc-81a7-8adaa117e3dc: alertLink # alertLink
+    a19e3c8b-da9c-40ba-9f00-317dd6f380bd: 'FAQ Item' # FAQ Item
+    a74a10b2-de36-474f-b248-53ce5c149559: 'Stay Connected Email Placeholder' # Stay Connected Email Placeholder
+    a653733f-41a4-4bb8-9512-21d2a8911f03: 'About Priority Card Two Title' # About Priority Card Two Title
+    aa93a916-8e04-4223-b0a5-e0014d082005: 'Who We Are Committees' # Who We Are Committees
+    aabe98c9-a198-4467-b197-e1fffddfe65f: Meetings # Meetings
+    aae78673-0ccb-4d6a-9ce5-636b12133084: alertText # alertText
+    ae5a726d-3bec-4cb5-852c-7d8d3160ba2b: 'News & Media' # News & Media
+    b4ca38a3-68d3-48e5-b16a-d6ec1345d7b4: 'About Priority Card One Title' # About Priority Card One Title
+    b5bd6fbc-46ef-4f89-8c85-e631360862d4: 'News image' # News image
+    b263a9d4-e153-44e3-afd9-923353553b1b: 'About Text Paragraph 2' # About Text Paragraph 2
+    b622b86c-c812-4c4a-aae3-d7b001d805a2: 'Committee Card' # Committee Card
+    ba6620b8-3ffe-4cd2-b888-036f5e62c002: 'Featured CAIC News Item' # Featured CAIC News Item
+    bc67c134-707c-4897-8396-e6e4d6a310ba: 'Committee Icon' # Committee Icon
+    bdb39cf0-9e26-4361-a4bc-b443f9ddedba: 'News Newsletter Items' # News Newsletter Items
+    c4b05513-a491-4eab-862e-b8f8753f8ed6: Events # Events
+    c5e3e5cb-e19c-41ec-9ce0-8e8935d67e9f: 'Committee Description' # Committee Description
+    c7b489cc-2c1c-47d7-a59e-c8f83d68e2be: 'Who We Are' # Who We Are
+    c52f75d1-566f-4bf6-80d2-43ec98c70c5a: Summary # Summary
+    cb5c9fe5-a2b6-487a-8db8-4d9f59113d60: 'External Link' # External Link
+    cb5965c5-c396-4e36-8fd8-f59e3d2f43ac: 'Focus Areas Card Description' # Focus Areas Card Description
+    d082c461-9483-43b8-abaf-0b84607630a9: 'Category Label' # Category Label
+    d2f3bfda-4064-4bf8-9a64-6bd8a5a7dc08: 'Focus Policy Item' # Focus Policy Item
+    d6d6a1a7-de1e-49b9-99d6-44be526a4ce6: 'Hero Background' # Hero Background
+    d680223b-9e59-441f-9d7d-9d5e6551893c: 'Resource Image' # Resource Image
+    dad7aadf-b8d2-4560-85b0-da6588444073: Meetings # Meetings
+    dc9963d5-16f7-4cd5-95b4-63fc639071dd: 'Trusted Partners Heading' # Trusted Partners Heading
+    dc81160d-0cfc-46d9-bc3d-45c030f718cd: 'Upcoming Meetings Text' # Upcoming Meetings Text
+    e3f2c7d1-6c2a-4f34-bf5d-5d2ec8bc6a11: 'Press Releases' # Press Releases
+    e161a495-4f1d-46e8-abe1-4b48ad858d72: 'About Card Title' # About Card Title
+    eb652517-9ed8-4314-83af-79a174425744: 'About Priority Eyebrow' # About Priority Eyebrow
+    ed8727d8-ac47-4dc2-8535-02b31ef9977c: 'Focus Areas Policy Status' # Focus Areas Policy Status
+    ee7938e4-1136-4498-bba5-a9f0abbce1c1: 'Partner Card' # Partner Card
+    ef017e2a-d47a-4dcb-9332-d5749ddc61fa: 'Who We Are Eyebrow' # Who We Are Eyebrow
+    0b8e5c2e-9f34-4f9a-b663-6e8929820001: 'Contact Email' # Contact Email
+    f08db00c-a26a-477f-bb00-efdbcdc19e2e: Homepage # Homepage
+    f1fc5fd8-352b-4a42-bc2a-8892bf84228f: 'Who We Are Intro' # Who We Are Intro
+    f2bbbc72-abcd-44dd-99c6-8b84f1e3608f: 'Upcoming Meetings Tag Label' # Upcoming Meetings Tag Label
+    f4d3e319-a36f-4819-b053-6ac2bcf3c3a1: 'About Text Paragraph 1' # About Text Paragraph 1
+    f5e858ee-5781-4d91-8fcc-c1fc0d4ec619: 'About Priority Card Three Title' # About Priority Card Three Title
+system:
+  edition: solo
+  live: true
+  name: 'CAIC Website'
+  schemaVersion: 5.9.0.8
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

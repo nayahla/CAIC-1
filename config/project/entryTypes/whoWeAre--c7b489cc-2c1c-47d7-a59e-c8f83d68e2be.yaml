@@ -1,0 +1,358 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  fbb86b10-0f5b-4130-b6d7-d42b592e30c3:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 8671d396-3174-4b3b-9ed4-1c6e63cecc37
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d6d6a1a7-de1e-49b9-99d6-44be526a4ce6 # Hero Background
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4ce7fdf2-c7d8-4d5c-8e46-a5e72547d99b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ef017e2a-d47a-4dcb-9332-d5749ddc61fa # Who We Are Eyebrow
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5043f283-a85d-4fb9-b2d2-25be1391d372
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4125db8e-8f5d-4f51-abc0-c6af3141410a # Who We Are Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 418824f1-167e-4500-a67f-31062f28e468
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f1fc5fd8-352b-4a42-bc2a-8892bf84228f # Who We Are Intro
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e43ec670-0c3d-4684-a8c8-b7bbfe5334bf
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6aa3aee3-514d-432c-8214-d9958accd0a5 # Who We Are Committees Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9c1a6bf0-c465-4a8a-9128-c72c5345eed0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 612476a6-04de-4760-902d-8210de0dfa59 # Who We Are Committees Intro
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 664fcb76-ee0f-4523-96e6-cfe85d4fdbb2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6501859e-34b1-4d4e-b329-3b57a5222784 # Who We Are Executive Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: eb8f7e3b-8333-4c35-9443-1662444f06ee
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 784d2b61-9137-44b8-b915-a9eb05ceef51 # Who We Are Executive Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7d1b8593-88e2-426a-a1c9-e3f4c85c5f12
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 464d4833-e839-48ae-a49a-1a4c5a272e7d # Who We Are Committee One Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f595f9db-d305-42c4-9038-9b9ef65f651f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 87a829a5-d70d-4557-b4d4-d0fa74c5dd22 # Who We Are Committee One Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a0a080dc-86fa-4237-ae48-01f4a06b3874
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7f3d4a53-20a4-41a8-a8d8-b86cc1fa1111 # Who We Are Committee Two Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1d398695-792d-466e-9b26-5b4159c84471
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 517005c8-f352-47af-b06d-dbc6a7677218 # Who We Are Committee Two Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8e9581e0-65ee-4d4b-b8b8-190ed6ab4036
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 41003ee4-5fc4-4df8-b122-4c28cde28c73 # Who We Are Committee Three Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: eed1900a-ca0a-4eea-b14f-b7a0d2f909e1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-01T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2fa9f1f0-8f6d-4bf6-8ff7-b51a5efdfab3 # Who We Are Committee Three Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 93935c1e-5fcb-45d5-a416-1c0a9a9107cc
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: aa93a916-8e04-4223-b0a5-e0014d082005 # Who We Are Committees
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b532adf6-d808-4594-b40c-863cb97a8820
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4254c1c5-371e-4cec-b7b8-d930bc9bfd69 # Who We Are Partners Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bbd0f0d8-a68c-4606-a4e0-98ac4793ab2f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 67857512-74a3-426d-9ea9-2972e3488637 # Who We Are Partners Intro
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e55ebdce-4c13-45b9-ac45-24787652d313
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: dc9963d5-16f7-4cd5-95b4-63fc639071dd # Trusted Partners Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6cac077a-1bbb-4103-b786-7d2c80718d89
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 406449f5-34e5-474f-bf28-fc5beb3c642b # Trusted Partners
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 64fb89ab-bc30-482a-95fd-8e09c8841f78
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e70dc54f-3784-4e63-b6bf-4a68ca0f47f8
+        userCondition: null
+    thumbFieldKey: null
+handle: whoWeAre
+hasTitleField: true
+icon: null
+name: 'Who We Are'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

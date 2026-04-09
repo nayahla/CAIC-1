@@ -1,0 +1,74 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  9a86e8fc-145f-4bf4-944f-46ce07e90d5d:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-26T23:55:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e161a495-4f1d-46e8-abe1-4b48ad858d72 # About Card Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0020d1f5-328b-4d75-acdf-9d74d9e04127
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T23:55:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2af0e146-488e-45be-a5d6-4e7853d1e6c5 # About Card Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a2197541-d26c-479f-873c-5f916471af92
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T23:55:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 882ad6af-2307-4c28-a660-077b69027636 # About Card Icon
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cf6d9650-fa14-47f7-a2af-74b476ddbf57
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 7c0a28d9-e166-40a3-8e1b-4c1850cc6fdb
+        userCondition: null
+    thumbFieldKey: null
+handle: aboutPriorityCard
+hasTitleField: false
+icon: null
+name: 'About Priority Card'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{aboutCardTitle}'

@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: focusAreasCards
+instructions: 'Add exactly 3 focus cards under the hero.'
+name: 'Focus Areas Cards'
+searchable: false
+settings:
+  createButtonLabel: 'Add Focus Card'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 9690bed6-7ca6-48ea-8de5-9d0940b79fa5 # Focus Area Card
+        -
+          - group
+          - Focus
+  includeTableView: false
+  maxEntries: 3
+  minEntries: 3
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

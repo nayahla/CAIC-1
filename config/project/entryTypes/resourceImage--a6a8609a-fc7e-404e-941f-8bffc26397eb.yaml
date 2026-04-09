@@ -1,0 +1,134 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  87c5c337-e32d-4f03-afae-b62902080ec6:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-02-18T02:05:46+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 242102b6-210c-4ecc-93d6-58326f8d27c4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-18T02:07:17+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d680223b-9e59-441f-9d7d-9d5e6551893c # Resource Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d36e5cd2-c3a3-41d2-92bc-d14327799f63
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-25T20:15:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d082c461-9483-43b8-abaf-0b84607630a9 # Category Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8aab60f5-9947-4926-ad83-b0ceb19e31c3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-18T03:06:24+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cb5c9fe5-a2b6-487a-8db8-4d9f59113d60 # External Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e2083ee0-ab60-41ef-9420-4f7b8af0f29f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-13T07:54:11+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c52f75d1-566f-4bf6-80d2-43ec98c70c5a # Summary
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cb24178c-144e-44a4-8276-da04918dd2e9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T23:59:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9f2a84b2-1f36-4f2f-9df1-3e3b0da4a1c4 # Download File
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d9a6798a-4597-4605-96fc-b8925d80c3cf
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: a4de4534-2ba2-42cd-b551-889a3d2f4456
+        userCondition: null
+    thumbFieldKey: null
+handle: resourceImage
+hasTitleField: true
+icon: null
+name: 'Resource Image'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

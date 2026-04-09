@@ -1,0 +1,9 @@
+baseUrl: $PRIMARY_SITE_URL
+enabled: true
+handle: default
+hasUrls: true
+language: en
+name: 'CAIC Website'
+primary: true
+siteGroup: 4f965541-fbde-4fee-a1a3-b6483c411fdd # CAIC Website
+sortOrder: 1

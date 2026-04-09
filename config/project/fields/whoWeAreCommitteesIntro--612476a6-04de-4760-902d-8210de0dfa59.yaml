@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: whoWeAreCommitteesIntro
+instructions: 'Short copy above committee cards.'
+name: 'Who We Are Committees Intro'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

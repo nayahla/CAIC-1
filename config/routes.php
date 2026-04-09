@@ -1,0 +1,22 @@
+<?php
+/**
+ * Site URL Rules
+ *
+ * You can define custom site URL rules here, which Craft will check in addition
+ * to routes defined in Settings → Routes.
+ *
+ * Read about Craft’s routing behavior (and this file’s structure), here:
+ * @link https://craftcms.com/docs/5.x/system/routing.html
+ */
+
+return [
+    'search' => ['template' => 'search'],
+    'about' => ['template' => 'about'],
+    'who-we-are' => ['template' => 'who-we-are'],
+    'workgroups' => ['template' => 'workgroup-info'],
+    'workgroups/' => ['template' => 'workgroup-info'],
+    'get-involved' => ['template' => 'get-involved'],
+    'contact-us' => ['template' => 'contact-us'],
+    'events' => ['template' => 'events/index'],
+    'events/' => ['template' => 'events/index'],
+];

@@ -1,0 +1,134 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  09a60c4a-8ce5-4eba-9356-243905aa9d20:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: b74f0bdb-4ac0-4f98-abce-208bc3be0365
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ba6620b8-3ffe-4cd2-b888-036f5e62c002 # Featured CAIC News Item
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1bbdbf73-95ca-4324-acd9-cf2e6ec319af
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 23961a3e-5b05-4cb3-9221-fb1553e8265e # CAIC News Items
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: caf8e2b7-df94-4178-97c8-6cdc860fd0a2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0720fbf3-9bd1-42f1-958d-75ddf1042945 # General News Items
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 597de032-aedc-4c08-a945-87e156c723bc
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: bdb39cf0-9e26-4361-a4bc-b443f9ddedba # News Newsletter Items
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 95c7b5b9-90a9-4291-b51e-365a6bed83c9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T21:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4057db87-a425-4ca3-a16d-9b03a6988b87 # News Press Release Items
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e7cb4554-cc17-4ec7-96bc-b1acef790fff
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 50581021-70ef-485a-be34-f2a716e137c3
+        userCondition: null
+    thumbFieldKey: null
+handle: newsMedia
+hasTitleField: true
+icon: null
+name: 'News & Media'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

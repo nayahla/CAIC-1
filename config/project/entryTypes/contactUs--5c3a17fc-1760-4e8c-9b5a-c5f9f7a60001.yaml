@@ -1,0 +1,74 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  d9b6606c-e3a6-45bb-9070-5a55d34adcf2:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0b8e5c2e-9f34-4f9a-b663-6e8929820001 # Contact Email
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3391db98-c3c0-469e-89c1-34cf7db45ad1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2c7e21e9-4d7c-4a9d-960d-4b40f1aa0002 # Contact Website Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b4218e8f-72d6-4f11-a980-c31020bf4ff4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3d8b6191-5cb6-4f91-8a6a-55e77e1d0003 # Contact LinkedIn Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5d20eb67-a7ef-47a0-8cc1-ae9c1c9a92ae
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 632df6b1-b2a6-49df-bc7e-c2ee2dd910a8
+        userCondition: null
+    thumbFieldKey: null
+handle: contactUs
+hasTitleField: false
+icon: null
+name: 'Contact Us'
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: 'Contact Us'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: 'Contact Us'

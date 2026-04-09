@@ -1,0 +1,239 @@
+{% extends "layouts/main" %}
+
+{% block head %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ alias('@web') }}/css/templates.css">
+{% endblock %}
+
+{% set newsPage = craft.entries.section('newsMedia').one() ?? craft.entries.section('homepage').one() %}
+
+{% set rawNews = craft.entries()
+  .section(['resources', 'news'])
+  .orderBy('postDate desc')
+  .limit(60)
+  .all()
+%}
+{% set news = [] %}
+{% for item in rawNews %}
+  {% set isNewsItem = item.section.handle == 'news' %}
+  {% if not isNewsItem and item.categoryLabel is defined and item.categoryLabel %}
+    {% set itemType = (item.categoryLabel.value ?: item.categoryLabel.label)|replace({' ': '-', '_': '-'})|lower %}
+    {% set isNewsItem = itemType in ['news', 'caic'] %}
+  {% endif %}
+  {% if isNewsItem %}
+    {% set news = news|merge([item]) %}
+  {% endif %}
+{% endfor %}
+{% set featuredCaicNews = (newsPage and newsPage.featuredCaicNewsItem is defined and newsPage.featuredCaicNewsItem) ? newsPage.featuredCaicNewsItem.one() : null %}
+{% set manualCaicNews = (newsPage and newsPage.caicNewsItems is defined and newsPage.caicNewsItems) ? newsPage.caicNewsItems.all() : [] %}
+{% set manualGeneralNews = (newsPage and newsPage.generalNewsItems is defined and newsPage.generalNewsItems) ? newsPage.generalNewsItems.all() : [] %}
+{% set manualNewsletters = (newsPage and newsPage.newsNewsletterItems is defined and newsPage.newsNewsletterItems) ? newsPage.newsNewsletterItems.all() : [] %}
+{% set manualPress = (newsPage and newsPage.newsPressReleaseItems is defined and newsPage.newsPressReleaseItems) ? newsPage.newsPressReleaseItems.all() : [] %}
+{% set caicNewsIds = [] %}
+{% for item in manualCaicNews %}
+  {% set caicNewsIds = caicNewsIds|merge([item.id]) %}
+{% endfor %}
+{% if featuredCaicNews and featuredCaicNews.id not in caicNewsIds %}
+  {% set caicNewsIds = caicNewsIds|merge([featuredCaicNews.id]) %}
+{% endif %}
+{% if caicNewsIds|length %}
+  {% set caicNews = craft.entries()
+    .section(['resources', 'news'])
+    .id(caicNewsIds)
+    .orderBy('postDate desc')
+    .limit(4)
+    .all()
+  %}
+{% else %}
+  {% set caicNews = news|slice(0, 4) %}
+{% endif %}
+{% set caicVisibleIds = [] %}
+{% for item in caicNews %}
+  {% set caicVisibleIds = caicVisibleIds|merge([item.id]) %}
+{% endfor %}
+{% set featured = (featuredCaicNews and featuredCaicNews.id in caicVisibleIds) ? featuredCaicNews : (caicNews[0] ?? null) %}
+{% set sideNews = [] %}
+{% for item in caicNews %}
+  {% if not featured or item.id != featured.id %}
+    {% set sideNews = sideNews|merge([item]) %}
+  {% endif %}
+{% endfor %}
+{% set sideNews = sideNews|slice(0, 3) %}
+{% if manualGeneralNews|length %}
+  {% set generalNews = manualGeneralNews %}
+{% else %}
+  {% set generalNews = [] %}
+  {% set newsletterIds = [] %}
+  {% for item in manualNewsletters %}
+    {% set newsletterIds = newsletterIds|merge([item.id]) %}
+  {% endfor %}
+  {% for item in news %}
+    {% if generalNews|length < 5 and item.id not in caicVisibleIds and item.id not in newsletterIds %}
+      {% set generalNews = generalNews|merge([item]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% set queriedPressItems = craft.entries()
+  .section('pressReleases')
+  .orderBy('postDate desc')
+  .limit(3)
+  .all()
+%}
+{% set pressItems = manualPress|length ? manualPress : queriedPressItems %}
+{% set blankPhoto = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22%3E%3Crect width=%221200%22 height=%22800%22 fill=%22%23e3e8ec%22/%3E%3Cpath d=%22M160 620l230-230 200 190 170-170 280 210H160z%22 fill=%22%23c5ced5%22/%3E%3Ccircle cx=%22320%22 cy=%22270%22 r=%2255%22 fill=%22%23c5ced5%22/%3E%3C/svg%3E' %}
+
+{% block body %}
+<main class="dg-page dg-news">
+  <section class="dg-newsBand dg-newsBand--white">
+    <div class="dg-shell dg-newsHero">
+      <p class="dg-eyebrow">Archive &amp; Insights</p>
+      <h1>News &amp; Media</h1>
+      <p>The authoritative record of Colorado's evolving alcohol policy landscape, data-driven evidence, and community-led coalition updates.</p>
+    </div>
+    <div class="dg-shell">
+      <div class="dg-newsHero__divider" aria-hidden="true"></div>
+    </div>
+
+    <div class="dg-shell dg-newsTop">
+      <div class="dg-newsTop__head">
+        <h2>CAIC in the News</h2>
+        <a class="dg-newsTop__viewAll" href="{{ url('resources', { type: 'caic' }) }}">
+          View All <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="dg-newsTop__grid">
+        <article class="dg-newsFeatured dg-newsCardLift">
+          {% set fImg = featured and featured.resourceImage is defined and featured.resourceImage ? featured.resourceImage.one() : ((featured and featured.newsImage is defined and featured.newsImage) ? featured.newsImage.one() : null) %}
+          {% set featuredLink = featured and featured.externalLink ? (featured.externalLink.url ?? featured.externalLink) : (featured ? featured.url : '#') %}
+          {% set featuredDate = featured and featured.postDate and (not featured.dateCreated or ((featured.postDate|date('U') - featured.dateCreated|date('U'))|abs > 300)) ? featured.postDate : null %}
+          <a class="dg-newsFeatured__img" href="{{ featuredLink }}">
+            <img src="{{ fImg ? fImg.url : blankPhoto }}" alt="{{ featured ? featured.title : 'Featured news' }}">
+          </a>
+          <p class="dg-newsFeatured__date">{{ featuredDate ? featuredDate|date('F j, Y') : now|date('F j, Y') }}</p>
+          <h3><a href="{{ featuredLink }}">{{ featured ? featured.title : 'How local coalitions are reshaping the conversation on public safety.' }}</a></h3>
+          <p class="dg-newsFeatured__summary">{{ featured and featured.summary ? featured.summary : 'Leading the change in evidence-based policy, CAIC unites expert stakeholders to drive measurable harm reduction across Colorado.' }}</p>
+        </article>
+
+        <div class="dg-newsSideList">
+          {% set sideCount = sideNews|length %}
+          {% for item in sideNews %}
+            {% set iImg = item.resourceImage is defined and item.resourceImage ? item.resourceImage.one() : ((item.newsImage is defined and item.newsImage) ? item.newsImage.one() : null) %}
+            {% set itemLink = item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url %}
+            {% set outletName = (item.newsOutlet is defined and item.newsOutlet) ? item.newsOutlet : ((item.categoryLabel is defined and item.categoryLabel) ? (item.categoryLabel.label ?? item.categoryLabel) : 'News Outlet') %}
+            {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+            <article class="dg-newsSideItem dg-newsCardLift">
+              <a class="dg-newsSideItem__img" href="{{ itemLink }}">
+                <img src="{{ iImg ? iImg.url : blankPhoto }}" alt="{{ item.title }}">
+              </a>
+              <div>
+                <p class="dg-newsSideItem__outlet">{{ outletName }}</p>
+                <h4><a href="{{ itemLink }}">{{ item.title }}</a></h4>
+                <p class="dg-newsSideItem__date">{{ itemDate ? itemDate|date('M j, Y') : now|date('M j, Y') }}</p>
+              </div>
+            </article>
+          {% endfor %}
+          {% if sideCount < 3 %}
+            {% for i in 1..(3 - sideCount) %}
+              <article class="dg-newsSideItem dg-newsCardLift">
+                <div class="dg-newsSideItem__img"><img src="{{ blankPhoto }}" alt=""></div>
+                <div>
+                  <p class="dg-newsSideItem__outlet">News Outlet</p>
+                  <h4>News Story {{ i }}</h4>
+                  <p class="dg-newsSideItem__date">{{ now|date('M j, Y') }}</p>
+                </div>
+              </article>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dg-newsBand dg-newsBand--grey">
+    <div class="dg-shell dg-newsList">
+      <div class="dg-newsList__head">
+        <h2>General News</h2>
+      </div>
+      <div class="dg-newsVertical" aria-label="Important General News">
+        {% for item in generalNews %}
+          {% set generalLink = item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url %}
+          {% set generalDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+          <article class="dg-newsListItem dg-newsCardLift">
+            <p class="dg-newsMetaTop">{{ (item.categoryLabel is defined and item.categoryLabel) ? (item.categoryLabel.label ?? item.categoryLabel) : 'General Policy' }} <span>&bull;</span> {{ generalDate ? generalDate|date('M j, Y') : now|date('M j, Y') }}</p>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.summary ?? 'A comprehensive overview of new policy findings, coalition milestones, and statewide public health insights.' }}</p>
+            <a href="{{ generalLink }}">Read Article <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        {% endfor %}
+        {% if generalNews|length < 5 %}
+          {% for i in 1..(5 - generalNews|length) %}
+            <article class="dg-newsListItem dg-newsCardLift">
+              <p class="dg-newsMetaTop">General Update <span>&bull;</span> {{ now|date('M j, Y') }}</p>
+              <h3>General News Headline {{ i }}</h3>
+              <p>Important update placeholder. Publish more News entries in Craft to replace this text.</p>
+              <a href="#">Read Article <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="dg-newsBand dg-newsBand--white">
+    <div class="dg-shell dg-press">
+      <div class="dg-newsList__head dg-newsList__head--press">
+        <h2>Press Releases &amp; Newsletters</h2>
+        <p>Official statements, coalition newsletters, and downloadable PDF releases for partners and media circulation.</p>
+      </div>
+      {% set releaseCards = [] %}
+      {% for item in manualNewsletters %}
+        {% set fileAsset = item.pressReleaseFile is defined and item.pressReleaseFile ? item.pressReleaseFile.one() : null %}
+        {% set linkHref = fileAsset ? fileAsset.url : (item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url) %}
+        {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+        {% set sizeLabel = fileAsset and fileAsset.size ? ((fileAsset.size / 1048576) >= 1 ? ((fileAsset.size / 1048576)|number_format(1)) ~ ' MB' : ((fileAsset.size / 1024)|round) ~ ' KB') : '' %}
+        {% set releaseCards = releaseCards|merge([{ entry: item, typeLabel: 'Newsletter', asset: fileAsset, linkHref: linkHref, publishDate: itemDate, sizeLabel: sizeLabel }]) %}
+      {% endfor %}
+      {% for item in pressItems %}
+        {% set fileAsset = item.pressReleaseFile ? item.pressReleaseFile.one() : null %}
+        {% set linkHref = fileAsset ? fileAsset.url : (item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url) %}
+        {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+        {% set sizeLabel = fileAsset and fileAsset.size ? ((fileAsset.size / 1048576) >= 1 ? ((fileAsset.size / 1048576)|number_format(1)) ~ ' MB' : ((fileAsset.size / 1024)|round) ~ ' KB') : '' %}
+        {% set releaseCards = releaseCards|merge([{ entry: item, typeLabel: 'Press Release', asset: fileAsset, linkHref: linkHref, publishDate: itemDate, sizeLabel: sizeLabel }]) %}
+      {% endfor %}
+      <div class="dg-pressPanel">
+        <div class="dg-pressRail" aria-label="Press Releases and Newsletters">
+          {% for card in releaseCards %}
+            <article class="dg-pressCard dg-newsCardLift">
+              <div class="dg-pressCard__top">
+                <div class="dg-pressCard__pdf" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 482.14 482.14" fill="currentColor">
+                    <g>
+                      <path d="M142.024,310.194c0-8.007-5.556-12.782-15.359-12.782c-4.003,0-6.714,0.395-8.132,0.773v25.69c1.679,0.378,3.743,0.504,6.588,0.504C135.57,324.379,142.024,319.1,142.024,310.194z"/>
+                      <path d="M202.709,297.681c-4.39,0-7.227,0.379-8.905,0.772v56.896c1.679,0.394,4.39,0.394,6.841,0.394c17.809,0.126,29.424-9.677,29.424-30.449C230.195,307.231,219.611,297.681,202.709,297.681z"/>
+                      <path d="M315.458,0H121.811c-28.29,0-51.315,23.041-51.315,51.315v189.754h-5.012c-11.418,0-20.678,9.251-20.678,20.679v125.404c0,11.427,9.259,20.677,20.678,20.677h5.012v22.995c0,28.305,23.025,51.315,51.315,51.315h264.223c28.272,0,51.3-23.011,51.3-51.315V121.449L315.458,0z M99.053,284.379c6.06-1.024,14.578-1.796,26.579-1.796c12.128,0,20.772,2.315,26.58,6.965c5.548,4.382,9.292,11.615,9.292,20.127c0,8.51-2.837,15.745-7.999,20.646c-6.714,6.32-16.643,9.157-28.258,9.157c-2.585,0-4.902-0.128-6.714-0.379v31.096H99.053V284.379z M386.034,450.713H121.811c-10.954,0-19.874-8.92-19.874-19.889v-22.995h246.31c11.42,0,20.679-9.25,20.679-20.677V261.748c0-11.428-9.259-20.679-20.679-20.679h-246.31V51.315c0-10.938,8.921-19.858,19.874-19.858l181.89-0.19v67.233c0,19.638,15.934,35.587,35.587,35.587l65.862-0.189l0.741,296.925C405.891,441.793,396.987,450.713,386.034,450.713z M174.065,369.801v-85.422c7.225-1.15,16.642-1.796,26.58-1.796c16.516,0,27.226,2.963,35.618,9.282c9.031,6.714,14.704,17.416,14.704,32.781c0,16.643-6.06,28.133-14.453,35.224c-9.157,7.612-23.096,11.222-40.125,11.222C186.191,371.092,178.966,370.446,174.065,369.801z M314.892,319.226v15.996h-31.23v34.973h-19.74v-86.966h53.16v16.122h-33.42v19.875H314.892z"/>
+                    </g>
+                  </svg>
+                </div>
+                {% if card.sizeLabel %}
+                  <span class="dg-pressCard__size">{{ card.sizeLabel }}</span>
+                {% endif %}
+              </div>
+              <p class="dg-pressCard__tag">{{ card.typeLabel }}</p>
+              <h3><a href="{{ card.linkHref ?: '#' }}">{{ card.entry.title }}</a></h3>
+              <div class="dg-pressCard__footer">
+                <p class="dg-pressDate">{{ card.publishDate ? card.publishDate|date('F j, Y') : now|date('F j, Y') }}</p>
+                <a class="dg-pressDownload" href="{{ card.linkHref ?: '#' }}" {% if card.asset %}download target="_blank" rel="noopener"{% endif %} aria-label="Download {{ card.typeLabel|lower }} {{ card.entry.title }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v11.25m0 0 3.75-3.75M12 15l-3.75-3.75M4.5 16.5v1.125A2.625 2.625 0 0 0 7.125 20.25h9.75A2.625 2.625 0 0 0 19.5 17.625V16.5" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

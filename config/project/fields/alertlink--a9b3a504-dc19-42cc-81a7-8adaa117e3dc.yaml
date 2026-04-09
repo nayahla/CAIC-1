@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: alertlink
+instructions: 'this is optional if you would like to link a meeting, article, or anything. it will show as "Learn More" under the website.'
+name: alertLink
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

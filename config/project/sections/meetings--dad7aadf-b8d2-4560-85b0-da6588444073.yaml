@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: aabe98c9-a198-4467-b197-e1fffddfe65f # Meetings
+handle: meetings
+maxAuthors: 1
+name: Meetings
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
+    enabledByDefault: true
+    hasUrls: true
+    template: meetings/_entry.twig
+    uriFormat: 'meetings/{slug}'
+type: channel

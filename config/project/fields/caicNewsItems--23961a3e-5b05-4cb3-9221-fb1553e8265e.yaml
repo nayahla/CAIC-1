@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: caicNewsItems
+instructions: 'Select the resource entries that belong in CAIC in the News. The page will only show the 4 most recent selected entries.'
+name: 'CAIC News Items'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add CAIC resource entries'
+  showSearchInput: true
+  showSiteMenu: true
+  source: null
+  sources:
+    - 'section:41bfd232-738d-4745-aba7-36bff70c1ce4' # Resources
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

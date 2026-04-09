@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactEmail
+instructions: 'Email address shown on the Contact Us page and footer.'
+name: 'Contact Email'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

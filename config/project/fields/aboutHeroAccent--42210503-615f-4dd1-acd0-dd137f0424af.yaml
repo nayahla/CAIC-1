@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: aboutHeroAccent
+instructions: 'Accent line (blue) in the About hero heading.'
+name: 'About Hero Accent'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

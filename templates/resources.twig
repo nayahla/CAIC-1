@@ -1,0 +1,361 @@
+{% extends "layouts/main" %}
+
+{% block head %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ alias('@web') }}/css/templates.css">
+{% endblock %}
+
+{% set q = craft.app.request.getQueryParam('q')|trim %}
+{% set sort = craft.app.request.getQueryParam('sort')|trim %}
+{% set requestedType = craft.app.request.getQueryParam('type')|trim|lower %}
+{% set selectedSort = sort == 'oldest' ? 'oldest' : 'recent' %}
+{% set orderBy = sort == 'oldest' ? 'postDate asc' : 'postDate desc' %}
+{% set initialVisible = 8 %}
+{% set loadStep = 4 %}
+{% set fallbackCount = 12 %}
+{% set newsPage = craft.entries.section('newsMedia').one() ?? craft.entries.section('homepage').one() %}
+{% set filterTypeOptions = [
+  { value: '', label: 'All Types' },
+  { value: 'news', label: 'News' },
+  { value: 'policy', label: 'Policy' },
+  { value: 'data-report', label: 'Data Report' },
+  { value: 'events', label: 'Events' },
+  { value: 'caic', label: 'CAIC in the News' },
+  { value: 'press-release', label: 'Press Release' },
+  { value: 'newsletter', label: 'Newsletter' }
+] %}
+{% set allowedTypeValues = [] %}
+{% for option in filterTypeOptions %}
+  {% if option.value %}
+    {% set allowedTypeValues = allowedTypeValues|merge([option.value]) %}
+  {% endif %}
+{% endfor %}
+{% set sortOptions = [
+  { value: 'recent', label: 'Most Recent' },
+  { value: 'oldest', label: 'Oldest' }
+] %}
+
+{% set libraryQuery = craft.entries()
+  .section(['resources', 'news', 'pressReleases'])
+  .orderBy(orderBy)
+%}
+{% if q %}
+  {% set libraryQuery = libraryQuery.search('title:' ~ q) %}
+{% endif %}
+{% set libraryEntries = libraryQuery.limit(120).all() %}
+{% set orderedNewsEntries = craft.entries()
+  .section('news')
+  .orderBy('postDate desc')
+  .limit(60)
+  .all()
+%}
+{% set manualCaicNews = (newsPage and newsPage.caicNewsItems is defined and newsPage.caicNewsItems) ? newsPage.caicNewsItems.all() : [] %}
+{% set featuredCaicNews = (newsPage and newsPage.featuredCaicNewsItem is defined and newsPage.featuredCaicNewsItem) ? newsPage.featuredCaicNewsItem.one() : null %}
+{% set manualNewsletters = [] %}
+{% if newsPage and newsPage.newsNewsletterItems is defined and newsPage.newsNewsletterItems %}
+  {% set manualNewsletters = newsPage.newsNewsletterItems.all() %}
+{% elseif newsPage and newsPage.newsletterItems is defined and newsPage.newsletterItems %}
+  {% set manualNewsletters = newsPage.newsletterItems.all() %}
+{% elseif newsPage and newsPage.newsletters is defined and newsPage.newsletters %}
+  {% set manualNewsletters = newsPage.newsletters.all() %}
+{% endif %}
+{% set caicNewsSeed = manualCaicNews|length ? manualCaicNews : orderedNewsEntries|slice(0, 4) %}
+{% set caicNewsIds = [] %}
+{% for item in caicNewsSeed %}
+  {% set caicNewsIds = caicNewsIds|merge([item.id]) %}
+{% endfor %}
+{% if featuredCaicNews and featuredCaicNews.id not in caicNewsIds %}
+  {% set caicNewsIds = caicNewsIds|merge([featuredCaicNews.id]) %}
+{% endif %}
+{% set newsletterIds = [] %}
+{% for item in manualNewsletters %}
+  {% set newsletterIds = newsletterIds|merge([item.id]) %}
+{% endfor %}
+{% set allCards = [] %}
+{% for entry in libraryEntries %}
+  {% set sectionHandle = entry.section.handle %}
+  {% set typeLabel = 'News' %}
+  {% set typeValue = 'news' %}
+
+  {% if sectionHandle == 'pressReleases' %}
+    {% set typeLabel = 'Press Release' %}
+    {% set typeValue = 'press-release' %}
+  {% elseif entry.id in newsletterIds %}
+    {% set typeLabel = 'Newsletter' %}
+    {% set typeValue = 'newsletter' %}
+  {% elseif entry.id in caicNewsIds %}
+    {% set typeLabel = 'CAIC' %}
+    {% set typeValue = 'caic' %}
+  {% elseif sectionHandle == 'news' %}
+    {% if entry.id in newsletterIds %}
+      {% set typeLabel = 'Newsletter' %}
+      {% set typeValue = 'newsletter' %}
+    {% elseif entry.id in caicNewsIds %}
+      {% set typeLabel = 'CAIC' %}
+      {% set typeValue = 'caic' %}
+    {% endif %}
+  {% elseif entry.categoryLabel and entry.categoryLabel.label %}
+    {% set typeValue = (entry.categoryLabel.value ?: entry.categoryLabel.label)|replace({' ': '-', '_': '-'})|lower %}
+    {% if typeValue == 'policy-brief' %}
+      {% set typeValue = 'policy' %}
+    {% endif %}
+    {% set typeLabel = typeValue == 'policy' ? 'Policy' : entry.categoryLabel.label %}
+  {% endif %}
+
+  {% set card = {
+    entry: entry,
+    sectionHandle: sectionHandle,
+    typeLabel: typeLabel,
+    typeValue: typeValue
+  } %}
+  {% set allCards = allCards|merge([card]) %}
+{% endfor %}
+{% set selectedType = requestedType in allowedTypeValues ? requestedType : '' %}
+{% set resources = [] %}
+{% for card in allCards %}
+  {% if not selectedType or card.typeValue == selectedType %}
+    {% set resources = resources|merge([card]) %}
+  {% endif %}
+{% endfor %}
+{% set hasLibraryContent = allCards|length > 0 %}
+{% set totalCardCount = resources|length ? resources|length : (hasLibraryContent ? 0 : fallbackCount) %}
+{% set uploadedFallbackImage = craft.assets().kind('image').orderBy('dateCreated asc').one() %}
+{% set blankPhoto = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22%3E%3Crect width=%221200%22 height=%22800%22 fill=%22%23e5ebef%22/%3E%3Ccircle cx=%22300%22 cy=%22270%22 r=%2260%22 fill=%22%23c4cfd6%22/%3E%3Cpath d=%22M160 610l250-250 180 180 160-160 290 230H160z%22 fill=%22%23c4cfd6%22/%3E%3C/svg%3E' %}
+
+{% block body %}
+<main class="dg-page dg-resources">
+  <section class="dg-shell dg-resources__head">
+    <div class="dg-resources__left">
+      <p class="dg-eyebrow">Knowledge Base</p>
+      <h1 class="dg-title">Resource Library</h1>
+      <p class="dg-copy">
+        Access our curated collection of evidence-based research, community guidelines, and policy briefs supporting public health across Colorado.
+      </p>
+    </div>
+
+    <form class="dg-searchBar" action="{{ url('resources') }}" method="get">
+      <div class="dg-searchBar__row">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+        </svg>
+        <input type="search" name="q" placeholder="Search resources..." value="{{ q }}">
+      </div>
+      <input type="hidden" name="type" value="{{ selectedType }}">
+      <input type="hidden" name="sort" value="{{ selectedSort }}">
+
+      <div class="dg-searchBar__controls">
+        <details class="dg-filterDropdown" data-filter-dropdown>
+          <summary class="dg-filterRow">
+            <span class="dg-filterRow__prefix">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9H26" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M10 16H22" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M14 23H18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span>Filter</span>
+            </span>
+            <span class="dg-filterRow__caret" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="dg-filterDropdown__menu" role="menu" aria-label="Filter resource types">
+            {% for option in filterTypeOptions %}
+              <a
+                class="dg-filterDropdown__link {{ selectedType == option.value ? 'is-active' }}"
+                href="{{ url('resources', {
+                  q: q,
+                  sort: selectedSort == 'recent' ? '' : selectedSort,
+                  type: option.value
+                }) }}"
+                role="menuitem"
+              >
+                {{ option.label }}
+              </a>
+            {% endfor %}
+          </div>
+        </details>
+
+        <details class="dg-filterDropdown" data-filter-dropdown>
+          <summary class="dg-filterRow">
+            <span class="dg-filterRow__prefix">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 6V18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                <path d="M5.5 8.5L8 6L10.5 8.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 18V6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                <path d="M13.5 15.5L16 18L18.5 15.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Sort</span>
+            </span>
+            <span class="dg-filterRow__caret" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="dg-filterDropdown__menu" role="menu" aria-label="Sort resources">
+            {% for option in sortOptions %}
+              <a
+                class="dg-filterDropdown__link {{ selectedSort == option.value ? 'is-active' }}"
+                href="{{ url('resources', {
+                  q: q,
+                  sort: option.value == 'recent' ? '' : option.value,
+                  type: selectedType
+                }) }}"
+                role="menuitem"
+              >
+                {{ option.label }}
+              </a>
+            {% endfor %}
+          </div>
+        </details>
+      </div>
+    </form>
+  </section>
+
+  <section
+    class="dg-shell dg-resources__gridWrap"
+    data-resource-list
+    data-initial-visible="{{ initialVisible }}"
+    data-load-step="{{ loadStep }}"
+  >
+    <div class="dg-resources__divider" aria-hidden="true"></div>
+
+    <div class="dg-resourcesGrid">
+      {% if resources|length %}
+        {% for card in resources %}
+          {% set r = card.entry %}
+          {% if card.sectionHandle == 'news' %}
+            {% set img = r.newsImage ? r.newsImage.one() : null %}
+          {% elseif card.sectionHandle == 'resources' %}
+            {% set img = r.resourceImage ? r.resourceImage.one() : null %}
+          {% else %}
+            {% set img = null %}
+          {% endif %}
+          {% set img = img ?: uploadedFallbackImage %}
+          {% set tagLabel = card.typeLabel %}
+          {% set tagValue = card.typeValue %}
+          {% if card.sectionHandle == 'pressReleases' %}
+            {% set pressAsset = r.pressReleaseFile ? r.pressReleaseFile.one() : null %}
+            {% set linkHref = pressAsset ? pressAsset.url : (r.externalLink ? (r.externalLink.url ?? r.externalLink) : (r.url ?: '#')) %}
+            {% set ctaLabel = 'View Release' %}
+            {% set summaryText = r.summary ?? 'Official statements, announcements, and downloadable media releases from CAIC.' %}
+          {% elseif card.sectionHandle == 'news' %}
+            {% set linkHref = r.externalLink ? (r.externalLink.url ?? r.externalLink) : (r.url ?: '#') %}
+            {% set ctaLabel = 'View Article' %}
+            {% set summaryText = r.summary ?? 'Media coverage, partner updates, and timely reporting connected to CAIC work.' %}
+          {% else %}
+            {% set fileAsset = r.pressReleaseFile is defined and r.pressReleaseFile ? r.pressReleaseFile.one() : null %}
+            {% set linkHref = fileAsset ? fileAsset.url : (r.externalLink ? (r.externalLink.url ?? r.externalLink) : (r.url ?: '#')) %}
+            {% set ctaLabel = fileAsset ? 'Download PDF' : 'View Resource' %}
+            {% set summaryText = r.summary ?? 'Evidence-based tools and practical guidance to support coalition and prevention efforts.' %}
+          {% endif %}
+          {% set publishDate = r.postDate and (not r.dateCreated or ((r.postDate|date('U') - r.dateCreated|date('U'))|abs > 300)) ? r.postDate : null %}
+          <article class="dg-resCard dg-lift" data-resource-card {{ loop.index > initialVisible ? 'hidden' }}>
+            <a href="{{ linkHref }}" class="dg-resCard__imageWrap">
+              <span class="dg-resCard__tag dg-resCard__tag--{{ tagValue }}">{{ tagLabel }}</span>
+              <img src="{{ img ? img.url : blankPhoto }}" alt="{{ r.title }}">
+            </a>
+
+            <div class="dg-resCard__body">
+              <p class="dg-resCard__meta">{{ publishDate ? publishDate|date('F j, Y') : now|date('F j, Y') }}</p>
+              <h2 class="dg-resCard__title">
+                <a href="{{ linkHref }}">{{ r.title }}</a>
+              </h2>
+              <p class="dg-resCard__summary">
+                {{ summaryText }}
+              </p>
+              <div class="dg-resCard__actions">
+                <a class="dg-inlineLink dg-inlineLink--resource" href="{{ linkHref }}">
+                  {{ ctaLabel }} <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% elseif hasLibraryContent %}
+        <div class="dg-resourcesEmpty">
+          No resources matched your current search and filter settings.
+        </div>
+      {% else %}
+        {% for i in 1..fallbackCount %}
+          <article class="dg-resCard dg-lift" data-resource-card>
+            <div class="dg-resCard__imageWrap">
+              <span class="dg-resCard__tag dg-resCard__tag--news">News</span>
+              <img src="{{ blankPhoto }}" alt="">
+            </div>
+            <div class="dg-resCard__body">
+              <p class="dg-resCard__meta">March {{ 10 + i }}, 2026</p>
+              <h2 class="dg-resCard__title">Resource {{ i }} Title</h2>
+              <p class="dg-resCard__summary">Add a resource entry in Craft to populate this card.</p>
+              <div class="dg-resCard__actions">
+                <a class="dg-inlineLink dg-inlineLink--resource" href="#">
+                  View Resource <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% if totalCardCount > initialVisible %}
+      <div class="dg-loadRow">
+        <button class="dg-btn dg-btn--load dg-lift" type="button" data-load-more>Load More Resources</button>
+      </div>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}
+
+{% block foot %}
+{{ parent() }}
+<script>
+(() => {
+  const dropdowns = Array.from(document.querySelectorAll('[data-filter-dropdown]'));
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener('toggle', () => {
+      if (!dropdown.open) return;
+      dropdowns.forEach((other) => {
+        if (other !== dropdown) other.removeAttribute('open');
+      });
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    dropdowns.forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.removeAttribute('open');
+      }
+    });
+  });
+
+  const wrap = document.querySelector('[data-resource-list]');
+  if (!wrap) return;
+
+  const cards = Array.from(wrap.querySelectorAll('[data-resource-card]'));
+  const loadMoreButton = wrap.querySelector('[data-load-more]');
+  if (!cards.length || !loadMoreButton) return;
+
+  const initialVisible = parseInt(wrap.dataset.initialVisible || '8', 10);
+  const loadStep = parseInt(wrap.dataset.loadStep || '4', 10);
+  let visibleCount = Math.max(1, initialVisible);
+
+  const syncState = () => {
+    cards.forEach((card, i) => {
+      if (i < visibleCount) {
+        card.removeAttribute('hidden');
+      } else {
+        card.setAttribute('hidden', 'hidden');
+      }
+    });
+
+    if (visibleCount >= cards.length) {
+      loadMoreButton.setAttribute('hidden', 'hidden');
+    } else {
+      loadMoreButton.removeAttribute('hidden');
+    }
+  };
+
+  loadMoreButton.addEventListener('click', () => {
+    visibleCount = Math.min(cards.length, visibleCount + Math.max(1, loadStep));
+    syncState();
+  });
+
+  syncState();
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "layouts/main" %}
+
+{% set q = craft.app.request.getQueryParam('q')|trim %}
+{% set results = [] %}
+{% if q %}
+  {% set results = craft.entries()
+    .status('live')
+    .search('title:' ~ q)
+    .orderBy('postDate desc')
+    .limit(50)
+    .all()
+  %}
+{% endif %}
+
+{% block body %}
+<div class="caic">
+  <section class="caic-pageHero">
+    <div class="caic-container">
+      <h1 class="caic-h1">Search</h1>
+      <p class="caic-body">
+        {% if q %}
+          {{ results|length }} result{{ results|length == 1 ? '' : 's' }} for "{{ q }}"
+        {% else %}
+          Enter a search term in the header search box.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <section class="caic-section caic-section--tint">
+    <div class="caic-container">
+      {% if q and results|length %}
+        <div class="caic-searchResults">
+          {% for result in results %}
+            <article class="caic-searchResult">
+              <p class="caic-searchResult__meta">{{ result.section.name ?? 'Page' }}</p>
+              <h2 class="caic-searchResult__title"><a href="{{ result.url }}">{{ result.title }}</a></h2>
+            </article>
+          {% endfor %}
+        </div>
+      {% elseif q %}
+        <p class="caic-body">No matching results found.</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layouts/main" %}
+
+{% set homePage = craft.entries.section('homepage').one() %}
+{% set heroImage = homePage and homePage.heroBackground ? homePage.heroBackground.one() : null %}
+{% set heroImageUrl = heroImage ? heroImage.url : '/images/heroback.jpg' %}
+
+{% block body %}
+<div class="caic">
+  <main id="main" class="caic-workgroupInfoPage">
+    <section class="caic-hero" style="background-image:url('{{ heroImageUrl }}')">
+      <div class="caic-hero__overlay" aria-hidden="true"></div>
+      <div class="caic-container caic-hero__inner">
+        <div class="caic-hero__content reveal">
+          <div class="caic-kickerPill">Coalition Structure</div>
+          <h1 class="caic-heroTitle">Workgroups</h1>
+          <p class="caic-heroSub">More workgroup information will be added here.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

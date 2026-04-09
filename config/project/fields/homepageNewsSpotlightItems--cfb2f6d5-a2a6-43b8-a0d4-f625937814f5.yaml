@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: homepageNewsSpotlightItems
+instructions: 'Select the entries to show in the homepage Recent News Spotlight section.'
+name: 'Homepage News Spotlight Items'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 12
+  minRelations: null
+  selectionLabel: 'Add spotlight entries'
+  showSearchInput: true
+  showSiteMenu: true
+  source: null
+  sources:
+    - 'section:6f9baa2d-de04-4adb-8ce0-61989c220b0e'
+    - 'section:41bfd232-738d-4745-aba7-36bff70c1ce4'
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

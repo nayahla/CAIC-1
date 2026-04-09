@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: eventsCalendarId
+instructions: 'Google Calendar ID used for the Events page embed and upcoming sync. Example: your_calendar_id@group.calendar.google.com'
+name: 'Events Calendar ID'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

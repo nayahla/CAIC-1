@@ -1,0 +1,74 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  930492d1-3a0c-4dd2-b22a-c28e7fd39dcf:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 855d631a-ba0a-4158-b029-1edc719b238e # Focus Areas Card Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ea2fae03-28c6-4981-86ac-64722c8623eb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cb5965c5-c396-4e36-8fd8-f59e3d2f43ac # Focus Areas Card Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e292e18a-ee82-4147-8b2c-b9f8d6c1b1ff
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-27T00:20:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1b0308eb-0c06-40cb-bbe0-ebbdf7f8d28e # Focus Areas Card Icon
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 19dd3676-0355-4e6e-9984-dbe4cd26aad9
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ac2f35a1-dd8d-47c6-8117-2fc589d7cb29
+        userCondition: null
+    thumbFieldKey: null
+handle: focusAreaCard
+hasTitleField: false
+icon: null
+name: 'Focus Area Card'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{focusAreasCardTitle}'

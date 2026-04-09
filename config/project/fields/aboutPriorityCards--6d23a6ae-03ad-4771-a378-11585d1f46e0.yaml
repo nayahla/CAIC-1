@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: aboutPriorityCards
+instructions: 'Add exactly 3 priority cards.'
+name: 'About Priority Cards'
+searchable: false
+settings:
+  createButtonLabel: 'Add Priority Card'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 58b82448-37f6-44b5-8ac1-e15ca0b8f1c2 # About Priority Card
+        -
+          - group
+          - About
+  includeTableView: false
+  maxEntries: 3
+  minEntries: 3
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

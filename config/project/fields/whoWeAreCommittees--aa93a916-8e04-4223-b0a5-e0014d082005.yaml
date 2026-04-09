@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: whoWeAreCommittees
+instructions: 'Optional legacy committee cards. You can leave this empty and edit the three committee text fields directly on the Who We Are single.'
+name: 'Who We Are Committees'
+searchable: false
+settings:
+  createButtonLabel: 'Add Committee Card'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - b622b86c-c812-4c4a-aae3-d7b001d805a2 # Committee Card
+        -
+          - group
+          - 'Who We Are'
+  includeTableView: false
+  maxEntries: 3
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -1,0 +1,62 @@
+{% extends "layouts/main" %}
+
+{% block body %}
+<div class="caic">
+  <main class="caic-getInvolvedPage">
+    <section class="caic-pageHero caic-getInvolvedHero">
+      <div class="caic-container">
+        <div class="caic-getInvolvedHero__inner">
+          <p class="caic-pageEyebrow">Get Involved</p>
+          <h1 class="caic-h1 caic-getInvolvedHero__title">Get Involved</h1>
+          <p class="caic-getInvolvedHero__text">
+            The Colorado Alcohol Impacts Coalition (CAIC) has officially launched and is now welcoming new partners to join
+this statewide effort. We invite community leaders, public safety professionals, public health experts, treatment
+providers, researchers, advocates, and other stakeholders to get involved as we work together to reduce alcoholrelated harms across Colorado. By joining CAIC, you’ll help raise awareness of alcohol’s impact on health and
+safety, amplify community voices, and drive collaborative action toward a healthier, safer Colorado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-getInvolvedWays">
+      <div class="caic-container">
+        <div class="caic-leftHead caic-getInvolvedWays__head">
+          <h2 class="caic-h2">Ways to Participate</h2>
+          <p class="caic-body">Find the path that best suits your commitment level and interest.</p>
+        </div>
+
+        <div class="caic-getInvolvedCardGrid">
+          <article class="caic-getInvolvedCard caic-grow">
+            <h3 class="caic-getInvolvedCard__title">Attend Coalition Meetings</h3>
+            <p class="caic-getInvolvedCard__text">
+              Our primary coalition meetings are fully open to the public. Join us to hear latest data, discuss policy impacts, and witness collaborative problem-solving in real time.
+            </p>
+            <a class="caic-getInvolvedCard__link" href="{{ url('events') }}">View Meeting Schedule <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <article class="caic-getInvolvedCard caic-grow">
+            <h3 class="caic-getInvolvedCard__title">Join a Workgroup</h3>
+            <p class="caic-getInvolvedCard__text">
+              Dive deeper into specific impact areas. We currently maintain three core workgroups focused on Evidence Synthesis, Public Health Advocacy, and Community Outreach.
+            </p>
+            <a class="caic-getInvolvedCard__link" href="{{ url('workgroups') }}">Learn About Workgroups <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-getInvolvedHelp">
+      <div class="caic-container">
+        <div class="caic-getInvolvedHelp__inner">
+          <div class="caic-getInvolvedHelp__icon" aria-hidden="true">?</div>
+          <h2 class="caic-h2">Have Questions?</h2>
+          <p class="caic-body">
+            For questions or to learn more about becoming a coalition member, please get in touch with us!
+          </p>
+          <a class="caic-btn caic-btn--ghost caic-getInvolvedHelp__cta" href="{{ url('contact-us') }}">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

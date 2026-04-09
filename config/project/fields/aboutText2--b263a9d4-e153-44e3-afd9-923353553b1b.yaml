@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: aboutText2
+instructions: '2nd optional about paragraph'
+name: 'About Text Paragraph 2'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

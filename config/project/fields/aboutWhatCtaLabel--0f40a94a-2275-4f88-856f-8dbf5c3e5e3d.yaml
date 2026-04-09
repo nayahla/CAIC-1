@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: aboutWhatCtaLabel
+instructions: "Optional CTA label shown in the What We're Doing header."
+name: 'About What CTA Label'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

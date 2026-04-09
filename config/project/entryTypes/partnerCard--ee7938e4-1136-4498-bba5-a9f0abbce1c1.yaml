@@ -1,0 +1,86 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  74f833f2-5a54-42f5-b070-9f95353c80d1:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-26T12:00:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: Partner
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 11b729a6-cddc-4ca9-94b0-db5f6b0b807b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T23:40:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 032afbc9-4919-424a-905b-7c16399ca8d0 # Partner Logo
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8ed78ee4-b307-4b09-9f43-8b7eeccbe983
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T22:10:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cb5c9fe5-a2b6-487a-8db8-4d9f59113d60 # External Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 48eb15fe-7d7a-4f9f-bd38-7a8dc20fe9ee
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 3cbbd73f-cd56-4898-bbaf-c76f0a4944cb
+        userCondition: null
+    thumbFieldKey: null
+handle: partnerCard
+hasTitleField: true
+icon: null
+name: 'Partner Card'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

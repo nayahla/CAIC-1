@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: focusAreasPolicies
+instructions: 'Policy and bill rows shown in a vertical scroll list.'
+name: 'Focus Areas Policies'
+searchable: false
+settings:
+  createButtonLabel: 'Add Policy or Bill'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - d2f3bfda-4064-4bf8-9a64-6bd8a5a7dc08 # Focus Policy Item
+        -
+          - group
+          - Focus
+  includeTableView: false
+  maxEntries: null
+  minEntries: 1
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

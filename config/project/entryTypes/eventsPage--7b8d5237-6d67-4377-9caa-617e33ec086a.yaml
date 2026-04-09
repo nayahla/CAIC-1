@@ -1,0 +1,166 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  0a1ed5bf-ff23-4d4b-a8fb-cfd6f7d2550f:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 20f1b280-150e-4623-b52f-0b3b1d91092f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d6d6a1a7-de1e-49b9-99d6-44be526a4ce6 # Hero Background
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9d0db716-fb65-425a-95bf-6f7de29910b8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 748b4dde-23a2-4f0f-a9f5-2de9767a29d2 # Meetings Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44925e1d-54ce-4912-85b5-ffec38616261
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1c4f0a18-9461-49db-b4e5-2016a2f95f2a # Events Calendar ID
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 225dd8d7-7df6-40e0-b4e0-0b5c8f676e7d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 25be305f-fd2f-4101-a9d7-d0100cea1a05 # Upcoming Meetings Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a8fcae9f-1e6b-4f6f-95c2-62778e4f1b2a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: dc81160d-0cfc-46d9-bc3d-45c030f718cd # Upcoming Meetings Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bff6146f-18f9-429e-96ba-33db6e948376
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8f74cbac-bbc8-43dc-8bb7-606a5ec972ff # Upcoming Meetings View All Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9517c701-8b80-408b-a376-1c52106691a0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:45:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f2bbbc72-abcd-44dd-99c6-8b84f1e3608f # Upcoming Meetings Tag Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1747de94-2a98-4f05-b2d6-aa7b67e37b1c
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 484d58d2-2987-4dfc-a11c-6d4ce52fe35f
+        userCondition: null
+    thumbFieldKey: null
+handle: eventsPage
+hasTitleField: true
+icon: null
+name: Events
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

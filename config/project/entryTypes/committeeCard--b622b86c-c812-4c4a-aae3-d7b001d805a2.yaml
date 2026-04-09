@@ -1,0 +1,58 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  3c0aed29-a313-4a62-b8fc-99792808c16d:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-26T23:40:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 850a2bf8-e81f-4fea-add0-b7c90599e11c # Committee Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ab56baeb-cab0-468f-9298-4561e3ab6b9d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-26T23:40:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c5e3e5cb-e19c-41ec-9ce0-8e8935d67e9f # Committee Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a5b5114d-6495-4489-8592-029960f741ab
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: d43fd304-12b9-4c48-bf7c-d94790f51e69
+        userCondition: null
+    thumbFieldKey: null
+handle: committeeCard
+hasTitleField: false
+icon: null
+name: 'Committee Card'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{committeeTitle}'
