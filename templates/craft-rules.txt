@@ -166,6 +166,72 @@ controls: link text shown at the bottom of each "What We're Doing" card
 craft-->entries-->homepage-->[single homepage entry]-->about what we do cards-->[about what we do card]-->external link
 controls: optional destination URL for each "What We're Doing" card link
 
+craft-->entries-->homepage-->[single homepage entry]-->get involved hero eyebrow
+controls: small label above the Get Involved page title
+
+craft-->entries-->homepage-->[single homepage entry]-->get involved hero heading
+controls: Get Involved page main title
+
+craft-->entries-->homepage-->[single homepage entry]-->get involved hero description
+controls: paragraph under the Get Involved page hero title
+
+craft-->entries-->homepage-->[single homepage entry]-->get involved hero image
+controls: top background photo on the Get Involved page
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroups sidebar heading
+controls: left column heading on the Workgroups page
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroups sidebar text
+controls: left column paragraph on the Workgroups page
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroups sidebar quote
+controls: blue quote box on the Workgroups page
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup one title
+controls: first Workgroups card title
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup one description
+controls: first Workgroups card description
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup one schedule
+controls: first Workgroups card frequency/time text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup one button label
+controls: first Workgroups card button text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup one link
+controls: first Workgroups card button destination
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup two title
+controls: second Workgroups card title
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup two description
+controls: second Workgroups card description
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup two schedule
+controls: second Workgroups card frequency/time text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup two button label
+controls: second Workgroups card button text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup two link
+controls: second Workgroups card button destination
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup three title
+controls: third Workgroups card title
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup three description
+controls: third Workgroups card description
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup three schedule
+controls: third Workgroups card frequency/time text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup three button label
+controls: third Workgroups card button text
+
+craft-->entries-->homepage-->[single homepage entry]-->workgroup three link
+controls: third Workgroups card button destination
+
 craft-->entries-->homepage-->[single homepage entry]-->focus areas hero heading
 controls: focus areas page main title
 

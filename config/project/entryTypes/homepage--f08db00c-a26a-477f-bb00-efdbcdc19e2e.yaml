@@ -213,6 +213,358 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2026-04-09T12:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d1a19d7b-6c85-48f3-9f89-b5e9db8530d1 # Get Involved Hero Eyebrow
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2ee7fe83-bf80-4a0e-92d6-79261005dc28
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3f67e7c1-64fd-4b71-b126-c7de63f0602f # Get Involved Hero Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1962b4ae-9701-40cd-8217-35a6041a2bd9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 27a68188-c64d-4dd3-8f9d-0af87e8dc7ad # Get Involved Hero Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d7f02b89-6bdb-440b-af74-bb93647696d2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d8797d6e-66aa-4da2-bb58-c58e4458f485 # Get Involved Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: eb36c865-a5d6-4e9f-a131-c6d7f9163081
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2f750583-d161-44af-9d1d-bb55be84ad75 # Workgroups Sidebar Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 36611dc5-7511-43e0-bb85-42c1b4965584
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 86eb7dad-0178-4ab9-9d32-8d8c2c7ff8ca # Workgroups Sidebar Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dd8a6345-3594-46c2-95e0-d96e059472db
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6ce5ff31-893a-488c-95ff-5628aa9d4674 # Workgroups Sidebar Quote
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e010445b-e89e-46ea-aa5f-fa320fef4dbb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 86f3a3e0-d249-47b2-a1de-29d18c4d9c81 # Workgroup One Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bfdcddb3-1d54-40b7-8f28-a7ef9335f2ca
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b6c3987e-4652-4eb4-8d34-c7fc92bcfe8b # Workgroup One Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 487c8149-1d6b-4912-a6ec-4fcd0b23d1dc
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1615f616-f9fd-44d6-a5d7-8ae5497f0a66 # Workgroup One Schedule
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 178af541-5842-4cb2-b160-d43531838c41
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 24f0c4be-6256-4f14-93f1-0511187b276f # Workgroup One Button Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 70c7e8f0-9d9c-4ba7-923d-2a8f42a88003
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f05cf5cb-694e-4122-9e77-81e48650d14d # Workgroup One Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3ae7b24f-7b3c-4707-890b-7d4b8b7f7320
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: de91ec7a-834c-43cd-b836-bdb51770fb0a # Workgroup Two Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c8b550cd-e100-447d-b696-f771209429ea
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b5393b18-ec77-42de-87b3-e5f797530860 # Workgroup Two Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e85ec638-386c-4b20-8876-6d2a30d43aef
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 99ba29fb-620e-4ba6-90d8-0223e9332a99 # Workgroup Two Schedule
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b5b352f9-3098-4e62-9037-0f95e01aa7e4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fec7e4a6-eae8-4fca-983d-4ecb086e91b3 # Workgroup Two Button Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2f546279-5cc2-47b8-a45f-8ef80a473818
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 63df396d-a31d-4f39-a22b-454e1ef988f7 # Workgroup Two Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f4a7dbe4-e4a2-4c4b-903c-b493cdc4aa32
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 46a7a3e0-7556-4e6a-b43f-8530df750460 # Workgroup Three Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e9efb3bb-b159-4687-b90b-10e0869433f4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 98b7eeb8-4b59-4ab0-9bfc-c4ac376ec63a # Workgroup Three Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 85f688a3-3b40-4113-96cd-e9f3081308eb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 846447d3-447a-4350-9aa3-acf78cb7f675 # Workgroup Three Schedule
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1e75e8d9-5c70-4c74-ba43-69b865d09801
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 80dc2f2e-1dbb-4ea7-9eab-aaefe47c0ef5 # Workgroup Three Button Label
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 79f97f3c-bb4a-4a7b-a929-cd6be0a51438
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-09T12:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c612aa8f-00be-4106-b830-6303ce25dfc2 # Workgroup Three Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 11fb1261-8470-4542-89b8-994ef936cc6d
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2026-03-31T23:20:00+00:00'
             editCondition: null
             elementCondition: null

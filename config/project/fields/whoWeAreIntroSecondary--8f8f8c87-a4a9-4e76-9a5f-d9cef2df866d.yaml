@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: whoWeAreIntroSecondary
+instructions: 'Optional second intro paragraph beneath the Who We Are heading.'
+name: 'Who We Are Intro Secondary'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

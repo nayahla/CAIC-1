@@ -10,8 +10,6 @@
 {% set requestedType = craft.app.request.getQueryParam('type')|trim|lower %}
 {% set selectedSort = sort == 'oldest' ? 'oldest' : 'recent' %}
 {% set orderBy = sort == 'oldest' ? 'postDate asc' : 'postDate desc' %}
-{% set initialVisible = 8 %}
-{% set loadStep = 4 %}
 {% set fallbackCount = 12 %}
 {% set newsPage = craft.entries.section('newsMedia').one() ?? craft.entries.section('homepage').one() %}
 {% set filterTypeOptions = [
@@ -118,9 +116,9 @@
   {% endif %}
 {% endfor %}
 {% set hasLibraryContent = allCards|length > 0 %}
-{% set totalCardCount = resources|length ? resources|length : (hasLibraryContent ? 0 : fallbackCount) %}
-{% set uploadedFallbackImage = craft.assets().kind('image').orderBy('dateCreated asc').one() %}
-{% set blankPhoto = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22%3E%3Crect width=%221200%22 height=%22800%22 fill=%22%23e5ebef%22/%3E%3Ccircle cx=%22300%22 cy=%22270%22 r=%2260%22 fill=%22%23c4cfd6%22/%3E%3Cpath d=%22M160 610l250-250 180 180 160-160 290 230H160z%22 fill=%22%23c4cfd6%22/%3E%3C/svg%3E' %}
+{% set uploadedFallbackImage = null %}
+{% set caicLogoFallback = alias('@web') ~ '/images/logo.jpg' %}
+{% set blankPhoto = alias('@web') ~ '/images/heroback.jpg' %}
 
 {% block body %}
 <main class="dg-page dg-resources">
@@ -206,12 +204,7 @@
     </form>
   </section>
 
-  <section
-    class="dg-shell dg-resources__gridWrap"
-    data-resource-list
-    data-initial-visible="{{ initialVisible }}"
-    data-load-step="{{ loadStep }}"
-  >
+  <section class="dg-shell dg-resources__gridWrap">
     <div class="dg-resources__divider" aria-hidden="true"></div>
 
     <div class="dg-resourcesGrid">
@@ -225,7 +218,6 @@
           {% else %}
             {% set img = null %}
           {% endif %}
-          {% set img = img ?: uploadedFallbackImage %}
           {% set tagLabel = card.typeLabel %}
           {% set tagValue = card.typeValue %}
           {% if card.sectionHandle == 'pressReleases' %}
@@ -243,11 +235,14 @@
             {% set ctaLabel = fileAsset ? 'Download PDF' : 'View Resource' %}
             {% set summaryText = r.summary ?? 'Evidence-based tools and practical guidance to support coalition and prevention efforts.' %}
           {% endif %}
-          {% set publishDate = r.postDate and (not r.dateCreated or ((r.postDate|date('U') - r.dateCreated|date('U'))|abs > 300)) ? r.postDate : null %}
-          <article class="dg-resCard dg-lift" data-resource-card {{ loop.index > initialVisible ? 'hidden' }}>
-            <a href="{{ linkHref }}" class="dg-resCard__imageWrap">
+          {% set publishDate = r.manualPublishDate ?? (r.postDate and (not r.dateCreated or ((r.postDate|date('U') - r.dateCreated|date('U'))|abs > 300)) ? r.postDate : null) %}
+          {% set isLogoFallback = not img and tagValue in ['caic', 'press-release', 'newsletter'] %}
+          {% set fallbackCardImage = isLogoFallback ? caicLogoFallback : blankPhoto %}
+          {% set imgUrl = img ? img.url : fallbackCardImage %}
+          <article class="dg-resCard dg-lift" data-resource-card>
+            <a href="{{ linkHref }}" class="dg-resCard__imageWrap {{ isLogoFallback ? 'dg-resCard__imageWrap--fallback' }}">
               <span class="dg-resCard__tag dg-resCard__tag--{{ tagValue }}">{{ tagLabel }}</span>
-              <img src="{{ img ? img.url : blankPhoto }}" alt="{{ r.title }}">
+              <img src="{{ imgUrl }}" alt="{{ r.title }}">
             </a>
 
             <div class="dg-resCard__body">
@@ -292,11 +287,6 @@
       {% endif %}
     </div>
 
-    {% if totalCardCount > initialVisible %}
-      <div class="dg-loadRow">
-        <button class="dg-btn dg-btn--load dg-lift" type="button" data-load-more>Load More Resources</button>
-      </div>
-    {% endif %}
   </section>
 </main>
 {% endblock %}
@@ -323,39 +313,6 @@
     });
   });
 
-  const wrap = document.querySelector('[data-resource-list]');
-  if (!wrap) return;
-
-  const cards = Array.from(wrap.querySelectorAll('[data-resource-card]'));
-  const loadMoreButton = wrap.querySelector('[data-load-more]');
-  if (!cards.length || !loadMoreButton) return;
-
-  const initialVisible = parseInt(wrap.dataset.initialVisible || '8', 10);
-  const loadStep = parseInt(wrap.dataset.loadStep || '4', 10);
-  let visibleCount = Math.max(1, initialVisible);
-
-  const syncState = () => {
-    cards.forEach((card, i) => {
-      if (i < visibleCount) {
-        card.removeAttribute('hidden');
-      } else {
-        card.setAttribute('hidden', 'hidden');
-      }
-    });
-
-    if (visibleCount >= cards.length) {
-      loadMoreButton.setAttribute('hidden', 'hidden');
-    } else {
-      loadMoreButton.removeAttribute('hidden');
-    }
-  };
-
-  loadMoreButton.addEventListener('click', () => {
-    visibleCount = Math.min(cards.length, visibleCount + Math.max(1, loadStep));
-    syncState();
-  });
-
-  syncState();
 })();
 </script>
 {% endblock %}

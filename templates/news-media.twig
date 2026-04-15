@@ -80,7 +80,7 @@
   .all()
 %}
 {% set pressItems = manualPress|length ? manualPress : queriedPressItems %}
-{% set blankPhoto = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22%3E%3Crect width=%221200%22 height=%22800%22 fill=%22%23e3e8ec%22/%3E%3Cpath d=%22M160 620l230-230 200 190 170-170 280 210H160z%22 fill=%22%23c5ced5%22/%3E%3Ccircle cx=%22320%22 cy=%22270%22 r=%2255%22 fill=%22%23c5ced5%22/%3E%3C/svg%3E' %}
+{% set blankPhoto = '/images/logo.jpg' %}
 
 {% block body %}
 <main class="dg-page dg-news">
@@ -106,7 +106,7 @@
         <article class="dg-newsFeatured dg-newsCardLift">
           {% set fImg = featured and featured.resourceImage is defined and featured.resourceImage ? featured.resourceImage.one() : ((featured and featured.newsImage is defined and featured.newsImage) ? featured.newsImage.one() : null) %}
           {% set featuredLink = featured and featured.externalLink ? (featured.externalLink.url ?? featured.externalLink) : (featured ? featured.url : '#') %}
-          {% set featuredDate = featured and featured.postDate and (not featured.dateCreated or ((featured.postDate|date('U') - featured.dateCreated|date('U'))|abs > 300)) ? featured.postDate : null %}
+          {% set featuredDate = featured ? (featured.manualPublishDate ?? (featured.postDate and (not featured.dateCreated or ((featured.postDate|date('U') - featured.dateCreated|date('U'))|abs > 300)) ? featured.postDate : null)) : null %}
           <a class="dg-newsFeatured__img" href="{{ featuredLink }}">
             <img src="{{ fImg ? fImg.url : blankPhoto }}" alt="{{ featured ? featured.title : 'Featured news' }}">
           </a>
@@ -121,7 +121,7 @@
             {% set iImg = item.resourceImage is defined and item.resourceImage ? item.resourceImage.one() : ((item.newsImage is defined and item.newsImage) ? item.newsImage.one() : null) %}
             {% set itemLink = item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url %}
             {% set outletName = (item.newsOutlet is defined and item.newsOutlet) ? item.newsOutlet : ((item.categoryLabel is defined and item.categoryLabel) ? (item.categoryLabel.label ?? item.categoryLabel) : 'News Outlet') %}
-            {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+            {% set itemDate = item.manualPublishDate ?? (item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null) %}
             <article class="dg-newsSideItem dg-newsCardLift">
               <a class="dg-newsSideItem__img" href="{{ itemLink }}">
                 <img src="{{ iImg ? iImg.url : blankPhoto }}" alt="{{ item.title }}">
@@ -158,7 +158,7 @@
       <div class="dg-newsVertical" aria-label="Important General News">
         {% for item in generalNews %}
           {% set generalLink = item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url %}
-          {% set generalDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+          {% set generalDate = item.manualPublishDate ?? (item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null) %}
           <article class="dg-newsListItem dg-newsCardLift">
             <p class="dg-newsMetaTop">{{ (item.categoryLabel is defined and item.categoryLabel) ? (item.categoryLabel.label ?? item.categoryLabel) : 'General Policy' }} <span>&bull;</span> {{ generalDate ? generalDate|date('M j, Y') : now|date('M j, Y') }}</p>
             <h3>{{ item.title }}</h3>
@@ -190,14 +190,14 @@
       {% for item in manualNewsletters %}
         {% set fileAsset = item.pressReleaseFile is defined and item.pressReleaseFile ? item.pressReleaseFile.one() : null %}
         {% set linkHref = fileAsset ? fileAsset.url : (item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url) %}
-        {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+        {% set itemDate = item.manualPublishDate ?? (item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null) %}
         {% set sizeLabel = fileAsset and fileAsset.size ? ((fileAsset.size / 1048576) >= 1 ? ((fileAsset.size / 1048576)|number_format(1)) ~ ' MB' : ((fileAsset.size / 1024)|round) ~ ' KB') : '' %}
         {% set releaseCards = releaseCards|merge([{ entry: item, typeLabel: 'Newsletter', asset: fileAsset, linkHref: linkHref, publishDate: itemDate, sizeLabel: sizeLabel }]) %}
       {% endfor %}
       {% for item in pressItems %}
         {% set fileAsset = item.pressReleaseFile ? item.pressReleaseFile.one() : null %}
         {% set linkHref = fileAsset ? fileAsset.url : (item.externalLink ? (item.externalLink.url ?? item.externalLink) : item.url) %}
-        {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+        {% set itemDate = item.manualPublishDate ?? (item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null) %}
         {% set sizeLabel = fileAsset and fileAsset.size ? ((fileAsset.size / 1048576) >= 1 ? ((fileAsset.size / 1048576)|number_format(1)) ~ ' MB' : ((fileAsset.size / 1024)|round) ~ ' KB') : '' %}
         {% set releaseCards = releaseCards|merge([{ entry: item, typeLabel: 'Press Release', asset: fileAsset, linkHref: linkHref, publishDate: itemDate, sizeLabel: sizeLabel }]) %}
       {% endfor %}

@@ -16,6 +16,6 @@ siteSettings:
   8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
     enabledByDefault: true
     hasUrls: true
-    template: workgroups.twig
+    template: who-we-are.twig
     uriFormat: who-we-are
 type: single

@@ -1,0 +1,43 @@
+columnSuffix: null
+handle: getInvolvedHelpLink
+instructions: 'Button destination in the bottom help section.'
+name: 'Get Involved Help Link'
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  typeSettings:
+    __assoc__:
+      -
+        - entry
+        -
+          __assoc__:
+            -
+              - sources
+              - '*'
+            -
+              - showUnpermittedSections
+              - ''
+            -
+              - showUnpermittedEntries
+              - ''
+      -
+        - url
+        -
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - ''
+            -
+              - allowAnchors
+              - ''
+            -
+              - allowCustomSchemes
+              - ''
+  types:
+    - entry
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

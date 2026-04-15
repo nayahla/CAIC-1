@@ -101,6 +101,22 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2026-04-09T18:30:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8f8f8c87-a4a9-4e76-9a5f-d9cef2df866d # Who We Are Intro Secondary
+            handle: null
+            instructions: 'Optional second paragraph in the hero section.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 77b3a838-b2a6-4f35-bcf0-bb251b3f6f15
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2026-03-31T22:45:00+00:00'
             editCondition: null
             elementCondition: null

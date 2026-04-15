@@ -1,19 +1,29 @@
 {% extends "layouts/main" %}
 
+{% set homePage = craft.entries.section('homepage').one() %}
+{% set getInvolvedPage = craft.entries.section('getInvolvedPage').one() %}
+{% set page = getInvolvedPage ?? homePage %}
+{% set getInvolvedHeroAsset = page and page.getInvolvedHeroImage ? page.getInvolvedHeroImage.one() : null %}
+{% set fallbackHeroAsset = homePage and homePage.heroBackground ? homePage.heroBackground.one() : null %}
+{% set getInvolvedHeroImageUrl = getInvolvedHeroAsset ? getInvolvedHeroAsset.url : (fallbackHeroAsset ? fallbackHeroAsset.url : '/images/heroback.jpg') %}
+{% set getInvolvedHeroEyebrow = page and page.getFieldValue('getInvolvedHeroEyebrow') ? page.getFieldValue('getInvolvedHeroEyebrow') : 'Get Involved' %}
+{% set getInvolvedHeroHeading = page and page.getFieldValue('getInvolvedHeroHeading') ? page.getFieldValue('getInvolvedHeroHeading') : 'Get Involved' %}
+{% set getInvolvedHeroDescription = page and page.getFieldValue('getInvolvedHeroDescription') ? page.getFieldValue('getInvolvedHeroDescription') : "The Colorado Alcohol Impacts Coalition (CAIC) has officially launched and is now welcoming new partners to join this statewide effort. We invite community leaders, public safety professionals, public health experts, treatment providers, researchers, advocates, and other stakeholders to get involved as we work together to reduce alcohol-related harms across Colorado. By joining CAIC, you will help raise awareness of alcohol's impact on health and safety, amplify community voices, and drive collaborative action toward a healthier, safer Colorado." %}
+{% set getInvolvedHeroDescriptionSecondary = page and page.getFieldValue('getInvolvedHeroDescriptionSecondary') ? page.getFieldValue('getInvolvedHeroDescriptionSecondary') : '' %}
+
 {% block body %}
 <div class="caic">
   <main class="caic-getInvolvedPage">
-    <section class="caic-pageHero caic-getInvolvedHero">
-      <div class="caic-container">
-        <div class="caic-getInvolvedHero__inner">
-          <p class="caic-pageEyebrow">Get Involved</p>
-          <h1 class="caic-h1 caic-getInvolvedHero__title">Get Involved</h1>
-          <p class="caic-getInvolvedHero__text">
-            The Colorado Alcohol Impacts Coalition (CAIC) has officially launched and is now welcoming new partners to join
-this statewide effort. We invite community leaders, public safety professionals, public health experts, treatment
-providers, researchers, advocates, and other stakeholders to get involved as we work together to reduce alcoholrelated harms across Colorado. By joining CAIC, you’ll help raise awareness of alcohol’s impact on health and
-safety, amplify community voices, and drive collaborative action toward a healthier, safer Colorado.
-          </p>
+    <section class="caic-hero" style="background-image:url('{{ getInvolvedHeroImageUrl }}')">
+      <div class="caic-hero__overlay" aria-hidden="true"></div>
+      <div class="caic-container caic-hero__inner">
+        <div class="caic-hero__content reveal">
+          <div class="caic-kickerPill">{{ getInvolvedHeroEyebrow }}</div>
+          <h1 class="caic-heroTitle">{{ getInvolvedHeroHeading }}</h1>
+          <p class="caic-heroSub">{{ getInvolvedHeroDescription }}</p>
+          {% if getInvolvedHeroDescriptionSecondary %}
+            <p class="caic-heroSub">{{ getInvolvedHeroDescriptionSecondary }}</p>
+          {% endif %}
         </div>
       </div>
     </section>
@@ -21,39 +31,28 @@ safety, amplify community voices, and drive collaborative action toward a health
     <section class="caic-section caic-getInvolvedWays">
       <div class="caic-container">
         <div class="caic-leftHead caic-getInvolvedWays__head">
-          <h2 class="caic-h2">Ways to Participate</h2>
-          <p class="caic-body">Find the path that best suits your commitment level and interest.</p>
+          <h2 class="caic-h2">{{ page and page.getFieldValue('getInvolvedWaysHeading') ? page.getFieldValue('getInvolvedWaysHeading') : 'Ways to Participate' }}</h2>
+          <p class="caic-body">{{ page and page.getFieldValue('getInvolvedWaysIntro') ? page.getFieldValue('getInvolvedWaysIntro') : 'Find the path that best suits your commitment level and interest.' }}</p>
         </div>
 
         <div class="caic-getInvolvedCardGrid">
           <article class="caic-getInvolvedCard caic-grow">
-            <h3 class="caic-getInvolvedCard__title">Attend Coalition Meetings</h3>
+            <h3 class="caic-getInvolvedCard__title">{{ page and page.getFieldValue('getInvolvedCardOneTitle') ? page.getFieldValue('getInvolvedCardOneTitle') : 'Attend Coalition Meetings' }}</h3>
             <p class="caic-getInvolvedCard__text">
-              Our primary coalition meetings are fully open to the public. Join us to hear latest data, discuss policy impacts, and witness collaborative problem-solving in real time.
+              {{ page and page.getFieldValue('getInvolvedCardOneText') ? page.getFieldValue('getInvolvedCardOneText') : 'Our primary coalition meetings are fully open to the public. Join us to hear latest data, discuss policy impacts, and witness collaborative problem-solving in real time.' }}
             </p>
-            <a class="caic-getInvolvedCard__link" href="{{ url('events') }}">View Meeting Schedule <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+            {% set cardOneLink = page and page.getFieldValue('getInvolvedCardOneLink') ? (page.getFieldValue('getInvolvedCardOneLink').url ?? page.getFieldValue('getInvolvedCardOneLink')) : url('events') %}
+            <a class="caic-getInvolvedCard__link" href="{{ cardOneLink }}">{{ page and page.getFieldValue('getInvolvedCardOneLinkLabel') ? page.getFieldValue('getInvolvedCardOneLinkLabel') : 'View Meeting Schedule' }} <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
           </article>
 
           <article class="caic-getInvolvedCard caic-grow">
-            <h3 class="caic-getInvolvedCard__title">Join a Workgroup</h3>
+            <h3 class="caic-getInvolvedCard__title">{{ page and page.getFieldValue('getInvolvedCardTwoTitle') ? page.getFieldValue('getInvolvedCardTwoTitle') : 'Join a Workgroup' }}</h3>
             <p class="caic-getInvolvedCard__text">
-              Dive deeper into specific impact areas. We currently maintain three core workgroups focused on Evidence Synthesis, Public Health Advocacy, and Community Outreach.
+              {{ page and page.getFieldValue('getInvolvedCardTwoText') ? page.getFieldValue('getInvolvedCardTwoText') : 'Dive deeper into specific impact areas. We currently maintain three core workgroups focused on Evidence Synthesis, Public Health Advocacy, and Community Outreach.' }}
             </p>
-            <a class="caic-getInvolvedCard__link" href="{{ url('workgroups') }}">Learn About Workgroups <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
+            {% set cardTwoLink = page and page.getFieldValue('getInvolvedCardTwoLink') ? (page.getFieldValue('getInvolvedCardTwoLink').url ?? page.getFieldValue('getInvolvedCardTwoLink')) : url('workgroups') %}
+            <a class="caic-getInvolvedCard__link" href="{{ cardTwoLink }}">{{ page and page.getFieldValue('getInvolvedCardTwoLinkLabel') ? page.getFieldValue('getInvolvedCardTwoLinkLabel') : 'Learn About Workgroups' }} <span class="caic-linkArrow" aria-hidden="true">&rarr;</span></a>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="caic-section caic-getInvolvedHelp">
-      <div class="caic-container">
-        <div class="caic-getInvolvedHelp__inner">
-          <div class="caic-getInvolvedHelp__icon" aria-hidden="true">?</div>
-          <h2 class="caic-h2">Have Questions?</h2>
-          <p class="caic-body">
-            For questions or to learn more about becoming a coalition member, please get in touch with us!
-          </p>
-          <a class="caic-btn caic-btn--ghost caic-getInvolvedHelp__cta" href="{{ url('contact-us') }}">Contact Us</a>
         </div>
       </div>
     </section>

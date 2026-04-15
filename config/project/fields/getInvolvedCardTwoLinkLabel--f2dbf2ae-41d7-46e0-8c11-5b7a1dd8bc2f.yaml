@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: getInvolvedCardTwoLinkLabel
+instructions: 'Second participation card link label.'
+name: 'Get Involved Card Two Link Label'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

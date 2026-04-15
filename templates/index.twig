@@ -43,8 +43,21 @@
 
 {% set eventsPage = craft.entries.section('eventsPage').one() ?? home %}
 {% set whoWeArePage = craft.entries.section('whoWeAre').one() ?? home %}
-{% set partnerCards = (whoWeArePage and whoWeArePage.trustedPartners) ? whoWeArePage.trustedPartners.all() : [] %}
+{% set partnerCards = [] %}
+{% if whoWeArePage and whoWeArePage.trustedPartners %}
+  {% for card in whoWeArePage.trustedPartners.all() %}
+    {% set logo = card.partnerLogo ? card.partnerLogo.one() : null %}
+    {% if logo %}
+      {% set partnerCards = partnerCards|merge([{
+        title: card.title ?? '',
+        link: card.externalLink ? (card.externalLink.url ?? card.externalLink) : '',
+        logo: logo
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 {% set partnerCards = partnerCards|slice(0, 8) %}
+{% set fallbackCardImage = '/images/logo.jpg' %}
 
 {% block body %}
 <div class="caic">
@@ -120,10 +133,10 @@
             <div class="caic-carouselTrack" data-carousel-track>
               {% for item in newsEntries %}
                 {% set img = item.resourceImage is defined and item.resourceImage ? item.resourceImage.one() : ((item.newsImage is defined and item.newsImage) ? item.newsImage.one() : null) %}
-                {% set itemDate = item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null %}
+                {% set itemDate = item.manualPublishDate ?? (item.postDate and (not item.dateCreated or ((item.postDate|date('U') - item.dateCreated|date('U'))|abs > 300)) ? item.postDate : null) %}
                 <article class="caic-newsSlide" data-carousel-slide>
                   <div class="caic-newsCard caic-grow">
-                    <div class="caic-newsCard__img" style="background-image:url('{{ img ? img.url : '/assets/img/news-placeholder.jpg' }}')"></div>
+                    <div class="caic-newsCard__img" style="background-image:url('{{ img ? img.url : fallbackCardImage }}')"></div>
                     <div class="caic-newsCard__body">
                       <div class="caic-newsCard__meta">
                         <span class="caic-tag">{{ item.categoryLabel.label ?? 'News' }}</span>
@@ -291,40 +304,26 @@
       </div>
     </section>
 
-    <section class="caic-partners reveal" aria-label="Trusted partners and collaborators">
-      <div class="caic-container">
-        <h2 class="caic-partners__title">{{ whoWeArePage.trustedPartnersHeading ?? 'Trusted Partners & Collaborators' }}</h2>
-        <div class="caic-partnersGrid">
-          {% for card in partnerCards %}
-            {% set partnerLink = card.externalLink ? (card.externalLink.url ?? card.externalLink) : '' %}
-            {% set logo = card.partnerLogo ? card.partnerLogo.one() : null %}
-            {% if partnerLink %}
-              <a class="caic-partnerCard caic-partnerCard--link" href="{{ partnerLink }}" target="_blank" rel="noopener">
-                {% if logo %}
-                  <img class="caic-partnerCard__logo" src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
-                {% else %}
-                  {{ card.title }}
-                {% endif %}
-              </a>
-            {% else %}
-              <div class="caic-partnerCard">
-                {% if logo %}
-                  <img class="caic-partnerCard__logo" src="{{ logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
-                {% else %}
-                  {{ card.title }}
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
-
-          {% if partnerCards|length < 4 %}
-            {% for i in 1..(4 - partnerCards|length) %}
-              <div class="caic-partnerCard">Partner {{ i }}</div>
+    {% if partnerCards|length %}
+      <section class="caic-partners reveal" aria-label="Trusted partners and collaborators">
+        <div class="caic-container">
+          <h2 class="caic-partners__title">{{ whoWeArePage.trustedPartnersHeading ?? 'Trusted Partners & Collaborators' }}</h2>
+          <div class="caic-partnersGrid">
+            {% for card in partnerCards %}
+              {% if card.link %}
+                <a class="caic-partnerCard caic-partnerCard--link" href="{{ card.link }}" target="_blank" rel="noopener">
+                  <img class="caic-partnerCard__logo" src="{{ card.logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                </a>
+              {% else %}
+                <div class="caic-partnerCard">
+                  <img class="caic-partnerCard__logo" src="{{ card.logo.url }}" alt="{{ card.title ?: 'Partner logo' }}">
+                </div>
+              {% endif %}
             {% endfor %}
-          {% endif %}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    {% endif %}
 
   </main>
 </div>

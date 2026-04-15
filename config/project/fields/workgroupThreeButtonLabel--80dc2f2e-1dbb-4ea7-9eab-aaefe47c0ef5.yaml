@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: workgroupThreeButtonLabel
+instructions: 'CTA label for the third workgroup card.'
+name: 'Workgroup Three Button Label'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

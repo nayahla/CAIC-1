@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: trustedPartners
-instructions: 'Add between 4 and 8 cards.'
+instructions: 'Add between 3 and 8 cards.'
 name: 'Trusted Partners'
 searchable: false
 settings:
@@ -18,7 +18,7 @@ settings:
           - Partners
   includeTableView: false
   maxEntries: 8
-  minEntries: 4
+  minEntries: 3
   pageSize: 50
   propagationKeyFormat: null
   propagationMethod: all

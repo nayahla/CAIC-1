@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 2d395d4c-2f90-4a51-b071-4a88719d5d67 # Workgroups
+handle: workgroupsPage
+maxAuthors: 1
+name: Workgroups
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
+    enabledByDefault: true
+    hasUrls: true
+    template: workgroup-info.twig
+    uriFormat: workgroups
+type: single

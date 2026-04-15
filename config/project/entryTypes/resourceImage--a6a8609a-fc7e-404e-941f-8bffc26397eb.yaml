@@ -116,6 +116,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-09T19:15:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e260c9a9-e328-45b0-9e04-6d3f16c5be05 # Manual Publish Date
+            handle: null
+            instructions: 'Optional override for the displayed date.'
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 241488e1-aebc-4381-ad17-dafdbe64af16
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: a4de4534-2ba2-42cd-b551-889a3d2f4456
         userCondition: null

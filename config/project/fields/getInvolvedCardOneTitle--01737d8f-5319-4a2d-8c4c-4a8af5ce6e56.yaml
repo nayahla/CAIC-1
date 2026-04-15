@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: getInvolvedCardOneTitle
+instructions: 'First participation card title.'
+name: 'Get Involved Card One Title'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

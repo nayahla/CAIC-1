@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: c2ea035e-fcdb-4bf9-a6da-4f2bc75de1e7 # Get Involved
+handle: getInvolvedPage
+maxAuthors: 1
+name: 'Get Involved'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  8426bccd-8b8b-4dc4-93e7-f725ce1022b3: # CAIC Website
+    enabledByDefault: true
+    hasUrls: true
+    template: get-involved.twig
+    uriFormat: get-involved
+type: single

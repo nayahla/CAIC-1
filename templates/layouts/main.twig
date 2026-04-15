@@ -1,7 +1,7 @@
 {# templates/layouts/main.twig #}
 {% set home = home ?? craft.entries.section('homepage').one() %}
 {% set contactPage = contactPage ?? craft.entries.section('contactUs').one() %}
-{% set contactEmail = contactPage and contactPage.contactEmail ? contactPage.contactEmail|trim : 'info@caic-colorado.org' %}
+{% set contactEmail = contactPage and contactPage.contactEmail ? contactPage.contactEmail|trim : 'info@coloradoalcoholimpactscoalition.org' %}
 {% set contactLinkedinHref = contactPage and contactPage.contactLinkedinLink ? (contactPage.contactLinkedinLink.url ?? contactPage.contactLinkedinLink) : '#' %}
 <!DOCTYPE html>
 <html lang="en">

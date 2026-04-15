@@ -1,8 +1,71 @@
 {% extends "layouts/main" %}
 
 {% set homePage = craft.entries.section('homepage').one() %}
-{% set heroImage = homePage and homePage.heroBackground ? homePage.heroBackground.one() : null %}
+{% set workgroupsPage = craft.entries.section('workgroupsPage').one() %}
+{% set page = workgroupsPage ?? homePage %}
+{% set heroImage = page and page.heroBackground ? page.heroBackground.one() : (homePage and homePage.heroBackground ? homePage.heroBackground.one() : null) %}
 {% set heroImageUrl = heroImage ? heroImage.url : '/images/heroback.jpg' %}
+
+{% set workgroupCards = [
+  {
+    title: page ? page.getFieldValue('workgroupOneTitle') : null,
+    description: page ? page.getFieldValue('workgroupOneDescription') : null,
+    schedule: page ? page.getFieldValue('workgroupOneSchedule') : null,
+    icon: 'shield',
+    anchor: 'alcohol-prevention'
+  },
+  {
+    title: page ? page.getFieldValue('workgroupTwoTitle') : null,
+    description: page ? page.getFieldValue('workgroupTwoDescription') : null,
+    schedule: page ? page.getFieldValue('workgroupTwoSchedule') : null,
+    icon: 'policy',
+    anchor: 'policy-advocacy'
+  },
+  {
+    title: page ? page.getFieldValue('workgroupThreeTitle') : null,
+    description: page ? page.getFieldValue('workgroupThreeDescription') : null,
+    schedule: page ? page.getFieldValue('workgroupThreeSchedule') : null,
+    icon: 'community',
+    anchor: 'community-engagement'
+  }
+] %}
+
+{% set fallbackCards = [
+  {
+    title: 'Alcohol Prevention Workgroup',
+    description: 'Focuses on reducing alcohol-related harms through environmental changes, shifting the focus from individual behavior to systemic safeguards.',
+    schedule: 'Every 2nd Tuesday / 10:00 AM',
+    icon: 'shield',
+    anchor: 'alcohol-prevention'
+  },
+  {
+    title: 'Policy Advocacy Workgroup',
+    description: 'Dedicated to evidence-based policy solutions and legislative tracking. We translate data into the language of governance.',
+    schedule: 'Every 3rd Thursday / 2:00 PM',
+    icon: 'policy',
+    anchor: 'policy-advocacy'
+  },
+  {
+    title: 'Community Engagement Workgroup',
+    description: 'Bridging the gap between grassroots needs and high-level strategy. We ensure community voices remain the foundation of our impact.',
+    schedule: 'Every 1st Wednesday / 11:00 AM',
+    icon: 'community',
+    anchor: 'community-engagement'
+  }
+] %}
+
+{% set resolvedCards = [] %}
+{% for i in 0..2 %}
+  {% set configured = workgroupCards[i] %}
+  {% set fallback = fallbackCards[i] %}
+  {% set resolvedCards = resolvedCards|merge([{
+    title: configured.title ?: fallback.title,
+    description: configured.description ?: fallback.description,
+    schedule: configured.schedule ?: fallback.schedule,
+    icon: configured.icon,
+    anchor: configured.anchor
+  }]) %}
+{% endfor %}
 
 {% block body %}
 <div class="caic">
@@ -11,9 +74,32 @@
       <div class="caic-hero__overlay" aria-hidden="true"></div>
       <div class="caic-container caic-hero__inner">
         <div class="caic-hero__content reveal">
-          <div class="caic-kickerPill">Coalition Structure</div>
-          <h1 class="caic-heroTitle">Workgroups</h1>
-          <p class="caic-heroSub">More workgroup information will be added here.</p>
+          <div class="caic-kickerPill">{{ page and page.getFieldValue('workgroupsHeroEyebrow') ? page.getFieldValue('workgroupsHeroEyebrow') : 'Coalition Structure' }}</div>
+          <h1 class="caic-heroTitle">{{ page and page.getFieldValue('workgroupsHeroHeading') ? page.getFieldValue('workgroupsHeroHeading') : 'Workgroups' }}</h1>
+          <p class="caic-heroSub">{{ page and page.getFieldValue('workgroupsHeroDescription') ? page.getFieldValue('workgroupsHeroDescription') : 'Collaborative action across prevention, policy, and community leadership.' }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="caic-section caic-section--tint caic-workgroupsDetail">
+      <div class="caic-container">
+        <div class="caic-workgroupsDetail__cards">
+            {% for card in resolvedCards %}
+              <article class="caic-workgroupCard caic-grow" id="{{ card.anchor }}">
+                <div class="caic-workgroupCard__top">
+                  <h3 class="caic-workgroupCard__title">{{ card.title }}</h3>
+                </div>
+
+                <div class="caic-workgroupCard__body">{{ card.description|nl2br }}</div>
+
+                <div class="caic-workgroupCard__footer">
+                  <div class="caic-workgroupCard__schedule">
+                    <span class="caic-workgroupCard__scheduleLabel">Frequency</span>
+                    <span class="caic-workgroupCard__scheduleValue">{{ card.schedule }}</span>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
         </div>
       </div>
     </section>
